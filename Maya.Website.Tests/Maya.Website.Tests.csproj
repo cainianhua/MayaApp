@@ -6,11 +6,11 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{039D452C-455B-45D5-8267-B30C10307403}</ProjectGuid>
+    <ProjectGuid>{5ECA4053-506A-4CB9-9F75-5150B1461E27}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Website.Tests</RootNamespace>
-    <AssemblyName>Website.Tests</AssemblyName>
+    <RootNamespace>Maya.Website.Tests</RootNamespace>
+    <AssemblyName>Maya.Website.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -106,9 +106,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Website\Website.csproj">
-      <Project>{0B14E091-AE0C-46A8-9908-14F2E831F734}</Project>
-      <Name>Website</Name>
+    <ProjectReference Include="..\Maya.Website\Maya.Website.csproj">
+      <Project>{328F80A3-97EB-456D-9E57-CC71A53DBB99}</Project>
+      <Name>Maya.Website</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

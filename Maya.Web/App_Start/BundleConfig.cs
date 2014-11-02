@@ -25,34 +25,47 @@ namespace Maya.Web
 					"~/Scripts/uniform/jquery.uniform.min.js",
 					"~/Scripts/bootstrap-switch/js/bootstrap-switch.min.js" ) );
 
-			/* PAGE LEVEL PLUGINS */
-			bundles.Add( new ScriptBundle( "~/bundles/PagePlugins" ).Include(
-					"~/Scripts/plugins/jqvmap/jqvmap/jquery.vmap.js" ) );
+			/* DASHBOARD PAGE LEVEL PLUGINS */
+			bundles.Add( new ScriptBundle( "~/bundles/dashboard-plugins" ).Include(
+					"~/Scripts/plugins/jqvmap/jqvmap/jquery.vmap.js",
+					"~/Scripts/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js",
+					"~/Scripts/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js",
+					"~/Scripts/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js",
+					"~/Scripts/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js",
+					"~/Scripts/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js",
+					"~/Scripts/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js",
+					"~/Scripts/plugins/flot/jquery.flot.min.js",
+					"~/Scripts/plugins/flot/jquery.flot.resize.min.js",
+					"~/Scripts/plugins/flot/jquery.flot.categories.min.js",
+					"~/Scripts/plugins/jquery.pulsate.min.js",
+					"~/Scripts/plugins/bootstrap-daterangepicker/moment.min.js",
+					"~/Scripts/plugins/bootstrap-daterangepicker/daterangepicker.js",
+					"~/Scripts/plugins/fullcalendar/fullcalendar/fullcalendar.min.js",
+					"~/Scripts/plugins/jquery-easypiechart/jquery.easypiechart.min.js",
+					"~/Scripts/plugins/jquery-easypiechart/jquery.easypiechart.min.js",
+					"~/Scripts/plugins/jquery.sparkline.min.js",
+					"~/Scripts/plugins/gritter/js/jquery.gritter.js" ) );
 
-			/* PAGE LEVEL SCRIPTS */
-			bundles.Add( new ScriptBundle( "" ).Include( "" ) );
-
+			/* DASHBOARD PAGE LEVEL SCRIPTS */
+			bundles.Add( new ScriptBundle( "~/bundles/dashboard-scripts" ).Include(
+					"~/Scripts/metronic.js",
+					"~/Scripts/layout/scripts/layout.js",
+					"~/Scripts/layout/scripts/quick-sidebar.js",
+					"~/Scripts/layout/scripts/demo.js",
+					"~/Scripts/pages/scripts/index.js",
+					"~/Scripts/pages/scripts/tasks.js" ) );
 			
-
-            /* Datetime picker js */
-            bundles.Add(new ScriptBundle("~/Scripts/datetimepicker.js").Include(
-                        "~/Scripts/datetimepicker/js/bootstrap-datetimepicker.min.js",
-                        "~/Scripts/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"));
-
-            /* jQuery validation js */
-            bundles.Add(new ScriptBundle("~/Scripts/jqueryval.js").Include(
-                        "~/Scripts/jquery.unobtrusive*",
-                        "~/Scripts/jquery.validate.js",
-                        "~/Scripts/jquery.validate.unobtrusive.js",
-                        "~/Scripts/jquery.validate.unobtrusive.bootstrap.js"));
 
             /***********************************+ CSS +************************************/
 
-            /* BootStrap v3.2 */
-            bundles.Add(new StyleBundle("~/Content/Admin/skin3/stylesheets/cores.css").Include(
-                        "~/Content/Admin/skin3/stylesheets/application-cf0a60d5.css",
-                        "~/Content/Admin/skin3/stylesheets/font-awesome.min.css"
-                        ));
+			/* GLOBAL MANDATORY STYLES */
+			bundles.Add( new StyleBundle( "~/Content/global" ).Include(
+						"~/Content/google-fonts.css",
+						"~/Content/",
+						"~/Content/",
+						"~/Content/",
+						"~/Content/",
+						"~/Content/Admin/skin3/stylesheets/font-awesome.min.css" ) );
             /* Admin */
             bundles.Add(new StyleBundle("~/Content/Admin/skin3/stylesheets/main.css").Include(
                         "~/Content/Admin/skin3/stylesheets/site.css"));

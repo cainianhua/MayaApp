@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maya.Website", "Maya.Website\Maya.Website.csproj", "{328F80A3-97EB-456D-9E57-CC71A53DBB99}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maya.Website.Tests", "Maya.Website.Tests\Maya.Website.Tests.csproj", "{5ECA4053-506A-4CB9-9F75-5150B1461E27}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maya", "Maya\Maya.csproj", "{D03F02DE-8887-4CF9-A21E-6B8B9B043B94}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maya.Services", "Maya.Services\Maya.Services.csproj", "{F958FA5D-95B5-44E3-8957-A4AB27A8FB43}"
@@ -15,20 +11,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{08B981D1-D78A-483B-9187-616B148B3375}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maya.Web", "Maya.Web\Maya.Web.csproj", "{8065E26B-51C5-4418-8871-42BA7CEF68D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maya.Web.Tests", "Maya.Web.Tests\Maya.Web.Tests.csproj", "{3FB099C7-329B-44D8-B672-6C9A61533E4B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{328F80A3-97EB-456D-9E57-CC71A53DBB99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{328F80A3-97EB-456D-9E57-CC71A53DBB99}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{328F80A3-97EB-456D-9E57-CC71A53DBB99}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{328F80A3-97EB-456D-9E57-CC71A53DBB99}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5ECA4053-506A-4CB9-9F75-5150B1461E27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5ECA4053-506A-4CB9-9F75-5150B1461E27}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5ECA4053-506A-4CB9-9F75-5150B1461E27}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5ECA4053-506A-4CB9-9F75-5150B1461E27}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D03F02DE-8887-4CF9-A21E-6B8B9B043B94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D03F02DE-8887-4CF9-A21E-6B8B9B043B94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D03F02DE-8887-4CF9-A21E-6B8B9B043B94}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -37,14 +29,22 @@ Global
 		{F958FA5D-95B5-44E3-8957-A4AB27A8FB43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F958FA5D-95B5-44E3-8957-A4AB27A8FB43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F958FA5D-95B5-44E3-8957-A4AB27A8FB43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8065E26B-51C5-4418-8871-42BA7CEF68D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8065E26B-51C5-4418-8871-42BA7CEF68D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8065E26B-51C5-4418-8871-42BA7CEF68D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8065E26B-51C5-4418-8871-42BA7CEF68D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FB099C7-329B-44D8-B672-6C9A61533E4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FB099C7-329B-44D8-B672-6C9A61533E4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FB099C7-329B-44D8-B672-6C9A61533E4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FB099C7-329B-44D8-B672-6C9A61533E4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{328F80A3-97EB-456D-9E57-CC71A53DBB99} = {08B981D1-D78A-483B-9187-616B148B3375}
-		{5ECA4053-506A-4CB9-9F75-5150B1461E27} = {08B981D1-D78A-483B-9187-616B148B3375}
 		{D03F02DE-8887-4CF9-A21E-6B8B9B043B94} = {47B779FA-609E-401D-BC17-3DA81CEB7D3A}
 		{F958FA5D-95B5-44E3-8957-A4AB27A8FB43} = {47B779FA-609E-401D-BC17-3DA81CEB7D3A}
+		{8065E26B-51C5-4418-8871-42BA7CEF68D0} = {08B981D1-D78A-483B-9187-616B148B3375}
+		{3FB099C7-329B-44D8-B672-6C9A61533E4B} = {08B981D1-D78A-483B-9187-616B148B3375}
 	EndGlobalSection
 EndGlobal

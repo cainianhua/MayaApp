@@ -21,9 +21,9 @@ namespace Maya.Web
 					"~/Scripts/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js",
 					"~/Scripts/plugins/jquery-slimscroll/jquery.slimscroll.min.js",
 					"~/Scripts/plugins/jquery.blockui.min.js",
-					"~/Scripts/jquery.cokie.min.js",
-					"~/Scripts/uniform/jquery.uniform.min.js",
-					"~/Scripts/bootstrap-switch/js/bootstrap-switch.min.js" ) );
+					"~/Scripts/plugins/jquery.cokie.min.js",
+					"~/Scripts/plugins/uniform/jquery.uniform.min.js",
+                    "~/Scripts/plugins/bootstrap-switch/js/bootstrap-switch.min.js" ) );
 
 			/* DASHBOARD PAGE LEVEL PLUGINS */
 			bundles.Add( new ScriptBundle( "~/bundles/dashboard-plugins" ).Include(
@@ -42,20 +42,18 @@ namespace Maya.Web
 					"~/Scripts/plugins/bootstrap-daterangepicker/daterangepicker.js",
 					"~/Scripts/plugins/fullcalendar/fullcalendar/fullcalendar.min.js",
 					"~/Scripts/plugins/jquery-easypiechart/jquery.easypiechart.min.js",
-					"~/Scripts/plugins/jquery-easypiechart/jquery.easypiechart.min.js",
 					"~/Scripts/plugins/jquery.sparkline.min.js",
 					"~/Scripts/plugins/gritter/js/jquery.gritter.js" ) );
 
 			/* DASHBOARD PAGE LEVEL SCRIPTS */
 			bundles.Add( new ScriptBundle( "~/bundles/dashboard-scripts" ).Include(
 					"~/Scripts/metronic.js",
-					"~/Scripts/layout/scripts/layout.js",
-					"~/Scripts/layout/scripts/quick-sidebar.js",
-					"~/Scripts/layout/scripts/demo.js",
-					"~/Scripts/pages/scripts/index.js",
-					"~/Scripts/pages/scripts/tasks.js" ) );
-			
-
+					"~/Scripts/admin/layout/layout.js",
+					"~/Scripts/admin/layout/quick-sidebar.js",
+					"~/Scripts/admin/layout/demo.js",
+					"~/Scripts/admin/pages/index.js",
+					"~/Scripts/admin/pages/tasks.js" ) );
+            
             /***********************************+ CSS +************************************/
 
 			/* GLOBAL MANDATORY STYLES */

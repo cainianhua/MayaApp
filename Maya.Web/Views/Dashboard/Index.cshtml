@@ -1,8 +1,40 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Dashboard";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+@section HeaderStyles {
+    <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
+    <link href="~/Scripts/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/plugins/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
+    <link href="~/Scripts/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL PLUGIN STYLES -->
+    <!-- BEGIN PAGE STYLES -->
+    <link href="~/Content/admin/pages/css/tasks.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE STYLES -->
+}
+
+@section FooterScripts {
+    @Scripts.Render( "~/bundles/dashboard-plugins" )
+    @Scripts.Render( "~/bundles/dashboard-scripts" )
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            Metronic.init(); // init metronic core componets
+            Layout.init(); // init layout
+            QuickSidebar.init(); // init quick sidebar
+            Demo.init(); // init demo features 
+            Index.init();
+            Index.initDashboardDaterange();
+            Index.initJQVMAP(); // init index page's custom scripts
+            Index.initCalendar(); // init index page's custom scripts
+            Index.initCharts(); // init index page's custom scripts
+            Index.initChat();
+            Index.initMiniCharts();
+            Index.initIntro();
+            Tasks.initDashboardWidget();
+        });
+    </script>
+}
 

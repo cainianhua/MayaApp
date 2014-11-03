@@ -11,9 +11,10 @@ var Metronic = function () {
 
     var resizeHandlers = [];
 
-    var assetsPath = '../../assets/';
+    // siteRoot is a window variable defined on _layout.shtml
+    var assetsPath = siteRoot + 'Content/';
 
-    var globalImgPath = assetsPath + 'global/img/';
+    var globalImgPath = assetsPath + 'img/';
 
     // theme layout color set
 

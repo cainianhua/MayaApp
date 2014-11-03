@@ -2743,6 +2743,9 @@
     <Content Include="Scripts\plugins\slider-revolution-slider\rs-plugin\js\.DS_Store" />
     <Content Include="Scripts\plugins\uniform\css\uniform.default.scss" />
     <Content Include="Scripts\plugins\uniform\README.md" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\_SideBar.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

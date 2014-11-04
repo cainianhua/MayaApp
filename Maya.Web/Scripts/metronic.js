@@ -11,8 +11,8 @@ var Metronic = function () {
 
     var resizeHandlers = [];
 
-    // siteRoot is a window variable defined on _layout.shtml
-    var assetsPath = siteRoot + 'Content/';
+    // appRoot is a window variable defined on _layout.shtml
+    var assetsPath = $CONFIG.appRoot + 'Content/';
 
     var globalImgPath = assetsPath + 'img/';
 

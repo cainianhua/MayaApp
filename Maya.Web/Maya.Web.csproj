@@ -588,6 +588,7 @@
     <Content Include="Content\admin\pages\media\works\img6.jpg" />
     <Content Include="Content\plugins.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\datatable.js" />
     <None Include="Scripts\jquery-1.11.1.intellisense.js" />

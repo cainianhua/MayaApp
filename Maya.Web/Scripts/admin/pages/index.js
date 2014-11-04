@@ -1,7 +1,6 @@
 var Index = function () {
 
     return {
-
         //main function
         init: function () {
             Metronic.addResizeHandler(function () {
@@ -565,7 +564,6 @@ var Index = function () {
         },
 
         initDashboardDaterange: function () {
-
             $('#dashboard-report-range').daterangepicker({
                     opens: (Metronic.isRTL() ? 'right' : 'left'),
                     startDate: moment().subtract('days', 29),
@@ -608,13 +606,11 @@ var Index = function () {
                 }
             );
 
-
             $('#dashboard-report-range span').html(moment().subtract('days', 29).format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
             $('#dashboard-report-range').show();
         },
 
         initIntro: function () {
-
             // display marketing alert only once
             if (!$.cookie('intro_show')) {
                 setTimeout(function () {
@@ -624,7 +620,7 @@ var Index = function () {
                         // (string | mandatory) the text inside the notification
                         text: 'Metronic is World\'s #1 Selling Bootstrap 3 Admin Theme Ever! 18000+ Users Can\'t be Wrong.',
                         // (string | optional) the image to display on the left
-                        image: '../../assets/admin/layout/img/avatar1.jpg',
+                        image: Metronic.getAssetsPath() + 'admin/layout/img/avatar1.jpg',
                         // (bool | optional) if you want it to fade out on its own or just sit there
                         sticky: true,
                         // (int | optional) the time you want it to be alive for before fading out
@@ -649,7 +645,7 @@ var Index = function () {
                         // (string | mandatory) the text inside the notification
                         text: 'Metronic comes with 160+ templates, 70+ plugins and 500+ UI components. Also 3 Frontend Themes, Corporate Frontend, eCommerce Frontend and One Page Parallax Frontend are included. Buy 1 Get 4!',
                         // (string | optional) the image to display on the left
-                        image: '../../assets/admin/layout/img/avatar1.jpg',
+                        image: Metronic.getAssetsPath() + 'admin/layout/img/avatar1.jpg',
                         // (bool | optional) if you want it to fade out on its own or just sit there
                         sticky: true,
                         // (int | optional) the time you want it to be alive for before fading out
@@ -685,7 +681,7 @@ var Index = function () {
                         // (string | mandatory) the text inside the notification
                         text: 'Metronic allows you to easily customize the theme with unlimited layout options and color schemes. Try Metronic Today!',
                         // (string | optional) the image to display on the left
-                        image1: './assets/img/avatar1.png',
+                        image1: Metronic.getAssetsPath() + 'img/avatar1.png',
                         // (bool | optional) if you want it to fade out on its own or just sit there
                         sticky: true,
                         // (int | optional) the time you want it to be alive for before fading out
@@ -711,7 +707,5 @@ var Index = function () {
                 $.cookie('intro_show', 1);
             }
         }
-
     };
-
 }();

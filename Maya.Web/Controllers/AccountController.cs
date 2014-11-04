@@ -1,34 +1,55 @@
-﻿using System;
+﻿using Maya.Web.FilterAttributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Maya.Web.FilterAttributes;
+using Maya.Web.Models;
+using Maya.Services.VO;
 
 namespace Maya.Web.Controllers
 {
     [LoginChecker]
-    public class DashboardController : ControllerBase
+    public class AccountController : ControllerBase
     {
-        // GET: Dashboard
+        [AllowAnonymous]
+        public ActionResult Login(string returnUrl)
+        {
+            UserVO item = UserContext.Current.User;
+            if (item != null) {
+                ViewBag.UserName = item.UserName;
+            }
+
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(LoginModel item, string returnUrl)
+        {
+            return View();
+        }
+
+        // GET: Account
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: Dashboard/Details/5
+        // GET: Account/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Dashboard/Create
+        // GET: Account/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Dashboard/Create
+        // POST: Account/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -44,13 +65,13 @@ namespace Maya.Web.Controllers
             }
         }
 
-        // GET: Dashboard/Edit/5
+        // GET: Account/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Dashboard/Edit/5
+        // POST: Account/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -66,13 +87,13 @@ namespace Maya.Web.Controllers
             }
         }
 
-        // GET: Dashboard/Delete/5
+        // GET: Account/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Dashboard/Delete/5
+        // POST: Account/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -39,7 +40,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BO\ArticleBO.cs" />
+    <Compile Include="BO\BaseBO.cs" />
+    <Compile Include="BO\CategoryBO.cs" />
+    <Compile Include="BO\DistrictBO.cs" />
+    <Compile Include="BO\MusicBO.cs" />
+    <Compile Include="BO\ProductBO.cs" />
+    <Compile Include="BO\UserBO.cs" />
+    <Compile Include="DAO\IArticleProvider.cs" />
+    <Compile Include="DAO\ICategoryProvider.cs" />
+    <Compile Include="DAO\IDistrictProvider.cs" />
+    <Compile Include="DAO\IMusicProvider.cs" />
+    <Compile Include="DAO\IProductProvider.cs" />
+    <Compile Include="DAO\IUserProvider.cs" />
+    <Compile Include="DAO\SqlServer\ArticleProvider.cs" />
+    <Compile Include="DAO\SqlServer\CategoryProvider.cs" />
+    <Compile Include="DAO\SqlServer\DistrictProvider.cs" />
+    <Compile Include="DAO\SqlServer\MusicProvider.cs" />
+    <Compile Include="DAO\SqlServer\ProductProvider.cs" />
+    <Compile Include="DAO\SqlServer\ProviderBase.cs" />
+    <Compile Include="DAO\SqlServer\SqlHelper.cs" />
+    <Compile Include="DAO\SqlServer\UserProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserRole.cs" />
+    <Compile Include="VO\ArticleVO.cs" />
+    <Compile Include="VO\BaseVO.cs" />
+    <Compile Include="VO\CategoryVO.cs" />
+    <Compile Include="VO\DistrictVO.cs" />
+    <Compile Include="VO\MusicVO.cs" />
+    <Compile Include="VO\ProductVO.cs" />
+    <Compile Include="VO\UserVO.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

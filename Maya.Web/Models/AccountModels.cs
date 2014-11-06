@@ -41,7 +41,7 @@ namespace Maya.Web.Models
     {
         [Display(Name = "登录名")]
         [Required(ErrorMessage = "请输入{0}。")]
-        public string UserName { get; set; }
+        public string LoginName { get; set; }
 
         [Display(Name = "密码")]
         [DataType(DataType.Password)]

@@ -594,11 +594,16 @@
     <None Include="Scripts\jquery-1.11.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.11.1.js" />
     <Content Include="Scripts\jquery-1.11.1.min.js" />
+    <None Include="Scripts\jquery-1.4.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.4.1.js" />
+    <Content Include="Scripts\jquery-1.4.1.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.bootstrap.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.bootstrap.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-3.2.0.debug.js" />
@@ -2476,6 +2481,7 @@
     <Content Include="Scripts\plugins\uniform\jquery.uniform.min.js" />
     <Content Include="Scripts\plugins\zoom\jquery.zoom.js" />
     <Content Include="Scripts\plugins\zoom\jquery.zoom.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.bootstrap.min.js.map" />
     <None Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -2491,6 +2497,9 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Extensions\FormGroupExtensions.cs" />
+    <Compile Include="Extensions\PanelExtensions.cs" />
+    <Compile Include="Extensions\MvcPanel.cs" />
     <Compile Include="FilterAttributes\LoginCheckerFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2762,7 +2771,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\plugins\jquery-file-upload\server\php\files\thumbnail\" />
-    <Folder Include="Views\ControllerBase\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Maya.Services\Maya.Services.csproj">

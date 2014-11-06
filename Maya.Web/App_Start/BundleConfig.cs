@@ -53,7 +53,14 @@ namespace Maya.Web
 					"~/Scripts/admin/layout/demo.js",
 					"~/Scripts/admin/pages/index.js",
 					"~/Scripts/admin/pages/tasks.js" ) );
-            
+
+            /* jQuery validation js */
+            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
+                    "~/Scripts/jquery.unobtrusive*",
+                    "~/Scripts/jquery.validate.js",
+                    "~/Scripts/jquery.validate.unobtrusive.js",
+                    "~/Scripts/jquery.validate.unobtrusive.bootstrap.js"));
+
             /***********************************+ CSS +************************************/
 
 			/* GLOBAL MANDATORY STYLES */

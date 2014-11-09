@@ -60,8 +60,7 @@
     <!-- BEGIN LOGIN -->
     <div class="content">
         <!-- BEGIN LOGIN FORM -->
-        @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { autocomplete = "off", @class = "login-form" }))
-        {
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { autocomplete = "off", @class = "login-form" })) {
             @Html.AntiForgeryToken()
             <h3 class="form-title">账号登录</h3>
             <div class="alert alert-danger display-hide">
@@ -70,7 +69,7 @@
                     Enter any username and password.
                 </span>
             </div>
-            using (Html.BeginPanelFor(m => m.LoginName, new { @class = "form-group" })) { 
+            using (Html.BeginPanelFor(m => m.LoginName, new { @class = "form-group" })) {
                 <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
                 @Html.LabelFor(m => m.LoginName, new { @class = "control-label visible-ie8 visible-ie9" })
                 <div class="input-icon">
@@ -79,10 +78,10 @@
                 </div>
                 @Html.ValidationMessageFor(m => m.LoginName)
             }
-            using (Html.BeginPanelFor(m => m.Password, new { @class = "form-group" })){
+            using (Html.BeginPanelFor(m => m.Password, new { @class = "form-group" })) {
                 @Html.LabelFor(m => m.Password, new { @class = "control-label visible-ie8 visible-ie9" })
                 <div class="input-icon">
-                    <i class="fa fa-user"></i>
+                    <i class="fa fa-lock"></i>
                     @Html.PasswordFor(m => m.Password, new { @class = "form-control placeholder-no-fix", placeholder = "登录密码" })
                 </div>
                 @Html.ValidationMessageFor(m => m.Password)

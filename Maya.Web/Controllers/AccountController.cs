@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Maya.Web.Models;
@@ -144,7 +142,7 @@ namespace Maya.Web.Controllers
             DateTime startDate = new DateTime(1970, 01, 01);
             DateTime endDate = DateTime.Now.AddDays(30);
 
-            HttpCookie cookie = new HttpCookie("OPPUSER");
+            HttpCookie cookie = new HttpCookie("MAYA_USER_TOKEN");
             cookie["exp"] = endDate.Subtract(startDate).Days.ToString(CultureInfo.InvariantCulture);
             cookie["uid"] = Crypto.EncryptDesForWeb(user.UserId.ToString());
             cookie["uname"] = HttpUtility.UrlEncode(user.UserName);
@@ -157,7 +155,7 @@ namespace Maya.Web.Controllers
         /// </summary>
         private void DeleteLoginCookie()
         {
-            HttpCookie hc = new HttpCookie("OPPUSER");
+            HttpCookie hc = new HttpCookie("MAYA_USER_TOKEN");
             hc.Expires = DateTime.Now.AddHours(-24);
             Response.Cookies.Add(hc);
         }

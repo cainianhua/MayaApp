@@ -612,100 +612,100 @@ var Index = function () {
 
         initIntro: function () {
             // display marketing alert only once
-            if (!$.cookie('intro_show')) {
-                setTimeout(function () {
-                    var unique_id = $.gritter.add({
-                        // (string | mandatory) the heading of the notification
-                        title: '<a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" target="_blank">Get Metronic Just For 25$</a>',
-                        // (string | mandatory) the text inside the notification
-                        text: 'Metronic is World\'s #1 Selling Bootstrap 3 Admin Theme Ever! 18000+ Users Can\'t be Wrong.',
-                        // (string | optional) the image to display on the left
-                        image: Metronic.getAssetsPath() + 'admin/layout/img/avatar1.jpg',
-                        // (bool | optional) if you want it to fade out on its own or just sit there
-                        sticky: true,
-                        // (int | optional) the time you want it to be alive for before fading out
-                        time: '',
-                        // (string | optional) the class name you want to apply to that specific message
-                        class_name: 'my-sticky-class'
-                    });
+            //if (!$.cookie('intro_show')) {
+            //    setTimeout(function () {
+            //        var unique_id = $.gritter.add({
+            //            // (string | mandatory) the heading of the notification
+            //            title: '<a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" target="_blank">Get Metronic Just For 25$</a>',
+            //            // (string | mandatory) the text inside the notification
+            //            text: 'Metronic is World\'s #1 Selling Bootstrap 3 Admin Theme Ever! 18000+ Users Can\'t be Wrong.',
+            //            // (string | optional) the image to display on the left
+            //            image: Metronic.getAssetsPath() + 'admin/layout/img/avatar1.jpg',
+            //            // (bool | optional) if you want it to fade out on its own or just sit there
+            //            sticky: true,
+            //            // (int | optional) the time you want it to be alive for before fading out
+            //            time: '',
+            //            // (string | optional) the class name you want to apply to that specific message
+            //            class_name: 'my-sticky-class'
+            //        });
 
-                    // You can have it return a unique id, this can be used to manually remove it later using
-                    setTimeout(function () {
-                        $.gritter.remove(unique_id, {
-                            fade: true,
-                            speed: 'slow'
-                        });
-                    }, 12000);
-                }, 2000);
+            //        // You can have it return a unique id, this can be used to manually remove it later using
+            //        setTimeout(function () {
+            //            $.gritter.remove(unique_id, {
+            //                fade: true,
+            //                speed: 'slow'
+            //            });
+            //        }, 12000);
+            //    }, 2000);
 
-                setTimeout(function () {
-                    var unique_id = $.gritter.add({
-                        // (string | mandatory) the heading of the notification
-                        title: '<a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" target="_blank">Develop with Metronic!</a>',
-                        // (string | mandatory) the text inside the notification
-                        text: 'Metronic comes with 160+ templates, 70+ plugins and 500+ UI components. Also 3 Frontend Themes, Corporate Frontend, eCommerce Frontend and One Page Parallax Frontend are included. Buy 1 Get 4!',
-                        // (string | optional) the image to display on the left
-                        image: Metronic.getAssetsPath() + 'admin/layout/img/avatar1.jpg',
-                        // (bool | optional) if you want it to fade out on its own or just sit there
-                        sticky: true,
-                        // (int | optional) the time you want it to be alive for before fading out
-                        time: '',
-                        // (string | optional) the class name you want to apply to that specific message
-                        class_name: 'my-sticky-class'
-                    });
+            //    setTimeout(function () {
+            //        var unique_id = $.gritter.add({
+            //            // (string | mandatory) the heading of the notification
+            //            title: '<a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" target="_blank">Develop with Metronic!</a>',
+            //            // (string | mandatory) the text inside the notification
+            //            text: 'Metronic comes with 160+ templates, 70+ plugins and 500+ UI components. Also 3 Frontend Themes, Corporate Frontend, eCommerce Frontend and One Page Parallax Frontend are included. Buy 1 Get 4!',
+            //            // (string | optional) the image to display on the left
+            //            image: Metronic.getAssetsPath() + 'admin/layout/img/avatar1.jpg',
+            //            // (bool | optional) if you want it to fade out on its own or just sit there
+            //            sticky: true,
+            //            // (int | optional) the time you want it to be alive for before fading out
+            //            time: '',
+            //            // (string | optional) the class name you want to apply to that specific message
+            //            class_name: 'my-sticky-class'
+            //        });
 
-                    // You can have it return a unique id, this can be used to manually remove it later using
-                    setTimeout(function () {
-                        $.gritter.remove(unique_id, {
-                            fade: true,
-                            speed: 'slow'
-                        });
-                    }, 13000);
-                }, 8000);
+            //        // You can have it return a unique id, this can be used to manually remove it later using
+            //        setTimeout(function () {
+            //            $.gritter.remove(unique_id, {
+            //                fade: true,
+            //                speed: 'slow'
+            //            });
+            //        }, 13000);
+            //    }, 8000);
 
-                setTimeout(function () {
+            //    setTimeout(function () {
 
-                    $('#styler').pulsate({
-                        color: "#bb3319",
-                        repeat: 10
-                    });
+            //        $('#styler').pulsate({
+            //            color: "#bb3319",
+            //            repeat: 10
+            //        });
 
-                    $.extend($.gritter.options, {
-                        position: 'top-left'
-                    });
+            //        $.extend($.gritter.options, {
+            //            position: 'top-left'
+            //        });
 
-                    var unique_id = $.gritter.add({
-                        position: 'top-left',
-                        // (string | mandatory) the heading of the notification
-                        title: '<a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" target="_blank">Customize Metronic!</a>',
-                        // (string | mandatory) the text inside the notification
-                        text: 'Metronic allows you to easily customize the theme with unlimited layout options and color schemes. Try Metronic Today!',
-                        // (string | optional) the image to display on the left
-                        image1: Metronic.getAssetsPath() + 'img/avatar1.png',
-                        // (bool | optional) if you want it to fade out on its own or just sit there
-                        sticky: true,
-                        // (int | optional) the time you want it to be alive for before fading out
-                        time: '',
-                        // (string | optional) the class name you want to apply to that specific message
-                        class_name: 'my-sticky-class'
-                    });
+            //        var unique_id = $.gritter.add({
+            //            position: 'top-left',
+            //            // (string | mandatory) the heading of the notification
+            //            title: '<a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" target="_blank">Customize Metronic!</a>',
+            //            // (string | mandatory) the text inside the notification
+            //            text: 'Metronic allows you to easily customize the theme with unlimited layout options and color schemes. Try Metronic Today!',
+            //            // (string | optional) the image to display on the left
+            //            image1: Metronic.getAssetsPath() + 'img/avatar1.png',
+            //            // (bool | optional) if you want it to fade out on its own or just sit there
+            //            sticky: true,
+            //            // (int | optional) the time you want it to be alive for before fading out
+            //            time: '',
+            //            // (string | optional) the class name you want to apply to that specific message
+            //            class_name: 'my-sticky-class'
+            //        });
 
-                    $.extend($.gritter.options, {
-                        position: 'top-right'
-                    });
+            //        $.extend($.gritter.options, {
+            //            position: 'top-right'
+            //        });
 
-                    // You can have it return a unique id, this can be used to manually remove it later using
-                    setTimeout(function () {
-                        $.gritter.remove(unique_id, {
-                            fade: true,
-                            speed: 'slow'
-                        });
-                    }, 10000);
+            //        // You can have it return a unique id, this can be used to manually remove it later using
+            //        setTimeout(function () {
+            //            $.gritter.remove(unique_id, {
+            //                fade: true,
+            //                speed: 'slow'
+            //            });
+            //        }, 10000);
 
-                }, 23000);
+            //    }, 23000);
 
-                $.cookie('intro_show', 1);
-            }
+            //    $.cookie('intro_show', 1);
+            //}
         }
     };
 }();

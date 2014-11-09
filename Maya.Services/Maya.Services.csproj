@@ -71,6 +71,9 @@
     <Compile Include="VO\ProductVO.cs" />
     <Compile Include="VO\UserVO.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="MAYA.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

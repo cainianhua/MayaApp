@@ -83,7 +83,8 @@
 
 	// Picker object
 
-	var Datepicker = function(element, options){
+	var Datepicker = function (element, options) {
+	    
 		this.dates = new DateArray();
 		this.viewDate = UTCToday();
 		this.focusDate = null;
@@ -1353,7 +1354,7 @@
 	}
 
 	var old = $.fn.datepicker;
-	$.fn.datepicker = function(option){
+	$.fn.datepicker = function (option) {
 		var args = Array.apply(null, arguments);
 		args.shift();
 		var internal_return;

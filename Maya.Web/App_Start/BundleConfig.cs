@@ -12,17 +12,17 @@ namespace Maya.Web
         public static void RegisterBundles(BundleCollection bundles)
         {
             //bundles.UseCdn = true;
-			/* CORE PLUGINS */
-			bundles.Add( new ScriptBundle( "~/bundles/cores" ).Include(
-					"~/Scripts/plugins/jquery-1.11.0.min.js",
-					"~/Scripts/plugins/jquery-migrate-1.2.1.min.js",
-					"~/Scripts/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js",
-					"~/Scripts/plugins/bootstrap/js/bootstrap.min.js",
-					"~/Scripts/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js",
-					"~/Scripts/plugins/jquery-slimscroll/jquery.slimscroll.min.js",
-					"~/Scripts/plugins/jquery.blockui.min.js",
-					"~/Scripts/plugins/jquery.cokie.min.js",
-					"~/Scripts/plugins/uniform/jquery.uniform.min.js",
+            /* CORE PLUGINS */
+            bundles.Add( new ScriptBundle( "~/bundles/cores" ).Include(
+                    "~/Scripts/plugins/jquery-1.11.0.min.js",
+                    "~/Scripts/plugins/jquery-migrate-1.2.1.min.js",
+                    "~/Scripts/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js",
+                    "~/Scripts/plugins/bootstrap/js/bootstrap.min.js",
+                    "~/Scripts/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js",
+                    "~/Scripts/plugins/jquery-slimscroll/jquery.slimscroll.min.js",
+                    "~/Scripts/plugins/jquery.blockui.min.js",
+                    "~/Scripts/plugins/jquery.cokie.min.js",
+                    "~/Scripts/plugins/uniform/jquery.uniform.min.js",
                     "~/Scripts/plugins/bootstrap-switch/js/bootstrap-switch.min.js" ) );
 
 			/* DASHBOARD PAGE LEVEL PLUGINS */
@@ -47,12 +47,31 @@ namespace Maya.Web
 
 			/* DASHBOARD PAGE LEVEL SCRIPTS */
 			bundles.Add( new ScriptBundle( "~/bundles/dashboard-scripts" ).Include(
-					"~/Scripts/metronic.js",
-					"~/Scripts/admin/layout/layout.js",
-					"~/Scripts/admin/layout/quick-sidebar.js",
-					"~/Scripts/admin/layout/demo.js",
 					"~/Scripts/admin/pages/index.js",
 					"~/Scripts/admin/pages/tasks.js" ) );
+
+            /* FORM PAGE LEVEL PLUGINS */
+            bundles.Add( new ScriptBundle( "~/bundles/form-plugins" ).Include(
+                    "~/Scripts/plugins/jquery-validation/js/jquery.validate.min.js",
+                    "~/Scripts/plugins/jquery-validation/js/additional-methods.min.js",
+                    "~/Scripts/plugins/select2/select2.min.js",
+                    "~/Scripts/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js",
+                    "~/Scripts/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js",
+                    "~/Scripts/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js",
+                    //"~/Scripts/plugins/bootstrap-markdown/js/bootstrap-markdown.js",
+                    //"~/Scripts/plugins/bootstrap-markdown/lib/markdown.js",
+                    "~/Scripts/jquery.unobtrusive*",
+                    "~/Scripts/jquery.validate.unobtrusive.js",
+                    "~/Scripts/jquery.validate.unobtrusive.bootstrap.js" ) );
+
+            /* FORM PAGE LEVEL SCRIPTS  */
+            bundles.Add( new ScriptBundle( "~/bundles/form-pages" ).Include(
+                    /* PAGE LEVEL SCRIPTS PUBLIC */
+                    "~/Scripts/metronic.js",
+                    "~/Scripts/admin/layout/layout.js",
+                    "~/Scripts/admin/layout/quick-sidebar.js",
+                    "~/Scripts/admin/layout/demo.js",
+                    "~/Scripts/admin/pages/form-validation.js" ) );
 
             /* jQuery validation js */
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(

@@ -28,23 +28,39 @@ namespace Maya.Web.Controllers
         {
             CreateDistrictModel item = new CreateDistrictModel();
 
+            ViewBag.Districts = new SelectList( DistrictBO.GetInstance().GetItems(), "DistrictId", "Name" );
+
             return View( item );
         }
 
         // POST: Districts/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(CreateDistrictModel item)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            if ( ModelState.IsValid ) {
+                DistrictVO d = new DistrictVO();
+                d.Name = item.Name;
+                d.Description = item.Description;
+                d.Lng = item.Lng;
+                d.Lat = item.Lat;
+                d.ActionDate = DateTime.Now;
+                d.ActionBy = UserContext.Current.User.UserName;
 
-                return RedirectToAction("Index");
+                try {
+                    d.DistrictId = DistrictBO.GetInstance().SaveItem( item.ParentId, d );
+                }
+                catch(Exception ex) {
+                    ModelState.AddModelError( "Name", "保存数据出错，错误是：" + ex.Message );
+                }
+
+                if ( ModelState.IsValid ) {
+                    return RedirectToAction( "Index" );
+                }
             }
-            catch
-            {
-                return View();
-            }
+
+            ViewBag.Districts = new SelectList( DistrictBO.GetInstance().GetItems(), "DistrictId", "Name" );
+
+            return View( item );
         }
 
         // GET: Districts/Edit/5

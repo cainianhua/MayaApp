@@ -2767,6 +2767,7 @@
     <Content Include="Views\Districts\Edit.cshtml" />
     <Content Include="Views\Districts\Delete.cshtml" />
     <Content Include="Views\Districts\Show.cshtml" />
+    <Content Include="Views\Districts\_FormGroups.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

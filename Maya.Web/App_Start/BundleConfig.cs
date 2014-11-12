@@ -23,7 +23,11 @@ namespace Maya.Web
                     "~/Scripts/plugins/jquery.blockui.min.js",
                     "~/Scripts/plugins/jquery.cokie.min.js",
                     "~/Scripts/plugins/uniform/jquery.uniform.min.js",
-                    "~/Scripts/plugins/bootstrap-switch/js/bootstrap-switch.min.js" ) );
+                    "~/Scripts/plugins/bootstrap-switch/js/bootstrap-switch.min.js",
+                    "~/Scripts/metronic.js",
+                    "~/Scripts/admin/layout/layout.js",
+                    "~/Scripts/admin/layout/quick-sidebar.js",
+                    "~/Scripts/admin/layout/demo.js" ) );
 
 			/* DASHBOARD PAGE LEVEL PLUGINS */
 			bundles.Add( new ScriptBundle( "~/bundles/dashboard-plugins" ).Include(
@@ -67,10 +71,7 @@ namespace Maya.Web
             /* FORM PAGE LEVEL SCRIPTS  */
             bundles.Add( new ScriptBundle( "~/bundles/form-pages" ).Include(
                     /* PAGE LEVEL SCRIPTS PUBLIC */
-                    "~/Scripts/metronic.js",
-                    "~/Scripts/admin/layout/layout.js",
-                    "~/Scripts/admin/layout/quick-sidebar.js",
-                    "~/Scripts/admin/layout/demo.js",
+                    
                     "~/Scripts/admin/pages/form-validation.js" ) );
 
             /* jQuery validation js */

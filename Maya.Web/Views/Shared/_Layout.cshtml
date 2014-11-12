@@ -833,6 +833,15 @@
     <script src="~/Scripts/plugins/excanvas.min.js"></script>
     <![endif]-->
     @Scripts.Render( "~/bundles/cores" )
+    <script type="text/javascript">
+        jQuery(function() {
+            // initiate layout and plugins
+            Metronic.init(); // init metronic core components
+            Layout.init(); // init current layout
+            QuickSidebar.init(); // init quick sidebar
+            Demo.init(); // init demo features
+        });
+    </script>
     @RenderSection( "FooterScripts", required: false )
 </body>
 </html>

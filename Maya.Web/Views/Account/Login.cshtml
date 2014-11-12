@@ -86,15 +86,6 @@
                 </div>
                 @Html.ValidationMessageFor(m => m.Password)
             }
-            using (Html.BeginPanelFor(m => m.Price, new { @class = "form-group" })){
-                @Html.LabelFor( m => m.Password, new { @class = "control-label visible-ie8 visible-ie9" } )
-                <div class="input-icon">
-                    <i class="fa fa-user"></i>
-                    @Html.EditorFor( m => m.LoginName )
-                    
-                </div>
-                @Html.ValidationMessageFor( m => m.Password )
-            }
             <div class="form-actions">
                 <label class="checkbox">
                     @Html.CheckBoxFor(m => m.RememberMe)

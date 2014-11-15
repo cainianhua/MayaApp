@@ -30,53 +30,55 @@
                 </form>
                 <!-- END RESPONSIVE QUICK SEARCH FORM -->
             </li>
-            <li class="start active open">
-                <a href="javascript:;">
-                    <i class="icon-home"></i>
-                    <span class="title">控制面板</span>
-                    <span class="selected"></span>
-                </a>
+            <li @Html.ActiveCss( "Dashboard", null, "active open" )>
+                @Html.SideBarLink( "控制面板", "icon-home", "Dashboard", false )
             </li>
-            <li>
-                <a href="javascript:;">
-                    <i class="icon-users"></i>
-                    <span class="title">用户管理</span>
-                    <span class="arrow"></span>
-                </a>
+            <li @Html.ActiveCss( "Users", null, "active open" )>
+                @Html.SideBarLink( "用户管理", "icon-users", "Users" )
                 <ul class="sub-menu">
-                    <li>
-                        <a href="table_basic.html">
-                            数据列表
-                        </a>
+                    <li @Html.ActiveCss( "Users", "Index" )>
+                        @Html.ActionLink( "用户列表", "Index", "Users" )
                     </li>
-                    <li>
-                        <a href="table_responsive.html">
-                            新增数据
-                        </a>
+                    <li @Html.ActiveCss( "Users", "Create" )>
+                        @Html.ActionLink( "新增用户", "Create", "Users" )
                     </li>
                 </ul>
             </li>
-            <li>
-                <a href="javascript:;">
-                    <i class="icon-pointer"></i>
-                    <span class="title">国家城市</span>
-                    <span class="arrow"></span>
-                </a>
+            <li @Html.ActiveCss( "Districts", null, "active open" )>
+                @Html.SideBarLink( "国家城市", "icon-pointer", "Districts" )
                 <ul class="sub-menu">
-                    <li>
+                    <li @Html.ActiveCss( "Districts", "Index" )>
                         @Html.ActionLink( "数据列表", "Index", "Districts" )
                     </li>
-                    <li>
+                    <li @Html.ActiveCss( "Districts", "Create" )>
                         @Html.ActionLink( "新增数据", "Create", "Districts" )
                     </li>
                 </ul>
             </li>
-            <li>
-                <a href="javascript:;">
-                    <i class="icon-handbag"></i>
-                    <span class="title">产品专题</span>
-                    <span class="arrow"></span>
-                </a>
+            <li @Html.ActiveCss( "Products", null, "active open" )>
+                @Html.SideBarLink( "产品专题", "icon-handbag", "Products" )
+                <ul class="sub-menu">
+                    <li @Html.ActiveCss( "Products", "Index" )>
+                        @Html.ActionLink( "产品列表", "Index", "Products" )
+                    </li>
+                    <li @Html.ActiveCss( "Products", "Edit" )>
+                        @Html.ActionLink( "新增产品", "Edit", "Products" )
+                    </li>
+                </ul>
+            </li>
+            <li @Html.ActiveCss( "Musics", null, "active open" )>
+                @Html.SideBarLink( "旅游音乐", "icon-music-tone-alt", "Musics" )
+                <ul class="sub-menu">
+                    <li @Html.ActiveCss( "Products", "Index" )>
+                        @Html.ActionLink( "音乐列表", "Index", "Products" )
+                    </li>
+                    <li @Html.ActiveCss( "Products", "Edit" )>
+                        @Html.ActionLink( "新增音乐", "Edit", "Products" )
+                    </li>
+                </ul>
+            </li>
+            <li @Html.ActiveCss( "Articles", null, "active open" )>
+                @Html.SideBarLink( "电流电压", "icon-energy", "Articles" )
                 <ul class="sub-menu">
                     <li>
                         <a href="table_basic.html">
@@ -90,12 +92,8 @@
                     </li>
                 </ul>
             </li>
-            <li>
-                <a href="javascript:;">
-                    <i class="icon-music-tone-alt"></i>
-                    <span class="title">旅游音乐</span>
-                    <span class="arrow"></span>
-                </a>
+            <li @Html.ActiveCss( "Articles", null, "active open" )>
+                @Html.SideBarLink( "插座标准", "icon-bulb", "Articles" )
                 <ul class="sub-menu">
                     <li>
                         <a href="table_basic.html">
@@ -109,12 +107,8 @@
                     </li>
                 </ul>
             </li>
-            <li>
-                <a href="javascript:;">
-                    <i class="icon-energy"></i>
-                    <span class="title">电流电压</span>
-                    <span class="arrow"></span>
-                </a>
+            <li @Html.ActiveCss( "Articles", null, "active open" )>
+                @Html.SideBarLink( "全球通使用方法", "icon-globe", "Articles" )
                 <ul class="sub-menu">
                     <li>
                         <a href="table_basic.html">
@@ -128,12 +122,8 @@
                     </li>
                 </ul>
             </li>
-            <li>
-                <a href="javascript:;">
-                    <i class="icon-bulb"></i>
-                    <span class="title">插座标准</span>
-                    <span class="arrow"></span>
-                </a>
+            <li @Html.ActiveCss( "Articles", null, "active open" )>
+                @Html.SideBarLink( "大使馆资料", "icon-flag", "Articles" )
                 <ul class="sub-menu">
                     <li>
                         <a href="table_basic.html">
@@ -147,12 +137,8 @@
                     </li>
                 </ul>
             </li>
-            <li>
-                <a href="javascript:;">
-                    <i class="icon-globe"></i>
-                    <span class="title">全球通使用方法</span>
-                    <span class="arrow"></span>
-                </a>
+            <li @Html.ActiveCss( "Articles", null, "active open" )>
+                @Html.SideBarLink( "紧急电话", "icon-call-end", "Articles" )
                 <ul class="sub-menu">
                     <li>
                         <a href="table_basic.html">
@@ -166,12 +152,8 @@
                     </li>
                 </ul>
             </li>
-            <li>
-                <a href="javascript:;">
-                    <i class="icon-flag"></i>
-                    <span class="title">大使馆资料</span>
-                    <span class="arrow"></span>
-                </a>
+            <li @Html.ActiveCss( "Articles", null, "active open" )>
+                @Html.SideBarLink( "机场名称", "icon-plane", "Articles" )
                 <ul class="sub-menu">
                     <li>
                         <a href="table_basic.html">
@@ -185,50 +167,8 @@
                     </li>
                 </ul>
             </li>
-            <li>
-                <a href="javascript:;">
-                    <i class="icon-call-end"></i>
-                    <span class="title">紧急电话</span>
-                    <span class="arrow"></span>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a href="table_basic.html">
-                            数据列表
-                        </a>
-                    </li>
-                    <li>
-                        <a href="table_responsive.html">
-                            新增数据
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="javascript:;">
-                    <i class="icon-plane"></i>
-                    <span class="title">机场名称</span>
-                    <span class="arrow"></span>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a href="table_basic.html">
-                            数据列表
-                        </a>
-                    </li>
-                    <li>
-                        <a href="table_responsive.html">
-                            新增数据
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="last">
-                <a href="javascript:;">
-                    <i class="icon-note"></i>
-                    <span class="title">出入境卡填写</span>
-                    <span class="arrow"></span>
-                </a>
+            <li @Html.ActiveCss( "Articles", null, "active open" )>
+                @Html.SideBarLink( "出入境卡填写", "icon-note", "Articles" )
                 <ul class="sub-menu">
                     <li>
                         <a href="table_basic.html">

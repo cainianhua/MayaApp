@@ -2495,9 +2495,12 @@
     <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\DistrictsController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Extensions\FormGroupExtensions.cs" />
+    <Compile Include="Extensions\LinkExtensions.cs" />
     <Compile Include="Extensions\PanelExtensions.cs" />
     <Compile Include="Extensions\MvcPanel.cs" />
+    <Compile Include="Extensions\SideBarExtensions.cs" />
     <Compile Include="FilterAttributes\LoginCheckerFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2764,10 +2767,9 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Districts\Index.cshtml" />
     <Content Include="Views\Districts\Create.cshtml" />
-    <Content Include="Views\Districts\Edit.cshtml" />
-    <Content Include="Views\Districts\Delete.cshtml" />
     <Content Include="Views\Districts\Show.cshtml" />
     <Content Include="Views\Districts\_FormGroups.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

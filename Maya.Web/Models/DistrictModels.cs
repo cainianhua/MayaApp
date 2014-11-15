@@ -6,10 +6,10 @@ using System.Web;
 
 namespace Maya.Web.Models
 {
-    public class CreateDistrictModel
+    public class CreateOrUpdateDistrictModel
     {
         [Key]
-        public int Id { get; set; }
+        public int DistrictId { get; set; }
         [Display(Name = "父节点")]
         public int ParentId { get; set; }
         [Display(Name = "名称")]
@@ -18,10 +18,10 @@ namespace Maya.Web.Models
         [Display(Name = "描述")]
         public string Description { get; set; }
         [Display(Name = "所在经度")]
-        [Required(ErrorMessage = "{0}是必填信息。")]
+        //[Required(ErrorMessage = "{0}是必填信息。")]
         public string Lng { get; set; }
         [Display(Name = "所在纬度")]
-        [Required(ErrorMessage = "{0}是必填信息。")]
+        //[Required(ErrorMessage = "{0}是必填信息。")]
         public string Lat { get; set; }
     }
 }

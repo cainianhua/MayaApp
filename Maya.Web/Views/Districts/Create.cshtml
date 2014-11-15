@@ -1,7 +1,7 @@
-﻿@model CreateDistrictModel
+﻿@model CreateOrUpdateDistrictModel
 @{
-    ViewBag.Title = "国家城市";
-    ViewBag.HeaderTitle = "国家城市 <small>dashboard & statistics</small>";
+    ViewBag.Title = "编辑国家城市";
+    ViewBag.HeaderTitle = "编辑国家城市 <small>dashboard & statistics</small>";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,14 +11,14 @@
         <div class="portlet box green">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-edit"></i>新增国家城市
+                    <i class="fa fa-edit"></i>编辑国家城市
                 </div>
             </div>
             <div class="portlet-body form">
                 @Html.Partial( "_FormGroups", Model )
             </div>
-            <!-- END VALIDATION STATES-->
         </div>
+        <!-- END VALIDATION STATES-->
     </div>
 </div>
 

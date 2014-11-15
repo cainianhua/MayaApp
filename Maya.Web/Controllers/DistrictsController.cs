@@ -14,7 +14,8 @@ namespace Maya.Web.Controllers
         // GET: Districts
         public ActionResult Index()
         {
-            return View();
+			List<DistrictVO> items = DistrictBO.GetInstance().GetItems();
+            return View(items);
         }
 
         // GET: Districts/Details/5
@@ -24,21 +25,32 @@ namespace Maya.Web.Controllers
         }
 
         // GET: Districts/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
-            CreateDistrictModel item = new CreateDistrictModel();
+            CreateOrUpdateDistrictModel item = new CreateOrUpdateDistrictModel();
+			if (id.HasValue) {
+				DistrictVO district = DistrictBO.GetInstance().GetItem( id.Value );
+				List<DistrictVO> parents = DistrictBO.GetInstance().GetParentItems( id.Value );
+				if (district != null) {
+					item = district.To<CreateOrUpdateDistrictModel>();
+					if (parents.Count > 0) {
+						item.ParentId = parents[parents.Count - 1].DistrictId;
+					}
+				}
+			}
 
-            ViewBag.Districts = new SelectList( DistrictBO.GetInstance().GetItems(), "DistrictId", "Name" );
+			ViewBag.Districts = new SelectList( DistrictBO.GetInstance().GetItems(), "DistrictId", "Name" );
 
             return View( item );
         }
 
         // POST: Districts/Create
         [HttpPost]
-        public ActionResult Create(CreateDistrictModel item)
+        public ActionResult Create(CreateOrUpdateDistrictModel item)
         {
             if ( ModelState.IsValid ) {
                 DistrictVO d = new DistrictVO();
+				d.DistrictId = item.DistrictId;
                 d.Name = item.Name;
                 d.Description = item.Description;
                 d.Lng = item.Lng;
@@ -47,7 +59,10 @@ namespace Maya.Web.Controllers
                 d.ActionBy = UserContext.Current.User.UserName;
 
                 try {
-                    d.DistrictId = DistrictBO.GetInstance().SaveItem( item.ParentId, d );
+					if (d.DistrictId > 0)
+						DistrictBO.GetInstance().UpdateItem( d );
+					else
+						d.DistrictId = DistrictBO.GetInstance().SaveItem( item.ParentId, d );
                 }
                 catch(Exception ex) {
                     ModelState.AddModelError( "Name", "保存数据出错，错误是：" + ex.Message );
@@ -63,48 +78,12 @@ namespace Maya.Web.Controllers
             return View( item );
         }
 
-        // GET: Districts/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Districts/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Districts/Delete/5
+        // POST: Districts/Delete/5
+        [HttpDelete]
         public ActionResult Delete(int id)
         {
-            return View();
-        }
-
-        // POST: Districts/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+			DistrictBO.GetInstance().DeleteItem( id );
+			return RedirectToAction( "Index" );
+		}
     }
 }

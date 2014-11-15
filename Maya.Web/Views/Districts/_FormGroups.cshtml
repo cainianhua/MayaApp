@@ -1,9 +1,9 @@
-﻿@model CreateDistrictModel
+﻿@model CreateOrUpdateDistrictModel
 
 <!-- BEGIN FORM-->
-@using (Html.BeginForm(ViewContext.RouteData.Values["Action"].ToString(), "Districts", FormMethod.Post, new { @class = "form-horizontal" } )) {
+@using (Html.BeginForm("Create", "Districts", FormMethod.Post, new { @class = "form-horizontal", autocomplete = "off" } )) {
     @Html.AntiForgeryToken()
-    @Html.HiddenFor( m => m.Id )
+    @Html.HiddenFor( m => m.DistrictId )
     <div class="form-body">
         @*<h3 class="form-section">Advance validation. <small>Custom radio buttons, checkboxes and Select2 dropdowns</small></h3>*@
         <div class="alert alert-danger display-hide">
@@ -17,7 +17,7 @@
         @using (Html.BeginPanelFor( m => m.ParentId, new { @class = "form-group" } )) {
             @Html.LabelFor( m => m.ParentId, new { @class = "control-label col-md-3" } )
             <div class="col-md-4">
-                @Html.DropDownListFor( m => m.ParentId, ViewBag.Districts as SelectList, new { @class = "form-control select2me" } )
+                @Html.DropDownListFor( m => m.ParentId, ViewBag.Districts as SelectList, "请选择", new Dictionary<string, object>().AddWithChain( "class", "form-control select2me" ).AddWithChain( "disabled", Model.DistrictId > 0 ? "disabled" : null ) )
                 @Html.ValidationMessageFor( m => m.ParentId )
             </div>
         }
@@ -53,8 +53,8 @@
     <div class="form-actions">
         <div class="row">
             <div class="col-md-offset-3 col-md-9">
-                <button type="submit" class="btn green">Submit</button>
-                <button type="button" class="btn default">Cancel</button>
+                <button type="submit" class="btn green">保存</button>
+                @Html.ActionLink("取消", "Index", null, new { @class = "btn default" } )
             </div>
         </div>
     </div>

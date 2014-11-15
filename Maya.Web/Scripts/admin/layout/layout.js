@@ -48,7 +48,7 @@ var Layout = function () {
 
     // Handle sidebar menu
     var handleSidebarMenu = function () {
-        debugger;
+        //debugger;
         jQuery('.page-sidebar').on('click', 'li > a', function (e) {
             if (Metronic.getViewPort().width >= 992 && $(this).parents('.page-sidebar-menu-hover-submenu').size() === 1) { // exit of hover sidebar menu
                 return;

@@ -1,0 +1,51 @@
+﻿/**************BEGIN 图片上传功能***************/
+.btn-file{
+	overflow: hidden;
+position: relative;
+vertical-align: middle;
+display: inline-block;
+}
+
+.btn-file > input {
+	position: absolute;
+top: 0;
+right: 0;
+margin: 0;
+opacity: 0;
+-ms-filter: 'alpha(opacity=0)';
+font-size: 200px;
+direction: ltr;
+cursor: pointer;
+}
+.fileupload .preview {
+	float: left;
+margin-right: 16px;
+position: relative;
+}
+.avatar-64{
+	width: 64px;
+height: 64px;
+font-size: 64px;
+text-align: center;
+}
+.fileupload .help-block{
+	margin-bottom: 5px;
+}
+.fileupload .preview .progress{
+	border: 1px solid #e3e3e3;
+bottom: -4px;
+height: 5px;
+background-color:#008ee1;
+width:0px;
+}
+.fileupload .preview img{
+	background: #fff;
+border: 1px solid #e3e3e3;
+width: 64px;
+height: 64px;
+}
+/**************END 图片上传功能***************/
+
+.pic-64 {
+	max-width: 64px;
+}

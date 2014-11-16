@@ -61,124 +61,30 @@
                     <li @Html.ActiveCss( "Products", "Index" )>
                         @Html.ActionLink( "产品列表", "Index", "Products" )
                     </li>
-                    <li @Html.ActiveCss( "Products", "Edit" )>
-                        @Html.ActionLink( "新增产品", "Edit", "Products" )
+                    <li @Html.ActiveCss( "Products", "Create" )>
+                        @Html.ActionLink( "新增产品", "Create", "Products" )
                     </li>
                 </ul>
             </li>
             <li @Html.ActiveCss( "Musics", null, "active open" )>
                 @Html.SideBarLink( "旅游音乐", "icon-music-tone-alt", "Musics" )
                 <ul class="sub-menu">
-                    <li @Html.ActiveCss( "Products", "Index" )>
-                        @Html.ActionLink( "音乐列表", "Index", "Products" )
+                    <li @Html.ActiveCss( "Musics", "Index" )>
+                        @Html.ActionLink( "音乐列表", "Index", "Musics" )
                     </li>
-                    <li @Html.ActiveCss( "Products", "Edit" )>
-                        @Html.ActionLink( "新增音乐", "Edit", "Products" )
-                    </li>
-                </ul>
-            </li>
-            <li @Html.ActiveCss( "Articles", null, "active open" )>
-                @Html.SideBarLink( "电流电压", "icon-energy", "Articles" )
-                <ul class="sub-menu">
-                    <li>
-                        <a href="table_basic.html">
-                            数据列表
-                        </a>
-                    </li>
-                    <li>
-                        <a href="table_responsive.html">
-                            新增数据
-                        </a>
+                    <li @Html.ActiveCss( "Musics", "Create" )>
+                        @Html.ActionLink( "新增音乐", "Create", "Musics" )
                     </li>
                 </ul>
             </li>
             <li @Html.ActiveCss( "Articles", null, "active open" )>
-                @Html.SideBarLink( "插座标准", "icon-bulb", "Articles" )
+                @Html.SideBarLink( "文章系统", "icon-energy", "Articles" )
                 <ul class="sub-menu">
-                    <li>
-                        <a href="table_basic.html">
-                            数据列表
-                        </a>
+                    <li @Html.ActiveCss( "Articles", "Index" )>
+                        @Html.ActionLink( "文章列表", "Index", "Articles" )
                     </li>
-                    <li>
-                        <a href="table_responsive.html">
-                            新增数据
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li @Html.ActiveCss( "Articles", null, "active open" )>
-                @Html.SideBarLink( "全球通使用方法", "icon-globe", "Articles" )
-                <ul class="sub-menu">
-                    <li>
-                        <a href="table_basic.html">
-                            数据列表
-                        </a>
-                    </li>
-                    <li>
-                        <a href="table_responsive.html">
-                            新增数据
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li @Html.ActiveCss( "Articles", null, "active open" )>
-                @Html.SideBarLink( "大使馆资料", "icon-flag", "Articles" )
-                <ul class="sub-menu">
-                    <li>
-                        <a href="table_basic.html">
-                            数据列表
-                        </a>
-                    </li>
-                    <li>
-                        <a href="table_responsive.html">
-                            新增数据
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li @Html.ActiveCss( "Articles", null, "active open" )>
-                @Html.SideBarLink( "紧急电话", "icon-call-end", "Articles" )
-                <ul class="sub-menu">
-                    <li>
-                        <a href="table_basic.html">
-                            数据列表
-                        </a>
-                    </li>
-                    <li>
-                        <a href="table_responsive.html">
-                            新增数据
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li @Html.ActiveCss( "Articles", null, "active open" )>
-                @Html.SideBarLink( "机场名称", "icon-plane", "Articles" )
-                <ul class="sub-menu">
-                    <li>
-                        <a href="table_basic.html">
-                            数据列表
-                        </a>
-                    </li>
-                    <li>
-                        <a href="table_responsive.html">
-                            新增数据
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li @Html.ActiveCss( "Articles", null, "active open" )>
-                @Html.SideBarLink( "出入境卡填写", "icon-note", "Articles" )
-                <ul class="sub-menu">
-                    <li>
-                        <a href="table_basic.html">
-                            数据列表
-                        </a>
-                    </li>
-                    <li>
-                        <a href="table_responsive.html">
-                            新增数据
-                        </a>
+                    <li @Html.ActiveCss( "Articles", "Create" )>
+                        @Html.ActionLink( "新增文章", "Create", "Articles" )
                     </li>
                 </ul>
             </li>

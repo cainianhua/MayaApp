@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Maya.Services;
 using Maya.Services.BO;
 using Maya.Services.VO;
+using Maya.Web.FilterAttributes;
+using Maya.Web.Models;
 
 namespace Maya.Web.Controllers
 {
-    public class UsersController : Controller
+	[LoginChecker]
+    public class UsersController : ControllerBase
     {
         // GET: Users
         public ActionResult Index()
@@ -18,32 +22,39 @@ namespace Maya.Web.Controllers
             return View( items );
         }
 
-        // GET: Users/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
         // GET: Users/Create
         public ActionResult Create()
         {
-            return View();
+			UserRegisterModel item = new UserRegisterModel();
+            return View( item );
         }
 
         // POST: Users/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(UserRegisterModel item)
         {
-            try
-            {
-                // TODO: Add insert logic here
+			if (ModelState.IsValid) {
+				UserVO u = new UserVO();
+				u.UserName = item.UserName;
+				u.Email = item.Email;
+				u.PasswordSalt = new Random().Next( 10000, 99999 ).ToString();
+				u.Password = Utils.EncryptPassword( item.Password, u.PasswordSalt );
+				u.ActionDate = DateTime.Now;
+				u.ActionBy = UserContext.Current.User.UserName;
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+				try {
+					u.UserId = UserBO.GetInstance().SaveOrUpdateItem( u );
+				}
+				catch(Exception ex) {
+					ModelState.AddModelError( "", ex.Message );
+				}
+
+				if (ModelState.IsValid) {
+					return RedirectToAction( "Index" );
+				}
+			}
+
+			return View( item );
         }
 
         // GET: Users/Edit/5

@@ -1,0 +1,58 @@
+﻿@model CreateOrEditProductModel
+@{
+    ViewBag.Title = "编辑产品";
+    ViewBag.HeaderTitle = "编辑产品 <small>dashboard & statistics</small>";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN VALIDATION STATES-->
+        <div class="portlet box green">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-edit"></i>编辑产品
+                </div>
+            </div>
+            <div class="portlet-body form">
+                @Html.Partial( "_FormGroups", Model )
+            </div>
+        </div>
+        <!-- END VALIDATION STATES-->
+    </div>
+</div>
+
+@section HeaderStyles {
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link rel="stylesheet" type="text/css" href="~/Scripts/plugins/select2/select2.css" />
+    <link rel="stylesheet" type="text/css" href="~/Scripts/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css" />
+    <link rel="stylesheet" type="text/css" href="~/Scripts/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Scripts/plugins/bootstrap-datepicker/css/datepicker.css" />
+    <!-- END PAGE LEVEL STYLES -->
+}
+@section BreadCrumb {
+    <ul class="page-breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="index.html">Home</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            <a href="#">Dashboard</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li><a href="#">Dashboard</a></li>
+    </ul>
+}
+@section FooterScripts {
+    @Scripts.Render( "~/bundles/form-plugins" )
+    <script type="text/javascript" src="~/Scripts/plugins/ckeditor/ckeditor.js"></script>
+    @Scripts.Render( "~/bundles/form-pages" )
+    <script type="text/javascript" src="~/Scripts/plugins/jquery-file-upload/js/jquery.fileupload.js"></script>
+    <script type="text/javascript" src="~/Scripts/admin/maya-fileupload.js"></script>
+    <script type="text/javascript">
+        jQuery(function() {
+            FormValidation.init();
+        });
+    </script>
+}

@@ -1,9 +1,9 @@
-﻿@model List<UserVO>
+﻿@model List<ProductVO>
 @using Maya.Services.VO
 @{
-    ViewBag.Title = "用户列表";
+    ViewBag.Title = "产品列表";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.HeaderTitle = "用户列表 <small>dashboard & statistics</small>";
+    ViewBag.HeaderTitle = "产品列表 <small>dashboard & statistics</small>";
 }
 
 <!-- BEGIN PAGE CONTENT-->
@@ -13,7 +13,7 @@
         <div class="portlet box grey-cascade">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-globe"></i>用户列表
+                    <i class="fa fa-globe"></i>产品列表
                 </div>
                 @*<div class="tools">
                         <a href="javascript:;" class="collapse"></a>
@@ -47,35 +47,40 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>用户名</th>
-                            <th>邮箱</th>
+                            <th>名称</th>
+                            <th>图片</th>
                             <th>创建时间</th>
                             <th>修改</th>
                             <th>删除</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (UserVO item in Model) {
+                        @foreach (ProductVO item in Model) {
                             <tr class="odd gradeX">
                                 <td>
-                                    @item.UserId
+                                    @item.ProductId
                                 </td>
                                 <td>
-                                    @item.UserName
+                                    @item.Name
                                 </td>
                                 <td>
-                                    @item.Email
+                                    <img src="@item.Pic" class="pic-64" />
                                 </td>
                                 <td class="center">
                                     @item.CreatedDate.ToString( "yyyy-MM-dd HH:mm:ss" )
                                 </td>
                                 <td>
-                                    @Html.ActionLink( "修改", "Create", new { id = item.UserId } )
+                                    @Html.ActionLink( "修改", "Create", new { id = item.ProductId } )
                                 </td>
                                 <td>
-                                    @Html.DeleteLink( Url.Content( "~/Content/img/remove-icon-small.png" ), "Delete", new { id = item.UserId }, new { title = "删除用户", onclick = "return confirm('确定要删除此用户吗？');" } )
+                                    @Html.DeleteLink( Url.Content( "~/Content/img/remove-icon-small.png" ), "Delete", new { id = item.ProductId }, new { title = "删除产品", onclick = "return confirm('确定要删除此产品吗？');" } )
                                 </td>
-                            </tr>}
+                            </tr>
+                        }
+
+                        @if (Model.Count == 0) {
+                            <tr class="odd gradeX"><td colspan="6" class="center">暂无产品数据</td></tr>
+                        }
                     </tbody>
                 </table>
             </div>

@@ -1,0 +1,33 @@
+﻿@model String
+
+@{
+    var clientId = ViewData.TemplateInfo.GetFullHtmlFieldId( "" );
+    var fileName = Path.GetFileName( Model );
+}
+<div id="@(clientId)_DropZone" class="fileupload">
+    <div class="preview" data-default-img="~/Content/img/transparent.png">
+        <div class="attachment">
+            <img class="avatar-64" src="@(string.IsNullOrEmpty(Model) ? Url.Content("~/Content/img/transparent.png") : Model)" alt="">
+            <input type="hidden" name="@clientId" value="@Model">
+            <div class="progress"></div>
+        </div>
+    </div>
+    <div class="btn-group">
+        <a href="javascript:;" class="btn btn-success btn-file" tabindex="-1">
+            选择图片
+            <input id="@clientId" type="file" data-drop-zone="#@(clientId)_DropZone" data-url="/api/fileupload" data-single-file-uploads="false" data-max-size="" data-allowed-extensions="gif|jpg|jpeg|png|svg">
+        </a>
+        <button type="button" class="btn btn-success dropdown-toggle @if (string.IsNullOrEmpty( Model )) { <text>hidden</text> } " data-toggle="dropdown">
+            <i class="fa fa-angle-down"></i>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="javascript:;" class="clear"><i class="fa fa-trash-o"></i> Remove</a></li>
+        </ul>
+    </div>
+    <span class="help-block details">
+        @if (!string.IsNullOrEmpty( Model )) {
+            <a href="@Model" target="_blank">@fileName</a>
+        }
+    </span>
+</div>
+<span class="help-block">Recommended dimensions of at least 256x256 pixels.</span>

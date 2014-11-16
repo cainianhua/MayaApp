@@ -1,9 +1,10 @@
-﻿@model List<UserVO>
+﻿@model List<MusicVO>
 @using Maya.Services.VO
+@using Maya.Services.BO
 @{
-    ViewBag.Title = "用户列表";
+    ViewBag.Title = "音乐列表";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.HeaderTitle = "用户列表 <small>dashboard & statistics</small>";
+    ViewBag.HeaderTitle = "音乐列表 <small>dashboard & statistics</small>";
 }
 
 <!-- BEGIN PAGE CONTENT-->
@@ -13,14 +14,8 @@
         <div class="portlet box grey-cascade">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-globe"></i>用户列表
+                    <i class="fa fa-globe"></i>音乐列表
                 </div>
-                @*<div class="tools">
-                        <a href="javascript:;" class="collapse"></a>
-                        <a href="#portlet-config" data-toggle="modal" class="config"></a>
-                        <a href="javascript:;" class="reload"></a>
-                        <a href="javascript:;" class="remove"></a>
-                    </div>*@
             </div>
             <div class="portlet-body">
                 <div class="table-toolbar">
@@ -30,52 +25,48 @@
                                 <a href="@Url.Action("Create")" class="btn green">新增记录<i class="fa fa-plus"></i></a>
                             </div>
                         </div>
-                        @*<div class="col-md-6">
-                                <div class="btn-group pull-right">
-                                <button class="btn dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>
-                                </button>
-                                <ul class="dropdown-menu pull-right">
-                                    <li><a href="#">Print </a></li>
-                                    <li><a href="#">Save as PDF </a></li>
-                                    <li><a href="#">Export to Excel </a></li>
-                                </ul>
-                                </div>
-                            </div>*@
                     </div>
                 </div>
                 <table class="table table-striped table-bordered table-hover" id="sample_1">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>用户名</th>
-                            <th>邮箱</th>
+                            <th>名称</th>
+                            <th>音乐链接</th>
+                            <th>所属地点</th>
                             <th>创建时间</th>
                             <th>修改</th>
                             <th>删除</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (UserVO item in Model) {
+                        @foreach (MusicVO item in Model) {
                             <tr class="odd gradeX">
                                 <td>
-                                    @item.UserId
+                                    @item.MusicId
                                 </td>
                                 <td>
-                                    @item.UserName
+                                    @item.Name
                                 </td>
                                 <td>
-                                    @item.Email
+                                    @Html.TextBox( "LinkTo", item.LinkTo )
+                                </td>
+                                <td>
+                                    @DistrictBO.GetInstance().GetItem( item.DistrictId ).Name
                                 </td>
                                 <td class="center">
                                     @item.CreatedDate.ToString( "yyyy-MM-dd HH:mm:ss" )
                                 </td>
                                 <td>
-                                    @Html.ActionLink( "修改", "Create", new { id = item.UserId } )
+                                    @Html.ActionLink( "修改", "Create", new { id = item.MusicId } )
                                 </td>
                                 <td>
-                                    @Html.DeleteLink( Url.Content( "~/Content/img/remove-icon-small.png" ), "Delete", new { id = item.UserId }, new { title = "删除用户", onclick = "return confirm('确定要删除此用户吗？');" } )
+                                    @Html.DeleteLink( Url.Content( "~/Content/img/remove-icon-small.png" ), "Delete", new { id = item.MusicId }, new { title = "删除音乐", onclick = "return confirm('确定要删除此音乐吗？');" } )
                                 </td>
                             </tr>}
+
+                        @if (Model.Count == 0) {
+                            <tr class="odd gradeX"><td colspan="7" class="center">暂无音乐数据</td></tr>}
                     </tbody>
                 </table>
             </div>

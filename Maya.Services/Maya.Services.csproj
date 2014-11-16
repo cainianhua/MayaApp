@@ -61,6 +61,7 @@
     <Compile Include="DAO\SqlServer\ProviderBase.cs" />
     <Compile Include="DAO\SqlServer\SqlHelper.cs" />
     <Compile Include="DAO\SqlServer\UserProvider.cs" />
+    <Compile Include="EmailStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserRole.cs" />
     <Compile Include="VO\ArticleVO.cs" />

@@ -586,10 +586,13 @@
     <Content Include="Content\admin\pages\media\works\img4.jpg" />
     <Content Include="Content\admin\pages\media\works\img5.jpg" />
     <Content Include="Content\admin\pages\media\works\img6.jpg" />
+    <Content Include="Content\img\transparent.png" />
+    <Content Include="Content\maya.css" />
     <Content Include="Content\plugins.css" />
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\admin\maya-fileupload.js" />
     <Content Include="Scripts\datatable.js" />
     <None Include="Scripts\jquery-1.11.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.11.1.js" />
@@ -2492,9 +2495,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApiController.cs" />
+    <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\DistrictsController.cs" />
+    <Compile Include="Controllers\MusicsController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Extensions\FormGroupExtensions.cs" />
     <Compile Include="Extensions\LinkExtensions.cs" />
@@ -2507,6 +2514,8 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\DistrictModels.cs" />
+    <Compile Include="Models\MusicModels.cs" />
+    <Compile Include="Models\ProductModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2770,6 +2779,16 @@
     <Content Include="Views\Districts\Show.cshtml" />
     <Content Include="Views\Districts\_FormGroups.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\_FormGroups.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
+    <Content Include="Views\Products\_FormGroups.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\File.cshtml" />
+    <Content Include="Views\Musics\Index.cshtml" />
+    <Content Include="Views\Musics\_FormGroups.cshtml" />
+    <Content Include="Views\Musics\Create.cshtml" />
+    <Content Include="Views\Articles\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

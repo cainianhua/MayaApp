@@ -8,7 +8,8 @@ namespace Maya.Services
 {
     public enum UserRole
     {
-        Admin = 1,
+		NotSet,
+        Admin,
         User
     }
 }

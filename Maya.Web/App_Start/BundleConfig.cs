@@ -81,16 +81,17 @@ namespace Maya.Web
                     "~/Scripts/jquery.validate.unobtrusive.js",
                     "~/Scripts/jquery.validate.unobtrusive.bootstrap.js"));
 
-            /***********************************+ CSS +************************************/
+			/***********************************+ CSS +************************************/
 
 			/* GLOBAL MANDATORY STYLES */
-			bundles.Add( new StyleBundle( "~/Content/global" ).Include(
-						"~/Content/google-fonts.css",
-						"~/Content/",
-						"~/Content/",
-						"~/Content/",
-						"~/Content/",
-						"~/Content/Admin/skin3/stylesheets/font-awesome.min.css" ) );
+			bundles.Add( new StyleBundle( "~/Content/global" )
+				.Include( "~/Content/google-fonts.css", new IItemTransform[0] )
+				.Include( "~/Scripts/plugins/font-awesome/css/font-awesome.min.css", new IItemTransform[0] )
+				.Include( "~/Scripts/plugins/simple-line-icons/simple-line-icons.min.css", new IItemTransform[0] )
+				.Include( "~/Scripts/plugins/bootstrap/css/bootstrap.min.css", new IItemTransform[0] )
+				.Include( "~/Scripts/plugins/uniform/css/uniform.default.css", new IItemTransform[0] )
+				.Include( "~/Scripts/plugins/bootstrap-switch/css/bootstrap-switch.min.css", new IItemTransform[0] ) );
+
             /* Admin */
             bundles.Add(new StyleBundle("~/Content/Admin/skin3/stylesheets/main.css").Include(
                         "~/Content/Admin/skin3/stylesheets/site.css"));

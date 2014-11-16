@@ -1,0 +1,54 @@
+﻿@model UserRegisterModel
+
+<!-- BEGIN FORM-->
+@using (Html.BeginForm("Create", "Users", FormMethod.Post, new { @class = "form-horizontal", autocomplete = "off" } )) {
+    @Html.AntiForgeryToken()
+    <div class="form-body">
+        @*<h3 class="form-section">Advance validation. <small>Custom radio buttons, checkboxes and Select2 dropdowns</small></h3>*@
+        <div class="alert alert-danger display-hide">
+            <button class="close" data-close="alert"></button>
+            You have some form errors. Please check below.
+        </div>
+        <div class="alert alert-success display-hide">
+            <button class="close" data-close="alert"></button>
+            Your form validation is successful!
+        </div>
+        @using (Html.BeginPanelFor( m => m.UserName, new { @class = "form-group" } )) {
+            @Html.LabelFor( m => m.UserName, new { @class = "control-label col-md-3" } )
+            <div class="col-md-4">
+                @Html.TextBoxFor( m => m.UserName, new { @class = "form-control" } )
+                @Html.ValidationMessageFor( m => m.UserName )
+            </div>
+        }
+        @using (Html.BeginPanelFor( m => m.Email, new { @class = "form-group" } )) {
+            @Html.LabelFor( m => m.Email, new { @class = "control-label col-md-3" } )
+            <div class="col-md-4">
+                @Html.TextBoxFor( m => m.Email, new { @class = "form-control", rows = "6" } )
+                @Html.ValidationMessageFor( m => m.Email )
+            </div>
+        }
+        @using (Html.BeginPanelFor( m => m.Password, new { @class = "form-group" } )) {
+            @Html.LabelFor( m => m.Password, new { @class = "control-label col-md-3" } )
+            <div class="col-md-4">
+                @Html.PasswordFor( m => m.Password, new { @class = "form-control" } )
+                @Html.ValidationMessageFor( m => m.Password )
+            </div>
+        }
+        @using (Html.BeginPanelFor( m => m.ConfirmPassword, new { @class = "form-group" } )) {
+            @Html.LabelFor( m => m.ConfirmPassword, new { @class = "control-label col-md-3" } )
+            <div class="col-md-4">
+                @Html.PasswordFor( m => m.ConfirmPassword, new { @class = "form-control" } )
+                @Html.ValidationMessageFor( m => m.ConfirmPassword )
+            </div>
+        }
+    </div>
+    <div class="form-actions">
+        <div class="row">
+            <div class="col-md-offset-3 col-md-9">
+                <button type="submit" class="btn green">保存</button>
+                @Html.ActionLink("取消", "Index", null, new { @class = "btn default" } )
+            </div>
+        </div>
+    </div>
+}
+<!-- END FORM-->

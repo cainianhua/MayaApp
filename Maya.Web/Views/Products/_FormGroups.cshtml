@@ -1,0 +1,66 @@
+﻿@model CreateOrEditProductModel
+
+<!-- BEGIN FORM-->
+@using (Html.BeginForm("Create", "Products", FormMethod.Post, new { @class = "form-horizontal", autocomplete = "off" } )) {
+    @Html.AntiForgeryToken()
+    <div class="form-body">
+        @*<h3 class="form-section">Advance validation. <small>Custom radio buttons, checkboxes and Select2 dropdowns</small></h3>*@
+        <div class="alert alert-danger display-hide">
+            <button class="close" data-close="alert"></button>
+            You have some form errors. Please check below.
+        </div>
+        <div class="alert alert-success display-hide">
+            <button class="close" data-close="alert"></button>
+            Your form validation is successful!
+        </div>
+        @using (Html.BeginPanelFor( m => m.Name, new { @class = "form-group" } )) {
+            @Html.LabelFor( m => m.Name, new { @class = "control-label col-md-3" } )
+            <div class="col-md-4">
+                @Html.TextBoxFor( m => m.Name, new { @class = "form-control" } )
+                @Html.ValidationMessageFor( m => m.Name )
+            </div>
+        }
+        @using (Html.BeginPanelFor( m => m.Description, new { @class = "form-group" } )) {
+            @Html.LabelFor( m => m.Description, new { @class = "control-label col-md-3" } )
+            <div class="col-md-4">
+                @Html.TextAreaFor( m => m.Description, new { @class = "form-control", rows = "6" } )
+                @Html.ValidationMessageFor( m => m.Description )
+            </div>
+        }
+        @using (Html.BeginPanelFor( m => m.Pic, new { @class = "form-group" } )) {
+            @Html.LabelFor( m => m.Pic, new { @class = "control-label col-md-3" } )
+            @*<div class="col-md-4">
+                @Html.TextBoxFor( m => m.Pic, new { @class = "form-control" } )
+                @Html.ValidationMessageFor( m => m.Pic )
+            </div>*@
+
+            <div class="col-md-4">
+                @Html.EditorFor( m => m.Pic )
+            </div>
+        }
+        @using (Html.BeginPanelFor( m => m.LinkTo, new { @class = "form-group" } )) {
+            @Html.LabelFor( m => m.LinkTo, new { @class = "control-label col-md-3" } )
+            <div class="col-md-4">
+                @Html.TextBoxFor( m => m.LinkTo, new { @class = "form-control" } )
+                @Html.ValidationMessageFor( m => m.LinkTo )
+            </div>
+        }
+        @using (Html.BeginPanelFor( m => m.SortOrder, new { @class = "form-group" } )) {
+            @Html.LabelFor( m => m.SortOrder, new { @class = "control-label col-md-3" } )
+            <div class="col-md-4">
+                @Html.TextBoxFor( m => m.SortOrder, new { @class = "form-control" } )
+                @Html.ValidationMessageFor( m => m.SortOrder )
+            </div>
+        }
+    </div>
+    <div class="form-actions">
+        <div class="row">
+            <div class="col-md-offset-3 col-md-9">
+                @Html.HiddenFor( m => m.ProductId )
+                <button type="submit" class="btn green">保存</button>
+                @Html.ActionLink("取消", "Index", null, new { @class = "btn default" } )
+            </div>
+        </div>
+    </div>
+}
+<!-- END FORM-->

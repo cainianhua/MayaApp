@@ -9,7 +9,7 @@ using System.Web;
 
 namespace Maya.Web.Models
 {
-    public class RegisterModel
+    public class UserRegisterModel
     {
         [Display(Name = "用户名")]
         [Required(ErrorMessage = "{0}是必填信息。")]

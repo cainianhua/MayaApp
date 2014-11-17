@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Maya.Services.VO;
 using Maya.Services.BO;
+using Maya.Web.Models;
 
 namespace Maya.Web.Controllers
 {
@@ -17,76 +18,56 @@ namespace Maya.Web.Controllers
             return View(items);
         }
 
-        // GET: Articles/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
         // GET: Articles/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
-            return View();
+			CreateOrEditArticleModel item = new CreateOrEditArticleModel();
+			if (id.HasValue) {
+				ArticleVO a = ArticleBO.GetInstance().GetItem( id.Value );
+				if(a != null) {
+					item = a.To<CreateOrEditArticleModel>();
+				}
+			}
+
+			ViewBag.Districts = new SelectList( DistrictBO.GetInstance().GetItems(), "DistrictId", "Name" );
+			ViewBag.Categories = new SelectList( CategoryBO.GetInstance().GetItems(), "CategoryId", "Name" );
+
+			return View( item );
         }
 
         // POST: Articles/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(CreateOrEditArticleModel item)
         {
-            try
-            {
-                // TODO: Add insert logic here
+			if (ModelState.IsValid) {
+				ArticleVO article = item.To<ArticleVO>();
+				article.ActionDate = DateTime.Now;
+				article.ActionBy = UserContext.Current.User.UserName;
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+				try {
+					ArticleBO.GetInstance().SaveOrUpdateItem( article );
+				}
+				catch(Exception ex) {
+					ModelState.AddModelError( "", ex.Message );
+				}
 
-        // GET: Articles/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+				if (ModelState.IsValid) {
+					return RedirectToAction( "Index" );
+				}
+			}
 
-        // POST: Articles/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
+			ViewBag.Districts = new SelectList( DistrictBO.GetInstance().GetItems(), "DistrictId", "Name" );
+			ViewBag.Categories = new SelectList( CategoryBO.GetInstance().GetItems(), "CategoryId", "Name" );
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Articles/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
+			return View( item );
         }
 
         // POST: Articles/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpDelete]
+        public ActionResult Delete(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-    }
+			ArticleBO.GetInstance().DeleteItem( id );
+			return RedirectToAction( "Index" );
+		}
+	}
 }

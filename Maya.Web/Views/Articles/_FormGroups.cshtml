@@ -1,0 +1,56 @@
+﻿@model CreateOrEditArticleModel
+
+<!-- BEGIN FORM-->
+@using (Html.BeginForm("Create", "Articles", FormMethod.Post, new { @class = "form-horizontal", autocomplete = "off" } )) {
+    @Html.AntiForgeryToken()
+    <div class="form-body">
+        @Html.ValidationSummary()
+        @*<h3 class="form-section">Advance validation. <small>Custom radio buttons, checkboxes and Select2 dropdowns</small></h3>*@
+        <div class="alert alert-danger display-hide">
+            <button class="close" data-close="alert"></button>
+            You have some form errors. Please check below.
+        </div>
+        <div class="alert alert-success display-hide">
+            <button class="close" data-close="alert"></button>
+            Your form validation is successful!
+        </div>
+        @using (Html.BeginPanelFor( m => m.DistrictId, new { @class = "form-group" } )) {
+            @Html.LabelFor( m => m.DistrictId, new { @class = "control-label col-md-3" } )
+            <div class="col-md-4">
+                @Html.DropDownListFor( m => m.DistrictId, ViewBag.Districts as SelectList, "请选择", new Dictionary<string, object>().AddWithChain( "class", "form-control select2me" ) )
+                @Html.ValidationMessageFor( m => m.DistrictId )
+            </div>
+        }
+        @using (Html.BeginPanelFor( m => m.CategoryId, new { @class = "form-group" } )) {
+            @Html.LabelFor( m => m.CategoryId, new { @class = "control-label col-md-3" } )
+            <div class="col-md-4">
+                @Html.DropDownListFor( m => m.CategoryId, ViewBag.Categories as SelectList, "请选择", new Dictionary<string, object>().AddWithChain( "class", "form-control select2me" ) )
+                @Html.ValidationMessageFor( m => m.CategoryId )
+            </div>
+        }
+        @using (Html.BeginPanelFor( m => m.Title, new { @class = "form-group" } )) {
+            @Html.LabelFor( m => m.Title, new { @class = "control-label col-md-3" } )
+            <div class="col-md-4">
+                @Html.TextBoxFor( m => m.Title, new { @class = "form-control" } )
+                @Html.ValidationMessageFor( m => m.Title )
+            </div>
+        }
+        @using (Html.BeginPanelFor( m => m.ArticleContent, new { @class = "form-group" } )) {
+            @Html.LabelFor( m => m.ArticleContent, new { @class = "control-label col-md-3" } )
+            <div class="col-md-9">
+                @Html.TextAreaFor( m => m.ArticleContent, new { rows = "6" } )
+                @Html.ValidationMessageFor( m => m.ArticleContent )
+            </div>
+        }
+    </div>
+    <div class="form-actions">
+        <div class="row">
+            <div class="col-md-offset-3 col-md-9">
+                @Html.HiddenFor( m => m.ArticleId )
+                <button type="submit" class="btn green">保存</button>
+                @Html.ActionLink("取消", "Index", null, new { @class = "btn default" } )
+            </div>
+        </div>
+    </div>
+}
+<!-- END FORM-->

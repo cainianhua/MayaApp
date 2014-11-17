@@ -184,7 +184,7 @@ UpgradeLog*.htm
 FakesAssemblies/
 
 # UEdit upload files
-Maya.Web/ueditor/upload/
+Maya.Web/ueditor/net/upload/
 
 # Website upload files
 Maya.Web/Uploads/

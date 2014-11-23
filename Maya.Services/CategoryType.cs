@@ -9,7 +9,7 @@ namespace Maya.Services
 	/// <summary>
 	/// 和数据表里面的数据保持一致
 	/// </summary>
-	public enum CategoryType
+	public enum SortType
 	{
 		电流电压 = 10001,
 		插座标准,

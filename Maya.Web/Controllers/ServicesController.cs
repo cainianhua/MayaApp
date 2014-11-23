@@ -12,59 +12,94 @@ namespace Maya.Web.Controllers
 {
     public class ServicesController : Controller
     {
-        /// <summary>
-		/// 
+		/// <summary>
+		/// 接口调用帮助文件信息
 		/// </summary>
-		/// <param name="cid">Category Id</param>
-		/// <param name="dn">District name</param>
 		/// <returns></returns>
-        public ActionResult Index(CategoryType type, string dn)
+		public ActionResult Index() {
+			return View();
+		}
+		/// <summary>
+		/// 文章数据，包括音乐和产品都归到文章里面
+		/// </summary>
+		/// <param name="type">Category Id或者Sort key(枚举)</param>
+		/// <param name="did">位置编号</param>
+		/// <returns></returns>
+		public ActionResult Articles(SortType type, int did)
         {
 			switch (type) {
-				case CategoryType.电流电压:
-				case CategoryType.插座标准:
-				case CategoryType.全球通使用方法:
-				case CategoryType.大使馆资料:
-				case CategoryType.当地紧急电话:
-				case CategoryType.出入卡填写:
-					return Articles( type, dn );
-				case CategoryType.经纬度:
-					return LngLat( dn );
-                case CategoryType.产品专题:
-					return Products( dn );
-				case CategoryType.旅游音乐:
-					return Musics( dn );
+				case SortType.电流电压:
+				case SortType.插座标准:
+				case SortType.全球通使用方法:
+				case SortType.大使馆资料:
+				case SortType.当地紧急电话:
+				case SortType.出入卡填写:
+					return ArticlesInternal( type, did );
+                case SortType.产品专题:
+					return ProductsInternal( did );
+				case SortType.旅游音乐:
+					return MusicsInternal( did );
 				default:
 					return new HttpStatusCodeResult( HttpStatusCode.NotImplemented );
             }
         }
 
-		public JsonResult Rates() {
+		/// <summary>
+		/// 利率数据，获取from对to的汇率
+		/// </summary>
+		/// <param name="from">币种一</param>
+		/// <param name="to">币种二</param>
+		/// <returns></returns>
+		public ActionResult Rates(string from, string to) {
+			// http://download.finance.yahoo.com/d/quotes.csv?s=USDCNY=X&f=sl1d1t1ba&e=.html
 			return new JsonResult();
 		}
 
-		private JsonResult Musics(string dn ) {
-			List<MusicVO> musics = MusicBO.GetInstance().GetItemsByDistrictCriteria( dn );
+		/// <summary>
+		/// 地理位置信息，设置目的地的时候需要调用这个接口
+		/// </summary>
+		/// <param name="dn">地点名称</param>
+		/// <returns></returns>
+		public ActionResult Locations( string dn ) {
+			List<DistrictVO> districts = new List<DistrictVO>();
+			if (!string.IsNullOrEmpty( dn )) {
+				districts = DistrictBO.GetInstance().GetItems( dn );
+			}
+
+			return Json( districts, JsonRequestBehavior.AllowGet );
+		}
+
+		#region [ 私有方法 ]
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="districtId"></param>
+		/// <returns></returns>
+		private JsonResult MusicsInternal( int districtId ) {
+			List<MusicVO> musics = MusicBO.GetInstance().GetItemsByDistrictCriteria( districtId );
 			return Json( from item in musics
 						 select new { item.MusicId, item.Name, item.Description, item.LinkTo }, JsonRequestBehavior.AllowGet );
 		}
-
-		private JsonResult Products(string dn ) {
-			List<ProductVO> products = ProductBO.GetInstance().GetItemsByDistrictCriteria( dn );
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="districtId"></param>
+		/// <returns></returns>
+		private JsonResult ProductsInternal( int districtId ) {
+			List<ProductVO> products = ProductBO.GetInstance().GetItemsByDistrictCriteria( districtId );
 			return Json( from item in products
 						 select new { item.ProductId, item.Name, item.Pic, item.Description, item.LinkTo }, JsonRequestBehavior.AllowGet );
 		}
-
-		private JsonResult Articles( CategoryType type, string dn ) {
-			List<ArticleVO> articles = ArticleBO.GetInstance().GetItems( (int)type, dn );
-			return Json( from item in articles
-						 select new { item.ArticleId, item.Title, item.ArticleContent }, JsonRequestBehavior.AllowGet );
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="type"></param>
+		/// <param name="districtId"></param>
+		/// <returns></returns>
+		private JsonResult ArticlesInternal( SortType type, int districtId ) {
+			List<ArticleVO> articles = ArticleBO.GetInstance().GetItems( (int)type, districtId );
+			return Json( articles, JsonRequestBehavior.AllowGet );
 		}
-
-		private JsonResult LngLat( string dn ) {
-			List<DistrictVO> districts = DistrictBO.GetInstance().GetItems( dn );
-			return Json( from item in districts
-								   select new { item.Name, item.Lng, item.Lat }, JsonRequestBehavior.AllowGet );
-		}
+		#endregion
 	}
 }

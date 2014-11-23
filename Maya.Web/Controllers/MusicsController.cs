@@ -31,7 +31,7 @@ namespace Maya.Web.Controllers
 				}
 			}
 
-			ViewBag.Districts = new SelectList( DistrictBO.GetInstance().GetItems().Where(data => data.Name != "全球"), "DistrictId", "Name" );
+			ViewBag.Districts = new SelectList( DistrictBO.GetInstance().GetItems(), "DistrictId", "Name" );
 
 			return View( item );
         }
@@ -64,7 +64,7 @@ namespace Maya.Web.Controllers
 				}
 			}
 
-			ViewBag.Districts = new SelectList( DistrictBO.GetInstance().GetItems().Where( data => data.Name != "全球" ), "DistrictId", "Name" );
+			ViewBag.Districts = new SelectList( DistrictBO.GetInstance().GetItems(), "DistrictId", "Name" );
 
 			return View( item );
         }

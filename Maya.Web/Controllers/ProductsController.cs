@@ -29,7 +29,10 @@ namespace Maya.Web.Controllers
 					item = p.To<CreateOrEditProductModel>();
 				}
 			}
-            return View( item );
+
+			ViewBag.Districts = new SelectList( DistrictBO.GetInstance().GetItems(), "DistrictId", "Name" );
+
+			return View( item );
         }
 
         // POST: Products/Create
@@ -58,6 +61,8 @@ namespace Maya.Web.Controllers
 					return RedirectToAction( "Index" );
 				}
 			}
+
+			ViewBag.Districts = new SelectList( DistrictBO.GetInstance().GetItems(), "DistrictId", "Name" );
 
 			return View( item );
         }

@@ -3079,6 +3079,7 @@
     <Content Include="Views\Articles\Index.cshtml" />
     <Content Include="Views\Articles\Create.cshtml" />
     <Content Include="Views\Articles\_FormGroups.cshtml" />
+    <Content Include="Views\Services\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3089,7 +3090,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\plugins\jquery-file-upload\server\php\files\thumbnail\" />
-    <Folder Include="Views\Services\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Maya.Services\Maya.Services.csproj">

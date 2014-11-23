@@ -2780,6 +2780,7 @@
     <Compile Include="Controllers\DistrictsController.cs" />
     <Compile Include="Controllers\MusicsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Extensions\FormGroupExtensions.cs" />
     <Compile Include="Extensions\LinkExtensions.cs" />
@@ -3088,6 +3089,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\plugins\jquery-file-upload\server\php\files\thumbnail\" />
+    <Folder Include="Views\Services\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Maya.Services\Maya.Services.csproj">

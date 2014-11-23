@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Maya.Web.Models;
 using Maya.Services.VO;
 using Maya.Services.BO;
+using Maya.Services;
 
 namespace Maya.Web.Controllers
 {
@@ -39,7 +40,7 @@ namespace Maya.Web.Controllers
 				}
 			}
 
-			ViewBag.Districts = new SelectList( DistrictBO.GetInstance().GetItems(), "DistrictId", "Name" );
+			ViewBag.Districts = new SelectList( DistrictBO.GetInstance().GetAllItems(), "DistrictId", "Name" );
 
             return View( item );
         }
@@ -73,7 +74,7 @@ namespace Maya.Web.Controllers
                 }
             }
 
-            ViewBag.Districts = new SelectList( DistrictBO.GetInstance().GetItems(), "DistrictId", "Name" );
+            ViewBag.Districts = new SelectList( DistrictBO.GetInstance().GetAllItems(), "DistrictId", "Name" );
 
             return View( item );
         }

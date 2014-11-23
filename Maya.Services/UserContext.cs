@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 
-namespace Maya
+namespace Maya.Services
 {
     public class UserContext
     {

@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Maya
 {
@@ -39,6 +42,38 @@ namespace Maya
 			}
 			// Return the hexadecimal string. 
 			return sBuilder.ToString();
+		}
+
+		/// <summary>
+		/// 从url获取返回的数据。
+		/// </summary>
+		/// <param name="url"></param>
+		/// <returns></returns>
+		public static string RetrieveWebData( string url ) {
+			HttpWebRequest request = WebRequest.Create( url ) as HttpWebRequest;
+			//为了兼容BBS同步登录，加上UserAgent。
+			string agent = "Mozilla/4.0(compatible;MSIE6.0;)";
+			if (( HttpContext.Current != null ) && ( HttpContext.Current.Request != null )) {
+				agent = HttpContext.Current.Request.ServerVariables["Http_User_Agent"];
+			}
+			request.UserAgent = agent;
+			CookieContainer cookieContainer = new CookieContainer();
+			request.CookieContainer = cookieContainer;
+
+			string str = "";
+			using (HttpWebResponse response = request.GetResponse() as HttpWebResponse) {
+				foreach (Cookie cookie in cookieContainer.GetCookies( request.RequestUri )) {
+					HttpCookie tmpCookie = new HttpCookie( cookie.Name );
+					tmpCookie.Domain = cookie.Domain;
+					tmpCookie.Path = cookie.Path;
+					tmpCookie.Value = cookie.Value;
+					tmpCookie.Expires = cookie.Expires;
+					HttpContext.Current.Response.Cookies.Add( tmpCookie );
+				}
+				StreamReader sr = new StreamReader( response.GetResponseStream() );
+				str = sr.ReadToEnd();
+			}
+			return str;
 		}
 	}
 }

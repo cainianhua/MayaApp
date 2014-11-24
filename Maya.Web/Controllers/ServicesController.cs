@@ -50,9 +50,18 @@ namespace Maya.Web.Controllers
 		/// <param name="from">币种一</param>
 		/// <param name="to">币种二</param>
 		/// <returns></returns>
-		public ActionResult Rates(string from, string to) {
+		public ActionResult Rate(string from, string to) {
+			// 汇率数据源：
 			// http://download.finance.yahoo.com/d/quotes.csv?s=USDCNY=X&f=sl1d1t1ba&e=.html
-			return new JsonResult();
+			// 返回数据格式：
+			// "USDCNY=X",6.1417,"11/24/2014","8:33am",6.1367,6.1467
+
+			string RATE_API_FORMATTER = "http://download.finance.yahoo.com/d/quotes.html?s={0}{1}=X&f=sl1d1t1ba&e=.html";
+			string api = string.Format( RATE_API_FORMATTER, from, to );
+
+			string data = Utils.RetrieveWebData( api );
+
+			return Json( new { rate = data.Split( ',' )[1] }, JsonRequestBehavior.AllowGet );
 		}
 
 		/// <summary>
@@ -67,6 +76,21 @@ namespace Maya.Web.Controllers
 			}
 
 			return Json( districts, JsonRequestBehavior.AllowGet );
+		}
+
+		/// <summary>
+		/// 文章详情
+		/// </summary>
+		/// <param name="id"></param>
+		/// <returns></returns>
+		public ActionResult Detail(int id ) {
+			ArticleVO item = ArticleBO.GetInstance().GetItem( id );
+			return Json( item, JsonRequestBehavior.AllowGet );
+		}
+
+		public ActionResult Currencies() {
+			List<CurrencyVO> items = CurrencyBO.GetInstance().GetItems();
+			return Json( items, JsonRequestBehavior.AllowGet );
 		}
 
 		#region [ 私有方法 ]

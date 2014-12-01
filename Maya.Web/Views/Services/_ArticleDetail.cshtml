@@ -1,0 +1,12 @@
+﻿@using Maya.Services.VO
+@model ArticleVO
+
+@if (string.IsNullOrEmpty( Model.Title )) {
+    <div class="article-detail">没有相关的文章数据<a title="电流电压" data-persist-ajax="true" data-type="电流电压" href="javascript:void(0);" onclick="javascript:loadArticle1(this);">电流电压1</a></div>
+}
+else { 
+    <h2>@Model.Title</h2>
+    <div class="article-detail">
+        @Html.Raw( Model.ArticleContent )
+    </div>
+}

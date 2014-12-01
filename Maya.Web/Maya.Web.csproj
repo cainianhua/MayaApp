@@ -95,6 +95,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app.html" />
     <Content Include="Content\components.css" />
     <Content Include="Content\google-fonts.css" />
     <Content Include="Content\img\accordion-plusminus.png" />
@@ -2783,10 +2784,13 @@
     <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Extensions\FormGroupExtensions.cs" />
+    <Compile Include="Extensions\JsonpController.cs" />
+    <Compile Include="Extensions\JsonpResult.cs" />
     <Compile Include="Extensions\LinkExtensions.cs" />
     <Compile Include="Extensions\PanelExtensions.cs" />
     <Compile Include="Extensions\MvcPanel.cs" />
     <Compile Include="Extensions\SideBarExtensions.cs" />
+    <Compile Include="FilterAttributes\AllowCrossSiteJsonAttribute.cs" />
     <Compile Include="FilterAttributes\LoginCheckerFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -3080,6 +3084,7 @@
     <Content Include="Views\Articles\Create.cshtml" />
     <Content Include="Views\Articles\_FormGroups.cshtml" />
     <Content Include="Views\Services\Index.cshtml" />
+    <Content Include="Views\Services\_ArticleDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

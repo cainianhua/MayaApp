@@ -50,7 +50,7 @@
     <Compile Include="BO\MusicBO.cs" />
     <Compile Include="BO\ProductBO.cs" />
     <Compile Include="BO\UserBO.cs" />
-    <Compile Include="CategoryType.cs" />
+    <Compile Include="SortType.cs" />
     <Compile Include="DAO\IArticleProvider.cs" />
     <Compile Include="DAO\ICategoryProvider.cs" />
     <Compile Include="DAO\ICurrencyProvider.cs" />

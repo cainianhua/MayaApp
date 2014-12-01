@@ -7,8 +7,8 @@ using System.Web.Mvc;
 
 namespace Maya.Web.Controllers
 {
-    public abstract class ControllerBase : Controller
-    {
+    public abstract class ControllerBase : JsonpController
+	{
         //private UserVO _UserVO;
         ///// <summary>
         ///// 

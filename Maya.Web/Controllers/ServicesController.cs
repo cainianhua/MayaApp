@@ -7,11 +7,12 @@ using Maya.Services;
 using Maya.Services.VO;
 using Maya.Services.BO;
 using System.Net;
+using Maya.Web.FilterAttributes;
 
 namespace Maya.Web.Controllers
 {
-    public class ServicesController : Controller
-    {
+    public class ServicesController : ControllerBase
+	{
 		/// <summary>
 		/// 接口调用帮助文件信息
 		/// </summary>
@@ -61,7 +62,7 @@ namespace Maya.Web.Controllers
 
 			string data = Utils.RetrieveWebData( api );
 
-			return Json( new { rate = data.Split( ',' )[1] }, JsonRequestBehavior.AllowGet );
+			return Jsonp( new { rate = data.Split( ',' )[1] } );
 		}
 
 		/// <summary>
@@ -70,12 +71,13 @@ namespace Maya.Web.Controllers
 		/// <param name="dn">地点名称</param>
 		/// <returns></returns>
 		public ActionResult Locations( string dn ) {
+			dn = dn.Trim();
 			List<DistrictVO> districts = new List<DistrictVO>();
 			if (!string.IsNullOrEmpty( dn )) {
 				districts = DistrictBO.GetInstance().GetItems( dn );
 			}
 
-			return Json( districts, JsonRequestBehavior.AllowGet );
+			return Jsonp( new { suggestions = districts } );
 		}
 
 		/// <summary>
@@ -85,12 +87,12 @@ namespace Maya.Web.Controllers
 		/// <returns></returns>
 		public ActionResult Detail(int id ) {
 			ArticleVO item = ArticleBO.GetInstance().GetItem( id );
-			return Json( item, JsonRequestBehavior.AllowGet );
+			return Jsonp( item );
 		}
 
 		public ActionResult Currencies() {
 			List<CurrencyVO> items = CurrencyBO.GetInstance().GetItems();
-			return Json( items, JsonRequestBehavior.AllowGet );
+			return Json( items );
 		}
 
 		#region [ 私有方法 ]
@@ -101,8 +103,7 @@ namespace Maya.Web.Controllers
 		/// <returns></returns>
 		private JsonResult MusicsInternal( int districtId ) {
 			List<MusicVO> musics = MusicBO.GetInstance().GetItemsByDistrictCriteria( districtId );
-			return Json( from item in musics
-						 select new { item.MusicId, item.Name, item.Description, item.LinkTo }, JsonRequestBehavior.AllowGet );
+			return Jsonp( musics );
 		}
 		/// <summary>
 		/// 
@@ -111,8 +112,7 @@ namespace Maya.Web.Controllers
 		/// <returns></returns>
 		private JsonResult ProductsInternal( int districtId ) {
 			List<ProductVO> products = ProductBO.GetInstance().GetItemsByDistrictCriteria( districtId );
-			return Json( from item in products
-						 select new { item.ProductId, item.Name, item.Pic, item.Description, item.LinkTo }, JsonRequestBehavior.AllowGet );
+			return Jsonp( products );
 		}
 		/// <summary>
 		/// 
@@ -120,9 +120,14 @@ namespace Maya.Web.Controllers
 		/// <param name="type"></param>
 		/// <param name="districtId"></param>
 		/// <returns></returns>
-		private JsonResult ArticlesInternal( SortType type, int districtId ) {
+		[AllowCrossSiteJson]
+		private ActionResult ArticlesInternal( SortType type, int districtId ) {
 			List<ArticleVO> articles = ArticleBO.GetInstance().GetItems( (int)type, districtId );
-			return Json( articles, JsonRequestBehavior.AllowGet );
+			ArticleVO item = new ArticleVO();
+			if (articles.Count > 0)
+				item = articles.First();
+
+			return PartialView( "_ArticleDetail", item );
 		}
 		#endregion
 	}

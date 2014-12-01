@@ -1,0 +1,218 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>Maya</title>
+    <link rel="stylesheet" type="text/css" href="lib/appframework/css/af.ui.base.css" />
+    <link rel="stylesheet" type="text/css" href="lib/appframework/css/af.ui.css" />
+    <link rel="stylesheet" type="text/css" href="lib/appframework/css/icons.css" />
+    <link rel="stylesheet" type="text/css" href="style/style.css" />
+    <!--<script type="text/javascript" charset="utf-8" src="lib/appframework/appframework.js"></script>-->
+    <script type="text/javascript" charset="utf-8" src="lib/jquery-1.11.1.js"></script>
+    <script type="text/javascript" charset="utf-8" src="lib/appframework/jq.appframework.js"></script>
+    <script type="text/javascript" charset="utf-8" src="lib/appframework/ui/appframework.ui.js"></script>
+    <script type="text/javascript" charset="utf-8" src="lib/jquery.location.js"></script>
+    <!--
+    <script type="text/javascript" charset="utf-8" src="lib/appframework/af.plugins.min.js"></script>-->
+    <script type="text/javascript">
+        function checkLocation() {
+            if (!localStorage.Id) {
+                af.ui.toggleSideMenu();
+                return false;
+            }
+            return true;
+        }
+        function loadArticle(anchor) {
+            if (!checkLocation()) return;
+
+            var api = "http://maya.codestudio.com/services/articles?"
+            var params = {
+                type: $(anchor).data("type"),
+                did: localStorage.Id
+            }
+
+            api += $.param(params);
+
+            $.ui.loadAjax(api, false, false, "slide", anchor);
+        }
+
+        function translateLng(lng) {
+            if (!lng) { return "未知经度" };
+            if (lng.substr(0,1) == "-") { 
+                return "西经" + lng.substr(1);
+            }
+            else {
+                return "东经" + lng;
+            }
+        }
+
+        function translateLat(lat) {
+            if (!lat) { return "未知纬度" };
+            if (lat.substr(0,1) == "-") { 
+                return "南纬" + lat.substr(1);
+            }
+            else {
+                return "北纬" + lat;
+            }
+        }
+
+        function showLocation() {
+            var locName = localStorage.Name;
+            var locLng = localStorage.Lng;
+            var locLat = localStorage.Lat;
+
+            $("#header .infotitle a").text(locName);
+            $("#citybox .citybox-hd span").text(locName);
+            $("#header p.infocont").text(translateLat(locLat) + "," + translateLng(locLng));
+        }
+
+        function saveLocation(district) {
+            localStorage.Id = district.DistrictId;
+            localStorage.Name = district.Name;
+            localStorage.Lng = district.Lng;
+            localStorage.Lat = district.Lat;
+        }
+
+        jQuery(function($) {
+            // initialize.
+            showLocation();
+
+            $("#citybox .citybox-bd").locationsetter({
+                serviceUrl: 'http://maya.codestudio.com/services/locations',
+                paramName: "dn",
+                ajaxSettings: { dataType: "jsonp" },
+                idField: "DistrictId",
+                onSelect: function (suggestion) {
+                    af.ui.toggleSideMenu();
+                    //alert('You selected: ' + suggestion.Name + ', ' + suggestion.DistrictId);
+                    saveLocation(suggestion);
+
+                    showLocation();
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="afui">
+        <div id="header">
+            <div class="headinfo">
+                <p class="infotitle"><a onclick="af.ui.toggleSideMenu()">未知城市</a>
+                </p>
+                <p class="infocont">未设置经纬度</p>
+            </div>
+            <a id="citytoggle" onclick="af.ui.toggleSideMenu()"></a>
+        </div>
+        <header id="index_header">
+            <div class="logo"><i class="icon-logo"></i>
+                <br />
+                <span>玛雅数码国际</span>
+            </div>
+        </header>
+        <nav id="citybox">
+            <div class="citybox-hd">旅游城市
+                <br /><span>未设置</span>
+            </div>
+            <div class="citybox-bd">
+                <div class="cityfilter-t">
+                    <input type="text" placeholder="查找城市">
+                </div>
+                <div class="cityfilter-c">
+                    <h4>巴 匹配到的城市</h4>
+                    <p>巴黎</p>
+                    <p>巴西</p>
+                </div>
+            </div>
+        </nav>
+
+        <div id="content">
+            <div id="main" data-title="Welcome" class="panel" data-header="index_header" selected="true" data-nav="citybox">
+                <ul class="navbtn">
+                    <li><a title="电流电压" data-persist-ajax="true" data-type="DLDY" data-nav="citybox" href="javascript:void(0);" onclick="javascript:loadArticle(this);"><i class="icon-navbtn icon-navbtn01"></i><span>电流电压</span></a></li>
+                    <li><a title="插座标准" data-persist-ajax="true" data-type="CZBZ" data-nav="citybox" href="javascript:void(0);" onclick="javascript:loadArticle(this);"><i class="icon-navbtn icon-navbtn02"></i><span>插座标准</span></a></li>
+                    <li><a title="全球通使用方法" data-persist-ajax="true" data-type="QQTSYFF" data-nav="citybox" href="javascript:void(0);" onclick="javascript:loadArticle(this);"><i class="icon-navbtn icon-navbtn03"></i><span>全球通</span></a></li>
+                    <li><a href="#page04"><i class="icon-navbtn icon-navbtn04"></i><span>实时汇率</span></a></li>
+                    <li><a href="#page05"><i class="icon-navbtn icon-navbtn05"></i><span>货币换算</span></a></li>
+                    <li><a href="#page06"><i class="icon-navbtn icon-navbtn06"></i><span>日出日落时间</span></a></li>
+                    <li><a title="产品专题" data-persist-ajax="true" data-type="CPZT" data-nav="citybox" href="javascript:void(0);" onclick="javascript:loadArticle(this);"><i class="icon-navbtn icon-navbtn07"></i><span>产品专题</span></a></li>
+                    <li><a title="大使馆资料" data-persist-ajax="true" data-type="DSGZL" data-nav="citybox" href="javascript:void(0);" onclick="javascript:loadArticle(this);"><i class="icon-navbtn icon-navbtn08"></i><span>大使馆资料</span></a></li>
+                    <li><a title="当地紧急电话" data-persist-ajax="true" data-type="DDJJDH" data-nav="citybox" href="javascript:void(0);" onclick="javascript:loadArticle(this);"><i class="icon-navbtn icon-navbtn09"></i><span>紧急电话黄页</span></a></li>
+                    <li><a title="机场信息" data-persist-ajax="true" data-type="JCXX" data-nav="citybox" href="javascript:void(0);" onclick="javascript:loadArticle(this);"><i class="icon-navbtn icon-navbtn09"></i><span>机场信息</span></a></li>
+                    <li><a title="出入卡填写" data-persist-ajax="true" data-type="CRJKTX" data-nav="citybox" href="javascript:void(0);" onclick="javascript:loadArticle(this);"><i class="icon-navbtn icon-navbtn09"></i><span>出入卡填写</span></a></li>
+                </ul>
+            </div>
+            <div id="page04" data-title="实时汇率" class="panel" data-nav="citybox">
+                <div class="exchangebox">
+                    <div class="row">
+                        <label>原始货币：</label>
+                        <select placeholder="请选择" name="" id="">
+                            <option value="" selected>人民币 CNY</option>
+                            <option value="">人民币22 CNY</option>
+                            <option value="">英镑 GBP33 CNY</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <label>目标货币：</label>
+                        <select placeholder="请选择" name="" id="">
+                            <option value="" selected>英镑 GBP</option>
+                            <option value="">人民币22 CNY</option>
+                            <option value="">人民币33 CNY</option>
+                        </select>
+                    </div>
+                    <div class="exchangeaction">
+                        <button id="btnExchangeRate">查询</button>
+                    </div>
+                    <div class="exchangeresult">
+                        <p>当前汇率：<strong>0.1042</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div id="page05" data-title="货币换算" class="panel" data-nav="citybox">
+                <div class="exchangebox">
+                    <div class="row">
+                        <label>原始货币：</label>
+                        <select placeholder="请选择" name="" id="">
+                            <option value="" selected>人民币 CNY</option>
+                            <option value="">人民币22 CNY</option>
+                            <option value="">英镑 GBP33 CNY</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <label>目标货币：</label>
+                        <select placeholder="请选择" name="" id="">
+                            <option value="" selected>英镑 GBP</option>
+                            <option value="">人民币22 CNY</option>
+                            <option value="">人民币33 CNY</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <label>兑换金额：</label>
+                        <input placeholder="请输入金额" type="text">
+                    </div>
+                    <div class="exchangeaction">
+                        <button id="btnExchange">兑换</button>
+                    </div>
+                    <div class="exchangeresult">
+                        <p>当前汇率：<strong>0.1042</strong>
+                        </p>
+                        <p><strong>10000</strong> 人民币(CNY) = <strong>1042</strong> 英镑(GBP)</p>
+                    </div>
+                </div>
+            </div>
+            <div id="page06" data-title="日出日落时间" class="panel" data-nav="citybox">
+                <div>日出日落时间</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

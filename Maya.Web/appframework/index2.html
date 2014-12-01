@@ -98,7 +98,7 @@
         $.ui.ready(function(){
             //$.ui.toggleHeaderMenu(false); //force hide
             // 隐藏头部
-            $.ui.toggleHeaderMenu(false);
+            //$.ui.toggleHeaderMenu(false);
             // 移除footer
             $.ui.removeFooterMenu();
         }); //Toggle the header menu on load
@@ -191,8 +191,23 @@
         <div id="header">
             <!--<a id='menubadge' onclick='af.ui.toggleSideMenu()' class='menuButton'></a>-->
         </div>
+        <nav id="citybox">
+            <div class="citybox-hd">当前城市
+                <br /><span>伦敦</span>
+            </div>
+            <div class="citybox-bd">
+                <div class="cityfilter-t">
+                    <input type="text" placeholder="查找城市">
+                </div>
+                <div class="cityfilter-c">
+                    <h4>巴 匹配到的城市</h4>
+                    <p>巴黎</p>
+                    <p>巴西</p>
+                </div>
+            </div>
+        </nav>
         <div id="content">
-            <div title="返回" id="dashboard" class="panel" data-footer='footerui' data-tab="navbar_ui">
+            <div title="返回" id="dashboard" class="panel" data-footer='footerui' data-nav="citybox" data-tab="navbar_ui">
                 <h2 class='expanded' onclick='showHide(this,"AFUI_info");'>玛雅数码科技</h2>
                 <p id='AFUI_info'>
                     App Framework UI is the User Interface/User Experience library for mobile applications. It uses HTML5 and CSS3 for animations and transitions. We built the kitchen sink using App Framework UI. It is comprised of components from the Plugins library
@@ -203,7 +218,7 @@
                 <ul class="list category-list">
                     <li>
                         <!--<a href="http://{serviceurl}?type=电流电压&did={did}" data-persist-ajax="true" data-refresh-ajax="true" title="电流电压" data-pull-scroller="true">电流电压</a>-->
-                        <a title="电流电压" data-persist-ajax="true" data-type="电流电压" href="javascript:void(0);" onclick="javascript:loadArticle(this);">电流电压</a>
+                        <a title="电流电压" data-persist-ajax="true" data-type="电流电压" data-nav="citybox" href="javascript:void(0);" onclick="javascript:loadArticle(this);">电流电压</a>
                     </li>
                     <li>
                         <a title="插座标准" data-persist-ajax="true" data-type="插座标准" href="javascript:void(0);" onclick="javascript:loadArticle(this);">插座标准</a>

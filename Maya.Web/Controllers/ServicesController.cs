@@ -29,16 +29,17 @@ namespace Maya.Web.Controllers
 		public ActionResult Articles(SortType type, int did)
         {
 			switch (type) {
-				case SortType.电流电压:
-				case SortType.插座标准:
-				case SortType.全球通使用方法:
-				case SortType.大使馆资料:
-				case SortType.当地紧急电话:
-				case SortType.出入卡填写:
+				case SortType.DLDY:
+				case SortType.CZBZ:
+				case SortType.QQTSYFF:
+				case SortType.DSGZL:
+				case SortType.DDJJDH:
+				case SortType.CRJKTX:
+				case SortType.JCXX:
 					return ArticlesInternal( type, did );
-                case SortType.产品专题:
+                case SortType.CPZT:
 					return ProductsInternal( did );
-				case SortType.旅游音乐:
+				case SortType.LYYY:
 					return MusicsInternal( did );
 				default:
 					return new HttpStatusCodeResult( HttpStatusCode.NotImplemented );
@@ -110,9 +111,10 @@ namespace Maya.Web.Controllers
 		/// </summary>
 		/// <param name="districtId"></param>
 		/// <returns></returns>
-		private JsonResult ProductsInternal( int districtId ) {
+		private ActionResult ProductsInternal( int districtId ) {
 			List<ProductVO> products = ProductBO.GetInstance().GetItemsByDistrictCriteria( districtId );
-			return Jsonp( products );
+
+			return PartialView( "_Products", products );
 		}
 		/// <summary>
 		/// 
@@ -126,6 +128,9 @@ namespace Maya.Web.Controllers
 			ArticleVO item = new ArticleVO();
 			if (articles.Count > 0)
 				item = articles.First();
+
+			ViewBag.SortKey = type.ToString().ToLower();
+			ViewBag.SortName = type.GetDescription();
 
 			return PartialView( "_ArticleDetail", item );
 		}

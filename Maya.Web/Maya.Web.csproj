@@ -3086,6 +3086,8 @@
     <Content Include="Views\Services\Index.cshtml" />
     <Content Include="Views\Services\_ArticleDetail.cshtml" />
     <Content Include="Views\Services\_Products.cshtml" />
+    <Content Include="Views\Services\_Rate.cshtml" />
+    <Content Include="Views\Services\_Exchange.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -41,6 +41,10 @@ namespace Maya.Web.Controllers
 					return ProductsInternal( did );
 				case SortType.LYYY:
 					return MusicsInternal( did );
+				case SortType.SSHL:
+					return RateInternal( did );
+				case SortType.HBDH:
+					return ExchangeInternal( did );
 				default:
 					return new HttpStatusCodeResult( HttpStatusCode.NotImplemented );
             }
@@ -133,6 +137,19 @@ namespace Maya.Web.Controllers
 			ViewBag.SortName = type.GetDescription();
 
 			return PartialView( "_ArticleDetail", item );
+		}
+
+		private ActionResult RateInternal(int districtId ) {
+			ViewBag.Rates = new SelectList( CurrencyBO.GetInstance().GetItems(), "Code", "Name" );
+
+			// 这里可以根据districtId获取到对应的货币类型，然后在dropdownlist里面选中
+
+			return PartialView( "_Rate" );
+		}
+
+		private ActionResult ExchangeInternal(int districtId ) {
+			ViewBag.Rates = new SelectList( CurrencyBO.GetInstance().GetItems(), "Code", "Name" );
+			return PartialView( "_Exchange" );
 		}
 		#endregion
 	}

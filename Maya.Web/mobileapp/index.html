@@ -13,12 +13,14 @@
     <link rel="stylesheet" type="text/css" href="lib/appframework/css/af.ui.base.css" />
     <link rel="stylesheet" type="text/css" href="lib/appframework/css/af.ui.css" />
     <link rel="stylesheet" type="text/css" href="lib/appframework/css/icons.css" />
+    <link rel="stylesheet" type="text/css" href="style/BeatPicker.min.css" />
     <link rel="stylesheet" type="text/css" href="style/style.css" />
     <!--<script type="text/javascript" charset="utf-8" src="lib/appframework/appframework.js"></script>-->
     <script type="text/javascript" charset="utf-8" src="lib/jquery-1.11.1.js"></script>
     <script type="text/javascript" charset="utf-8" src="lib/appframework/jq.appframework.js"></script>
     <script type="text/javascript" charset="utf-8" src="lib/appframework/ui/appframework.ui.js"></script>
     <script type="text/javascript" charset="utf-8" src="lib/jquery.location.js"></script>
+    <script type="text/javascript" charset="utf-8" src="lib/BeatPicker.min.js"></script>
     <!--
     <script type="text/javascript" charset="utf-8" src="lib/appframework/af.plugins.min.js"></script>-->
     <script type="text/javascript">
@@ -98,6 +100,17 @@
                 }
             });
         });
+
+        customOptions = {
+            view : {
+                alwaysVisible:true
+            },
+            labels: {
+                today: "Tod",
+                gotoDateInput: "Insert your date",
+                gotoDateButton: "Set"
+            }
+        }
     </script>
 </head>
 
@@ -139,8 +152,8 @@
                     <li><a title="电流电压" data-persist-ajax="true" data-type="DLDY" data-nav="citybox" href="javascript:void(0);" onclick="javascript:loadArticle(this);"><i class="icon-navbtn icon-navbtn01"></i><span>电流电压</span></a></li>
                     <li><a title="插座标准" data-persist-ajax="true" data-type="CZBZ" data-nav="citybox" href="javascript:void(0);" onclick="javascript:loadArticle(this);"><i class="icon-navbtn icon-navbtn02"></i><span>插座标准</span></a></li>
                     <li><a title="全球通使用方法" data-persist-ajax="true" data-type="QQTSYFF" data-nav="citybox" href="javascript:void(0);" onclick="javascript:loadArticle(this);"><i class="icon-navbtn icon-navbtn03"></i><span>全球通</span></a></li>
-                    <li><a href="#page04"><i class="icon-navbtn icon-navbtn04"></i><span>实时汇率</span></a></li>
-                    <li><a href="#page05"><i class="icon-navbtn icon-navbtn05"></i><span>货币换算</span></a></li>
+                    <li><a title="实时汇率" data-persist-ajax="true" data-type="SSHL" data-nav="citybox" href="javascript:void(0);" onclick="javascript:loadArticle(this);"><i class="icon-navbtn icon-navbtn04"></i><span>实时汇率</span></a></li>
+                    <li><a title="货币换算" data-persist-ajax="true" data-type="HBDH" data-nav="citybox" href="javascript:void(0);" onclick="javascript:loadArticle(this);"><i class="icon-navbtn icon-navbtn05"></i><span>货币换算</span></a></li>
                     <li><a href="#page06"><i class="icon-navbtn icon-navbtn06"></i><span>日出日落时间</span></a></li>
                     <li><a title="产品专题" data-persist-ajax="true" data-type="CPZT" data-nav="citybox" href="javascript:void(0);" onclick="javascript:loadArticle(this);"><i class="icon-navbtn icon-navbtn07"></i><span>产品专题</span></a></li>
                     <li><a title="大使馆资料" data-persist-ajax="true" data-type="DSGZL" data-nav="citybox" href="javascript:void(0);" onclick="javascript:loadArticle(this);"><i class="icon-navbtn icon-navbtn08"></i><span>大使馆资料</span></a></li>
@@ -149,67 +162,12 @@
                     <li><a title="出入卡填写" data-persist-ajax="true" data-type="CRJKTX" data-nav="citybox" href="javascript:void(0);" onclick="javascript:loadArticle(this);"><i class="icon-navbtn icon-navbtn09"></i><span>出入卡填写</span></a></li>
                 </ul>
             </div>
-            <div id="page04" data-title="实时汇率" class="panel" data-nav="citybox">
-                <div class="exchangebox">
-                    <div class="row">
-                        <label>原始货币：</label>
-                        <select placeholder="请选择" name="" id="">
-                            <option value="" selected>人民币 CNY</option>
-                            <option value="">人民币22 CNY</option>
-                            <option value="">英镑 GBP33 CNY</option>
-                        </select>
-                    </div>
-                    <div class="row">
-                        <label>目标货币：</label>
-                        <select placeholder="请选择" name="" id="">
-                            <option value="" selected>英镑 GBP</option>
-                            <option value="">人民币22 CNY</option>
-                            <option value="">人民币33 CNY</option>
-                        </select>
-                    </div>
-                    <div class="exchangeaction">
-                        <button id="btnExchangeRate">查询</button>
-                    </div>
-                    <div class="exchangeresult">
-                        <p>当前汇率：<strong>0.1042</strong>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div id="page05" data-title="货币换算" class="panel" data-nav="citybox">
-                <div class="exchangebox">
-                    <div class="row">
-                        <label>原始货币：</label>
-                        <select placeholder="请选择" name="" id="">
-                            <option value="" selected>人民币 CNY</option>
-                            <option value="">人民币22 CNY</option>
-                            <option value="">英镑 GBP33 CNY</option>
-                        </select>
-                    </div>
-                    <div class="row">
-                        <label>目标货币：</label>
-                        <select placeholder="请选择" name="" id="">
-                            <option value="" selected>英镑 GBP</option>
-                            <option value="">人民币22 CNY</option>
-                            <option value="">人民币33 CNY</option>
-                        </select>
-                    </div>
-                    <div class="row">
-                        <label>兑换金额：</label>
-                        <input placeholder="请输入金额" type="text">
-                    </div>
-                    <div class="exchangeaction">
-                        <button id="btnExchange">兑换</button>
-                    </div>
-                    <div class="exchangeresult">
-                        <p>当前汇率：<strong>0.1042</strong>
-                        </p>
-                        <p><strong>10000</strong> 人民币(CNY) = <strong>1042</strong> 英镑(GBP)</p>
-                    </div>
-                </div>
-            </div>
+            
+            
             <div id="page06" data-title="日出日落时间" class="panel" data-nav="citybox">
-                <div>日出日落时间</div>
+                <div class="sunrise">
+                    <input type="text" data-beatpicker="true" data-beatpicker-extra="customOptions"/>
+                </div>
             </div>
         </div>
     </div>

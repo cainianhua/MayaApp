@@ -53,10 +53,15 @@ namespace Maya.Services
 		[Description("经纬度")]
 		JWD = 10011,
 		/// <summary>
-		/// 利率
+		/// 实时汇率
 		/// </summary>
-		[Description("利率")]
-		RATE,
+		[Description("实时汇率")]
+		SSHL,
+		/// <summary>
+		/// 货币兑换
+		/// </summary>
+		[Description("货币兑换")]
+		HBDH,
 		/// <summary>
 		/// 产品专题
 		/// </summary>

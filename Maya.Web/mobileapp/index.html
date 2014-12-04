@@ -13,14 +13,15 @@
     <link rel="stylesheet" type="text/css" href="lib/appframework/css/af.ui.base.css" />
     <link rel="stylesheet" type="text/css" href="lib/appframework/css/af.ui.css" />
     <link rel="stylesheet" type="text/css" href="lib/appframework/css/icons.css" />
-    <link rel="stylesheet" type="text/css" href="style/BeatPicker.min.css" />
+    <link rel="stylesheet" type="text/css" href="style/datepicker.css" />
     <link rel="stylesheet" type="text/css" href="style/style.css" />
     <!--<script type="text/javascript" charset="utf-8" src="lib/appframework/appframework.js"></script>-->
     <script type="text/javascript" charset="utf-8" src="lib/jquery-1.11.1.js"></script>
     <script type="text/javascript" charset="utf-8" src="lib/appframework/jq.appframework.js"></script>
     <script type="text/javascript" charset="utf-8" src="lib/appframework/ui/appframework.ui.js"></script>
     <script type="text/javascript" charset="utf-8" src="lib/jquery.location.js"></script>
-    <script type="text/javascript" charset="utf-8" src="lib/BeatPicker.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="lib/datepicker.js"></script>
+    <script type="text/javascript" charset="utf-8" src="lib/date.format.js"></script>
     <!--
     <script type="text/javascript" charset="utf-8" src="lib/appframework/af.plugins.min.js"></script>-->
     <script type="text/javascript">
@@ -99,18 +100,9 @@
                     showLocation();
                 }
             });
-        });
 
-        customOptions = {
-            view : {
-                alwaysVisible:true
-            },
-            labels: {
-                today: "Tod",
-                gotoDateInput: "Insert your date",
-                gotoDateButton: "Set"
-            }
-        }
+            $('#date-input').datepicker();
+        });
     </script>
 </head>
 
@@ -166,7 +158,7 @@
             
             <div id="page06" data-title="日出日落时间" class="panel" data-nav="citybox">
                 <div class="sunrise">
-                    <input type="text" data-beatpicker="true" data-beatpicker-extra="customOptions"/>
+                    <input type="text" id="date-input" />
                 </div>
             </div>
         </div>

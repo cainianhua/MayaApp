@@ -23,5 +23,9 @@ namespace Maya.Web.Models
         [Display(Name = "所在纬度")]
         //[Required(ErrorMessage = "{0}是必填信息。")]
         public string Lat { get; set; }
+		[Display(Name = "所在时区")]
+		[Required(ErrorMessage = "{0}是必填信息。")]
+		[Range(-12, 12, ErrorMessage = "{0}必须在区间[{1}-{2}]内。")]
+		public int TimeZone { get; set; }
     }
 }

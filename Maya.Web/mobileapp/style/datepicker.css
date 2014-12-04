@@ -23,7 +23,8 @@
   display: none;
   position: absolute;
   padding-bottom: 4px;
-  width: 218px;
+  /*width: 218px;*/
+  width: 100%
 }
 .datepicker .nav {
   font-weight: bold;

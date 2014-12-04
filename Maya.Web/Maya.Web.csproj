@@ -595,6 +595,7 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\admin\maya-fileupload.js" />
     <Content Include="Scripts\datatable.js" />
+    <None Include="Properties\PublishProfiles\DEV.pubxml" />
     <None Include="Scripts\jquery-1.11.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.11.1.js" />
     <Content Include="Scripts\jquery-1.11.1.min.js" />
@@ -1876,9 +1877,7 @@
     <Content Include="Scripts\plugins\jquery-file-upload\server\gae-go\static\robots.txt" />
     <Content Include="Scripts\plugins\jquery-file-upload\server\gae-python\static\favicon.ico" />
     <Content Include="Scripts\plugins\jquery-file-upload\server\gae-python\static\robots.txt" />
-    <Content Include="Scripts\plugins\jquery-file-upload\server\node\.gitignore" />
     <Content Include="Scripts\plugins\jquery-file-upload\server\node\public\files\.gitignore" />
-    <Content Include="Scripts\plugins\jquery-file-upload\server\node\public\files\thumbnail\.gitignore" />
     <Content Include="Scripts\plugins\jquery-file-upload\server\node\server.js" />
     <Content Include="Scripts\plugins\jquery-file-upload\server\node\tmp\.gitignore" />
     <Content Include="Scripts\plugins\jquery-idle-timeout\jquery.idletimeout.js" />
@@ -2854,8 +2853,6 @@
     <Content Include="Content\fonts\opensans\v10\u-WUoqrET9fUeobQW7jkRVtXRa8TVwTICgirnJhmVJw.woff2" />
     <Content Include="Content\fonts\opensans\v10\xozscpT2726on7jbcb_pAltXRa8TVwTICgirnJhmVJw.woff2" />
     <Content Include="Content\img\social\Thumbs.db" />
-    <Content Include="Content\admin\pages\media\blog\Thumbs.db" />
-    <Content Include="Content\admin\pages\media\pages\Thumbs.db" />
     <Content Include="Scripts\jquery-1.11.1.min.map" />
     <Content Include="Scripts\plugins\backstretch\LICENSE-MIT" />
     <Content Include="Scripts\plugins\backstretch\README.md" />
@@ -3097,6 +3094,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\plugins\jquery-file-upload\server\node\public\files\thumbnail\" />
     <Folder Include="Scripts\plugins\jquery-file-upload\server\php\files\thumbnail\" />
   </ItemGroup>
   <ItemGroup>

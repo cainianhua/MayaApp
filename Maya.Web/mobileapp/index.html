@@ -9,162 +9,39 @@
     <meta content="telephone=no" name="format-detection">
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <title>Maya</title>
+    <title>玛雅数码应用</title>
     <link rel="stylesheet" type="text/css" href="lib/appframework/css/af.ui.base.css" />
     <link rel="stylesheet" type="text/css" href="lib/appframework/css/af.ui.css" />
     <link rel="stylesheet" type="text/css" href="lib/appframework/css/icons.css" />
     <link rel="stylesheet" type="text/css" href="style/datepicker.css" />
     <link rel="stylesheet" type="text/css" href="style/style.css" />
     <!--<script type="text/javascript" charset="utf-8" src="lib/appframework/appframework.js"></script>-->
-    <script type="text/javascript" charset="utf-8" src="lib/jquery-1.11.1.js"></script>
-    <script type="text/javascript" charset="utf-8" src="lib/appframework/jq.appframework.js"></script>
+    <script type="text/javascript" charset="utf-8" src="lib/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="lib/appframework/jq.appframework.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="lib/appframework/ui/appframework.ui.js"></script>
-    <script type="text/javascript" charset="utf-8" src="lib/jquery.location.js"></script>
-    <script type="text/javascript" charset="utf-8" src="lib/datepicker.js"></script>
-    <script type="text/javascript" charset="utf-8" src="lib/date.format.js"></script>
-    <script type="text/javascript" charset="utf-8" src="lib/ac.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/jquery.location.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/datepicker.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/date.format.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/ac.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
     <!--
     <script type="text/javascript" charset="utf-8" src="lib/appframework/af.plugins.min.js"></script>-->
     <script type="text/javascript">
-        function checkLocation() {
-            if (!localStorage.Id) {
-                af.ui.toggleSideMenu();
-                return false;
-            }
-            return true;
-        }
-        function loadArticle(anchor) {
-            if (!checkLocation()) return;
+    	var config = {
+    		serviceUrl: "http://maya.codestudio.com",
+    	};
 
-            var api = "http://maya.codestudio.com/services/articles?"
-            var params = {
-                type: $(anchor).data("type"),
-                did: localStorage.Id
-            }
-
-            api += $.param(params);
-
-            $.ui.loadAjax(api, false, false, "slide", anchor);
-        }
-
-        function translateLng(lng) {
-            if (!lng) { return "未知经度" };
-            if (lng.substr(0,1) == "-") { 
-                return "西经" + lng.substr(1);
-            }
-            else {
-                return "东经" + lng;
-            }
-        }
-
-        function translateLat(lat) {
-            if (!lat) { return "未知纬度" };
-            if (lat.substr(0,1) == "-") { 
-                return "南纬" + lat.substr(1);
-            }
-            else {
-                return "北纬" + lat;
-            }
-        }
-
-        function showLocation() {
-            var locName = localStorage.Name;
-            var locLng = localStorage.Lng;
-            var locLat = localStorage.Lat;
-
-            $("#header .infotitle a").text(locName);
-            $("#citybox .citybox-hd span").text(locName);
-            $("#header p.infocont").text(translateLat(locLat) + "," + translateLng(locLng));
-        }
-
-        function saveLocation(district) {
-            localStorage.Id = district.DistrictId;
-            localStorage.Name = district.Name;
-            localStorage.Lng = district.Lng;
-            localStorage.Lat = district.Lat;
-            localStorage.TimeZone = district.TimeZone || 8;
-        }
-
-        function formatDate(date) {
-        	date = date || new Date();
-            var y = date.getFullYear(),
-            	m = date.getMonth() + 1,
-            	d = date.getDate();
-
-            return y + "-" + ("0" + m).slice(-2) + "-" + ("0" + d).slice(-2);
-        }
-
-        function isValidDate(dateStr) {
-			return (new Date(dateStr).toString() != "Invalid Date");
-		}
-
-		function checkDateRange(date) {
-			var _minDate = new Date(2010, 1, 1);
-			var _maxDate = new Date(2030, 12, 31);
-
-			return date <= _maxDate && date >= _minDate;
-		}
-
-	  	function calc_res() {
-	  		var dateStr = $("#date-input").val();
-
-	  		// 验证日期格式
-	  		if (!dateStr || !isValidDate(dateStr)) { return; }
-	  		// 验证日期范围
-	  		var date = new Date(dateStr);
-	  		if (!checkDateRange(date)) { return; }
-		    
-		    var d = date.getDate(),
-		        m = date.getMonth() + 1,
-		        y = date.getFullYear(),
-		        z = parseInt(localStorage.TimeZone),
-		        lo = parseFloat(localStorage.Lng),
-		        la = parseFloat(localStorage.Lat);
-
-		    var obj = Cal(mjd(d,m,y,0.0), z, lo, la);
-		    var ret = "";
-		    if(obj["rise"] == undefined){
-		        ret = "太阳不升";
-		    }
-		    else{
-		        ret = "日出时间:<span><strong>" + obj["rise"] + "</strong> (北京时间)</span>";
-		        if(obj["set"] == undefined){
-		            ret += "太阳不落";
-		        } else {
-		            ret += "日落时间:<span class='nr'><strong>" + obj["set"] + "</strong> (北京时间)</span>";
-		        }
-		    }
-		    
-		    $(".sunrise-result").html(ret);
-		};
-
-        jQuery(function($) {
+        $(function() {
             // initialize.
-            showLocation();
-
-            $("#citybox .citybox-bd").locationsetter({
-                serviceUrl: 'http://maya.codestudio.com/services/locations',
-                paramName: "dn",
-                ajaxSettings: { dataType: "jsonp" },
-                idField: "DistrictId",
-                onSelect: function (suggestion) {
-                    af.ui.toggleSideMenu();
-                    //alert('You selected: ' + suggestion.Name + ', ' + suggestion.DistrictId);
-                    saveLocation(suggestion);
-
-                    showLocation();
-                }
-            });
-
-            $('#date-input').val(formatDate(new Date())).on("change", function(e){
-            	calc_res();
-            }).datepicker({ 
-            	monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月" ], 
-            	shortDayNames: ["日", "一", "二", "三", "四", "五", "六"]
-            });
-
-            calc_res();
+            app.initialize();
         });
+
+        $.ui.ready(function(){
+		    //$.ui.toggleHeaderMenu(false); //force hide
+		    $.ui.loadingText = "正在加载...";
+		});
+
+
     </script>
 </head>
 
@@ -172,14 +49,14 @@
     <div id="afui">
         <div id="header">
             <div class="headinfo">
-                <p class="infotitle"><a onclick="af.ui.toggleSideMenu()">未知城市</a>
-                </p>
+                <p class="infotitle"><a onclick="af.ui.toggleSideMenu()">未知城市</a></p>
                 <p class="infocont">未设置经纬度</p>
             </div>
             <a id="citytoggle" onclick="af.ui.toggleSideMenu()"></a>
         </div>
         <header id="index_header">
-            <div class="logo"><i class="icon-logo"></i>
+            <div class="logo">
+            	<i class="icon-logo"></i>
                 <br />
                 <span>玛雅数码国际</span>
             </div>
@@ -203,17 +80,17 @@
         <div id="content">
             <div id="main" data-title="Welcome" class="panel" data-header="index_header" selected="true" data-nav="citybox">
                 <ul class="navbtn">
-                    <li><a title="电流电压" data-persist-ajax="true" data-type="DLDY" data-nav="citybox" href="javascript:void(0);" onclick="javascript:loadArticle(this);"><i class="icon-navbtn icon-navbtn01"></i><span>电流电压</span></a></li>
-                    <li><a title="插座标准" data-persist-ajax="true" data-type="CZBZ" data-nav="citybox" href="javascript:void(0);" onclick="javascript:loadArticle(this);"><i class="icon-navbtn icon-navbtn02"></i><span>插座标准</span></a></li>
-                    <li><a title="全球通使用方法" data-persist-ajax="true" data-type="QQTSYFF" data-nav="citybox" href="javascript:void(0);" onclick="javascript:loadArticle(this);"><i class="icon-navbtn icon-navbtn03"></i><span>全球通</span></a></li>
-                    <li><a title="实时汇率" data-persist-ajax="true" data-type="SSHL" data-nav="citybox" href="javascript:void(0);" onclick="javascript:loadArticle(this);"><i class="icon-navbtn icon-navbtn04"></i><span>实时汇率</span></a></li>
-                    <li><a title="货币换算" data-persist-ajax="true" data-type="HBDH" data-nav="citybox" href="javascript:void(0);" onclick="javascript:loadArticle(this);"><i class="icon-navbtn icon-navbtn05"></i><span>货币换算</span></a></li>
+                    <li><a title="电流电压" data-persist-ajax="true" data-type="DLDY" data-nav="citybox" href="javascript:void(0);" onclick="javascript:app.showArticle(this);"><i class="icon-navbtn icon-navbtn01"></i><span>电流电压</span></a></li>
+                    <li><a title="插座标准" data-persist-ajax="true" data-type="CZBZ" data-nav="citybox" href="javascript:void(0);" onclick="javascript:app.showArticle(this);"><i class="icon-navbtn icon-navbtn02"></i><span>插座标准</span></a></li>
+                    <li><a title="全球通使用方法" data-persist-ajax="true" data-type="QQTSYFF" data-nav="citybox" href="javascript:void(0);" onclick="javascript:app.showArticle(this);"><i class="icon-navbtn icon-navbtn03"></i><span>全球通</span></a></li>
+                    <li><a title="实时汇率" data-persist-ajax="true" data-type="SSHL" data-nav="citybox" href="javascript:void(0);" onclick="javascript:app.showArticle(this);"><i class="icon-navbtn icon-navbtn04"></i><span>实时汇率</span></a></li>
+                    <li><a title="货币换算" data-persist-ajax="true" data-type="HBDH" data-nav="citybox" href="javascript:void(0);" onclick="javascript:app.showArticle(this);"><i class="icon-navbtn icon-navbtn05"></i><span>货币换算</span></a></li>
                     <li><a href="#page06"><i class="icon-navbtn icon-navbtn06"></i><span>日出日落时间</span></a></li>
-                    <li><a title="产品专题" data-persist-ajax="true" data-type="CPZT" data-nav="citybox" href="javascript:void(0);" onclick="javascript:loadArticle(this);"><i class="icon-navbtn icon-navbtn07"></i><span>产品专题</span></a></li>
-                    <li><a title="大使馆资料" data-persist-ajax="true" data-type="DSGZL" data-nav="citybox" href="javascript:void(0);" onclick="javascript:loadArticle(this);"><i class="icon-navbtn icon-navbtn08"></i><span>大使馆资料</span></a></li>
-                    <li><a title="当地紧急电话" data-persist-ajax="true" data-type="DDJJDH" data-nav="citybox" href="javascript:void(0);" onclick="javascript:loadArticle(this);"><i class="icon-navbtn icon-navbtn09"></i><span>紧急电话黄页</span></a></li>
-                    <li><a title="机场信息" data-persist-ajax="true" data-type="JCXX" data-nav="citybox" href="javascript:void(0);" onclick="javascript:loadArticle(this);"><i class="icon-navbtn icon-navbtn09"></i><span>机场信息</span></a></li>
-                    <li><a title="出入卡填写" data-persist-ajax="true" data-type="CRJKTX" data-nav="citybox" href="javascript:void(0);" onclick="javascript:loadArticle(this);"><i class="icon-navbtn icon-navbtn09"></i><span>出入卡填写</span></a></li>
+                    <li><a title="产品专题" data-persist-ajax="true" data-type="CPZT" data-nav="citybox" href="javascript:void(0);" onclick="javascript:app.showArticle(this);"><i class="icon-navbtn icon-navbtn07"></i><span>产品专题</span></a></li>
+                    <li><a title="大使馆资料" data-persist-ajax="true" data-type="DSGZL" data-nav="citybox" href="javascript:void(0);" onclick="javascript:app.showArticle(this);"><i class="icon-navbtn icon-navbtn08"></i><span>大使馆资料</span></a></li>
+                    <li><a title="当地紧急电话" data-persist-ajax="true" data-type="DDJJDH" data-nav="citybox" href="javascript:void(0);" onclick="javascript:app.showArticle(this);"><i class="icon-navbtn icon-navbtn09"></i><span>紧急电话黄页</span></a></li>
+                    <li><a title="机场信息" data-persist-ajax="true" data-type="JCXX" data-nav="citybox" href="javascript:void(0);" onclick="javascript:app.showArticle(this);"><i class="icon-navbtn icon-navbtn09"></i><span>机场信息</span></a></li>
+                    <li><a title="出入卡填写" data-persist-ajax="true" data-type="CRJKTX" data-nav="citybox" href="javascript:void(0);" onclick="javascript:app.showArticle(this);"><i class="icon-navbtn icon-navbtn09"></i><span>出入卡填写</span></a></li>
                 </ul>
             </div>
             

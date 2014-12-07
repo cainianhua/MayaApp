@@ -4,19 +4,19 @@
         <div class="row">
             <label>原始货币：</label>
             @*<select placeholder="请选择" name="" id="">
-                <option value="" selected>人民币 CNY</option>
-                <option value="">人民币22 CNY</option>
-                <option value="">英镑 GBP33 CNY</option>
-            </select>*@
+                    <option value="" selected>人民币 CNY</option>
+                    <option value="">人民币22 CNY</option>
+                    <option value="">英镑 GBP33 CNY</option>
+                </select>*@
             @Html.DropDownList( "RateFrom", ViewBag.Rates as SelectList, new { placeholder = "请选择" } )
         </div>
         <div class="row">
             <label>目标货币：</label>
             @*<select placeholder="请选择" name="" id="">
-                <option value="" selected>英镑 GBP</option>
-                <option value="">人民币22 CNY</option>
-                <option value="">人民币33 CNY</option>
-            </select>*@
+                    <option value="" selected>英镑 GBP</option>
+                    <option value="">人民币22 CNY</option>
+                    <option value="">人民币33 CNY</option>
+                </select>*@
             @Html.DropDownList( "RateTo", ViewBag.Rates as SelectList, new { placeholder = "请选择" } )
         </div>
         <div class="row">
@@ -47,7 +47,7 @@
             $.ui.showMask("正在兑换，请稍候...");
 
             var ajaxSettings = {
-                url: "http://maya.codestudio.com/services/rate",
+                url: config.serviceUrl + "/services/rate",
                 data: {
                     from: $("#RateFrom").val(),
                     to: $("#RateTo").val()
@@ -59,9 +59,11 @@
                 $(".exchangeresult p.rate-data strong").text(data.rate);
                 $(".exchangeresult p.exchange-data").html("<strong>" + amount + "</strong> " + $("#RateFrom option:selected").text() + " = <strong>" + amount * data.rate + "</strong> " + $("#RateTo option:selected").text() + "");
                 $(".exchangeresult").show();
-                $.ui.hideMask();
             }).fail(function (jqXHR, textStatus, errorThrown) {
+                $("#afui").popup("应用出现了点问题，请稍后再试。");
                 console.log(errorThrown);
+            }).always(function () {
+                $.ui.hideMask();
             });
 
             return false;

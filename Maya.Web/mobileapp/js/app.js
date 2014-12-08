@@ -177,6 +177,34 @@ var app = {
         $.ui.loadAjax(api, false, false, "slide", anchor);
 	},
 	/**
+	 * [showArticle2 description]
+	 * @param  {[type]} panel [description]
+	 * @return {[type]}       [description]
+	 */
+	showArticle2: function(panel) {
+		$.ui.showMask("正在加载...");
+		//debugger;
+		var el = $(panel);
+
+		var ajaxSettings = {
+			url: config.serviceUrl + "/services/articles",
+			dataType: "html",
+			data: {
+				type: el.prop("id").toUpperCase(),
+				did: localStorage.Id
+			}
+		}
+
+		$.ajax(ajaxSettings).fail(function(jqXHR, textStatus, errorThrown) {
+			$("#afui").popup("应用出现了点问题，请稍后再试。");
+		}).always(function() {
+			$.ui.hideMask();
+		}).done(function(data) {
+			$.ui.updatePanel(el.prop("id"), data);
+			console.log("article load.")
+		});
+	},
+	/**
 	 * [translateLng description]
 	 * @param  {[type]} lng [description]
 	 * @return {[type]}     [description]

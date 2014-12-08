@@ -1,11 +1,10 @@
 ﻿@using Maya.Services.VO
 @model ArticleVO
 
-<div id="@ViewBag.SortKey" data-title="@ViewBag.SortName" class="panel" data-nav="citybox">
+
 @if ( string.IsNullOrEmpty( Model.Title ) ) {
     <div class="articlebox">没有相关信息</div>
 }
 else {
     <div class="articlebox">@Html.Raw( Model.ArticleContent )</div>
 }
-</div>

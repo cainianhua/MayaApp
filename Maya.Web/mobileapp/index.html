@@ -28,7 +28,7 @@
     <script type="text/javascript" charset="utf-8" src="lib/appframework/af.plugins.min.js"></script>-->
     <script type="text/javascript">
     	var config = {
-    		serviceUrl: "http://maya.codestudio.com",
+    		serviceUrl: "http://app.01it.com",
     	};
 
         $(function() {
@@ -41,33 +41,22 @@
 <body>
     <div id="afui">
         <div id="header">
+            <a id="menubadge" onclick="af.ui.toggleSideMenu()" class="menuButton"></a>
             <div class="headinfo">
-                <p class="infotitle"><a onclick="af.ui.toggleSideMenu()">未知城市</a></p>
-                <p class="infocont">未设置经纬度</p>
+                <p class="infotitle"><i class="icon-position"></i>您当前查询的城市</p>
+                <p class="infocont"><a href="#pageCity">未知城市</a> <span>未设置经纬度</span></p>
             </div>
-            <a id="citytoggle" onclick="af.ui.toggleSideMenu()"></a>
         </div>
         <header id="index_header">
             <div class="logo">
-            	<i class="icon-logo"></i>
+                <i class="icon-logo"></i>
                 <br />
                 <span>玛雅数码国际</span>
             </div>
-        </header>
-        <nav id="citybox">
-            <div class="citybox-hd">旅游城市
-                <br /><span>未设置</span>
-            </div>
-            <div class="citybox-bd">
-                <div class="cityfilter-t">
-                    <input type="text" placeholder="查找城市">
-                </div>
-                <div class="cityfilter-c">
-                    <h4>巴 匹配到的城市</h4>
-                    <p>巴黎</p>
-                    <p>巴西</p>
-                </div>
-            </div>
+        </header> 
+
+        <nav id="sidebarbox">
+            <div>sidebar</div>
         </nav>
 
         <div id="content">
@@ -82,8 +71,8 @@
                     <li><a href="#CPZT" data-transition="slide"><i class="icon-navbtn icon-navbtn07"></i><span>产品专题</span></a></li>
                     <li><a href="#DSGZL" data-transition="slide"><i class="icon-navbtn icon-navbtn08"></i><span>大使馆资料</span></a></li>
                     <li><a href="#DDJJDH" data-transition="slide"><i class="icon-navbtn icon-navbtn09"></i><span>当地紧急电话</span></a></li>
-                    <li><a href="#JCXX" data-transition="slide"><i class="icon-navbtn icon-navbtn09"></i><span>机场信息</span></a></li>
-                    <li><a href="#CRJKTX" data-transition="slide"><i class="icon-navbtn icon-navbtn09"></i><span>出入卡填写</span></a></li>
+                    <li><a href="#JCXX" data-transition="slide"><i class="icon-navbtn icon-navbtn10"></i><span>机场信息</span></a></li>
+                    <li><a href="#CRJKTX" data-transition="slide"><i class="icon-navbtn icon-navbtn11"></i><span>出入卡填写</span></a></li>
                 </ul>
             </div>
             
@@ -105,6 +94,24 @@
             <div id="DDJJDH" class="panel" data-title="当地紧急电话" data-nav="citybox" data-load="app.showArticle2"></div>
             <div id="JCXX" class="panel" data-title="机场信息" data-nav="citybox" data-load="app.showArticle2"></div>
             <div id="CRJKTX" class="panel" data-title="出入卡填写" data-nav="citybox" data-load="app.showArticle2"></div>
+
+            <div id="pageCity" data-title="切换城市" class="panel" data-nav="sidebarbox">
+                <div id="citybox22">
+                    <div class="citybox-hd">旅游城市
+                        <br /><span>未设置</span>
+                    </div>
+                    <div class="citybox-bd">
+                        <div class="cityfilter-t">
+                            <input type="text" placeholder="查找城市">
+                        </div>
+                        <div class="cityfilter-c">
+                            <h4>巴 匹配到的城市</h4>
+                            <p>巴黎</p>
+                            <p>巴西</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>

@@ -56,7 +56,7 @@ function calc_res() {
         ret = "太阳不升";
     }
     else{
-        ret = "日出时间:<span><strong>" + obj["rise"] + "</strong> (北京时间)</span>";
+        ret = "日出时间:<span><strong>" + obj["rise"] + "</strong> (北京时间)</span><br />";
         if(obj["set"] == undefined){
             ret += "太阳不落";
         } else {
@@ -80,13 +80,14 @@ var app = {
 		// 显示地点信息
 	    that.showLocation();
 	    // 初始化地址选择控件
-	    $("#citybox .citybox-bd").locationsetter({
+	    $("#citybox22 .citybox-bd").locationsetter({
 	        serviceUrl: config.serviceUrl + '/services/locations',
 	        paramName: "dn",
 	        ajaxSettings: { dataType: "jsonp" },
 	        idField: "DistrictId",
 	        onSelect: function (suggestion) {
-	            af.ui.toggleSideMenu();
+	            //af.ui.toggleSideMenu();
+	            $.ui.loadContent("#main",false,false,"slide");
 	            //alert('You selected: ' + suggestion.Name + ', ' + suggestion.DistrictId);
 	            that.saveLocation(suggestion);
 
@@ -102,12 +103,6 @@ var app = {
 	    });
 	    // 计算日出日落时间
 	    calc_res();
-	    /*
-	    var hash = window.location.hash;
-	    if (hash == "#dldy") {
-	    	//that.showArticle($("ul.navbtn li:eq(0) a")[0]);
-	    	$("ul.navbtn li:eq(0) a").trigger("click");
-	    };*/
 	},
 	/**
 	 * [checkLocation description]
@@ -133,16 +128,17 @@ var app = {
         var locLng = localStorage.Lng;
         var locLat = localStorage.Lat;
 
-        $("#header .infotitle a").text(locName);
-        $("#citybox .citybox-hd span").text(locName);
-        $("#header p.infocont").text(that.translateLat(locLat) + "," + that.translateLng(locLng));
+        $("#header p.infocont a").text(locName);
+        $("#citybox22 .citybox-hd span").text(locName);
+        $("#header p.infocont span").text(that.translateLat(locLat) + "," + that.translateLng(locLng));
 	},
 	/**
 	 * [changeLocation description]
 	 * @return {[type]} [description]
 	 */
 	changeLocation: function() {
-		af.ui.toggleSideMenu();
+		//af.ui.toggleSideMenu();
+		$.ui.loadContent("#main",false,false,"slide");
 	},
 	/**
 	 * [saveLocation description]

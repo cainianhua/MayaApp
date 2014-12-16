@@ -68,7 +68,7 @@
   top: 0;
   left: 0;
 }
-.datepicker .button {
+.datepicker .datepickerbutton {
   cursor: pointer;
   padding: 0 4px;
   -moz-border-radius: 4px;
@@ -78,7 +78,7 @@
   -khtml-border-radius: 4px;
   border-radius: 4px;
 }
-.datepicker .button:hover {
+.datepicker .datepickerbutton:hover {
   background-color: #777777;
   color: white;
 }
@@ -101,7 +101,7 @@
 .datepicker .dow, .datepicker .days div {
   float: left;
   width: 30px;
-  line-height: 3em;
+  line-height: 2.5em;
   text-align: center;
   width: 14%;
 }

@@ -77,6 +77,25 @@ var app = {
 	 */
 	initialize: function() {
 		var that = this;
+		//music		
+		var au = $('.audio_btn');
+        var audioHost = $("#audio_host");
+        var audioAnimate;
+        audioHost.attr('src', audioHost.data('src'));
+        audioHost.attr('loop', true);
+        audioHost.attr('autoplay', false);
+        au.addClass('z-play');
+
+        au.on('click', function() {
+            if ($(this).data('status') === 'off') {
+                $(this).data('status', 'on');
+                audioHost.get(0).play();
+            } else {
+                $(this).data('status', 'off');
+                audioHost.get(0).pause();
+            }
+            au.toggleClass('z-play');
+        });
 		// 显示地点信息
 	    that.showLocation();
 	    // 初始化地址选择控件
@@ -87,7 +106,8 @@ var app = {
 	        idField: "DistrictId",
 	        onSelect: function (suggestion) {
 	            //af.ui.toggleSideMenu();
-	            $.ui.loadContent("#main",false,false,"slide");
+	            //$.ui.loadContent("#main",false,false,"slide");
+	            $.ui.hideModal();
 	            //alert('You selected: ' + suggestion.Name + ', ' + suggestion.DistrictId);
 	            that.saveLocation(suggestion);
 
@@ -138,7 +158,8 @@ var app = {
 	 */
 	changeLocation: function() {
 		//af.ui.toggleSideMenu();
-		$.ui.loadContent("#main",false,false,"slide");
+		//$.ui.loadContent("#main",false,false,"slide");
+		$.ui.hideModal();
 	},
 	/**
 	 * [saveLocation description]
@@ -191,12 +212,13 @@ var app = {
 			}
 		}
 
-		$.ajax(ajaxSettings).fail(function(jqXHR, textStatus, errorThrown) {
+		$.ajax(ajaxSettings).fail(function(jqXHR, textStatus, errorThrown) {			
 			$("#afui").popup("应用出现了点问题，请稍后再试。");
 		}).always(function() {
 			$.ui.hideMask();
-		}).done(function(data) {
+		}).done(function(data) {			
 			$.ui.updatePanel(el.prop("id"), data);
+			$(el.prop("id")).prepend('<div class="headinfo"><p class="infotitle"><i class="icon-position"></i>您当前查询的城市</p><p class="infocont"><a href="#pageCity">未知城市</a> <span>未设置经纬度</span></p></div>');
 			console.log("article load.")
 		});
 	},

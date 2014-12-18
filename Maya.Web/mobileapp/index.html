@@ -41,27 +41,25 @@
 <body>
     <div id="afui">
         <div id="header">
-            <a id="menubadge" onclick="af.ui.toggleSideMenu()" class="menuButton"></a>
-            <div class="headinfo">
-                <p class="infotitle"><i class="icon-position"></i>您当前查询的城市</p>
-                <p class="infocont"><a href="#pageCity">未知城市</a> <span>未设置经纬度</span></p>
-            </div>
+            <a id="menubadge" onclick="af.ui.toggleSideMenu()" class="menuButton"></a>            
         </div>
-        <header id="index_header">
-            <div class="logo">
-                <i class="icon-logo"></i>
-                <br />
-                <span>玛雅数码国际</span>
-            </div>
-        </header> 
 
         <nav id="sidebarbox">
             <div>sidebar</div>
         </nav>
+        <section class="audio">
+            <a href="javascript:void(0);" class="u-globalAudio audio_btn"  data-status="on">
+                <i class="icon-music"></i></a>
+            <audio id="audio_host" data-src="">
+            </audio>
+        </section>
 
         <div id="content">
-            <div id="main" data-title="Welcome" class="panel" data-header="index_header" selected="true" data-nav="citybox">
-                <ul class="navbtn">
+            <div id="main" data-title="玛雅数码国际" class="panel" selected="true" data-nav="citybox">
+                <div class="logo">
+                    <i class="icon-logo"></i>
+                </div>
+                <ul class="navbtn clearfix">
                     <li><a href="#DLDY" data-transition="slide"><i class="icon-navbtn icon-navbtn01"></i><span>电流电压</span></a></li>
                     <li><a href="#CZBZ" data-transition="slide"><i class="icon-navbtn icon-navbtn02"></i><span>插座标准</span></a></li>
                     <li><a href="#QQTSYFF" data-transition="slide"><i class="icon-navbtn icon-navbtn03"></i><span>全球通</span></a></li>

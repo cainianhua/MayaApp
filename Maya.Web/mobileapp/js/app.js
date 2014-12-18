@@ -1,4 +1,4 @@
-/**
+﻿/**
  * [formatDate description]
  * @param  {[type]} date [description]
  * @return {[type]}      [description]
@@ -218,7 +218,7 @@ var app = {
 			$.ui.hideMask();
 		}).done(function(data) {			
 			$.ui.updatePanel(el.prop("id"), data);
-			$(el.prop("id")).prepend('<div class="headinfo"><p class="infotitle"><i class="icon-position"></i>您当前查询的城市</p><p class="infocont"><a href="#pageCity">未知城市</a> <span>未设置经纬度</span></p></div>');
+			$('#'+el.prop("id")).prepend('<div class="headinfo"><p class="infotitle"><i class="icon-position"></i>您当前查询的城市</p><p class="infocont"><a href="#pageCity">未知城市</a> <span>未设置经纬度</span></p></div>');
 			console.log("article load.")
 		});
 	},

@@ -7,7 +7,7 @@
                 <option value="">人民币22 CNY</option>
                 <option value="">英镑 GBP33 CNY</option>
             </select>*@
-        @Html.DropDownList( "RateFrom", ViewBag.Rates as SelectList, new { placeholder = "请选择" } )
+        @Html.DropDownList( "ExchangeRateFrom", ViewBag.Rates as SelectList, new { placeholder = "请选择" } )
     </div>
     <div class="row">
         <label>目标货币：</label>
@@ -16,7 +16,7 @@
                 <option value="">人民币22 CNY</option>
                 <option value="">人民币33 CNY</option>
             </select>*@
-        @Html.DropDownList( "RateTo", ViewBag.Rates as SelectList, new { placeholder = "请选择" } )
+        @Html.DropDownList( "ExchangeRateTo", ViewBag.Rates as SelectList, new { placeholder = "请选择" } )
     </div>
     <div class="row">
         <label>兑换金额：</label>
@@ -47,15 +47,15 @@
             var ajaxSettings = {
                 url: config.serviceUrl + "/services/rate",
                 data: {
-                    from: $("#RateFrom").val(),
-                    to: $("#RateTo").val()
+                    from: $("#ExchangeRateFrom").val(),
+                    to: $("#ExchangeRateTo").val()
                 },
                 dataType: "json"
             }
 
             $.ajax(ajaxSettings).done(function (data) {
                 $(".exchangeresult p.rate-data strong").text(data.rate);
-                $(".exchangeresult p.exchange-data").html("<strong>" + amount + "</strong> " + $("#RateFrom option:selected").text() + " = <strong>" + amount * data.rate + "</strong> " + $("#RateTo option:selected").text() + "");
+                $(".exchangeresult p.exchange-data").html("<strong>" + amount + "</strong> " + $("#ExchangeRateFrom option:selected").text() + " = <strong>" + amount * data.rate + "</strong> " + $("#ExchangeRateTo option:selected").text() + "");
                 $(".exchangeresult").show();
             }).fail(function (jqXHR, textStatus, errorThrown) {
                 $("#afui").popup("应用出现了点问题，请稍后再试。");

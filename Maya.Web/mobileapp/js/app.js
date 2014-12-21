@@ -66,6 +66,23 @@ function calc_res() {
     
     $(".sunrise-result").html(ret);
 };
+function clearCache() {
+	$("#afui").popup({
+        title: "警告",
+        message: "确定要清楚所有缓存吗？",
+        cancelText: "取消",
+        cancelCallback: function () {
+            console.log("cancelled");
+        },
+        doneText: "确定",
+        doneCallback: function () {
+            console.log("Done for!");
+            app.clearLocation();
+            window.location.reload();
+        },
+        cancelOnly: false
+    });
+}
 /**
  * [app description]
  * @type {Object}
@@ -112,6 +129,8 @@ var app = {
 	            that.saveLocation(suggestion);
 
 	            that.showLocation();
+
+	            window.location.reload();
 	        }
 	    });
 	    // 初始化日期日期选择控件
@@ -148,9 +167,9 @@ var app = {
         var locLng = localStorage.Lng;
         var locLat = localStorage.Lat;
 
-        $("#header p.infocont a").text(locName);
+        $(".headinfo p.infocont a").text(locName);
         $("#citybox22 .citybox-hd span").text(locName);
-        $("#header p.infocont span").text(that.translateLat(locLat) + "," + that.translateLng(locLng));
+        $(".headinfo p.infocont span").text(that.translateLat(locLat) + "," + that.translateLng(locLng));
 	},
 	/**
 	 * [changeLocation description]
@@ -158,8 +177,19 @@ var app = {
 	 */
 	changeLocation: function() {
 		//af.ui.toggleSideMenu();
-		//$.ui.loadContent("#main",false,false,"slide");
-		$.ui.hideModal();
+	    //$.ui.loadContent("#main",false,false,"slide");
+	    $.ui.showModal('#pageCity','slide');
+	},
+	/**
+	 * [clearLocation description]
+	 * @return {[type]} [description]
+	 */
+	clearLocation: function() {
+		localStorage.removeItem("Id");
+		localStorage.removeItem("Name");
+		localStorage.removeItem("Lng");
+		localStorage.removeItem("Lat");
+		localStorage.removeItem("TimeZone");
 	},
 	/**
 	 * [saveLocation description]
@@ -198,11 +228,17 @@ var app = {
 	 * @param  {[type]} panel [description]
 	 * @return {[type]}       [description]
 	 */
-	showArticle2: function(panel) {
-		$.ui.showMask("正在加载...");
+	showArticle2: function (panel) {
+	    //$.ui.showMask("测试...");
+
 		//debugger;
 		var el = $(panel);
+		var that = this;
 
+		if (!that.checkLocation()) return;
+
+		$.ui.showMask("正在加载...");
+		
 		var ajaxSettings = {
 			url: config.serviceUrl + "/services/articles",
 			dataType: "html",
@@ -213,13 +249,17 @@ var app = {
 		}
 
 		$.ajax(ajaxSettings).fail(function(jqXHR, textStatus, errorThrown) {			
-			$("#afui").popup("应用出现了点问题，请稍后再试。");
+			$("#afui").popup("网络不可用，请稍候再试。");
 		}).always(function() {
 			$.ui.hideMask();
-		}).done(function(data) {			
-			$.ui.updatePanel(el.prop("id"), data);
-			$('#'+el.prop("id")+'>div').prepend('<div class="headinfo"><p class="infotitle"><i class="icon-position"></i>您当前查询的城市</p><p class="infocont"><a href="javascript:$.ui.showModal(\'#pageCity\',\'pop\');">未知城市</a> <span>未设置经纬度</span></p></div>');
-			console.log("article load.")
+		}).done(function(data) {
+			var idStr = el.prop("id");
+			$.ui.updatePanel(idStr, data);
+			if (idStr != "SSHL" && idStr != "HBDH") {
+				$('#'+ idStr + '>div').prepend('<div class="headinfo"><p class="infotitle"><i class="icon-position"></i>您当前查询的城市</p><p class="infocont"><a href="javascript:$.ui.showModal(\'#pageCity\',\'slide\');">未知城市</a> <span>未设置经纬度</span></p></div>');
+			};
+			that.showLocation();
+			console.log("article load.");
 		});
 	},
 	/**

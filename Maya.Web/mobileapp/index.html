@@ -2,6 +2,7 @@
 <html>
 
 <head>
+	<title>玛雅数码应用</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta content="yes" name="apple-mobile-web-app-capable">
@@ -9,12 +10,12 @@
     <meta content="telephone=no" name="format-detection">
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <title>玛雅数码应用</title>
     <link rel="stylesheet" type="text/css" href="lib/appframework/css/af.ui.base.css" />
     <link rel="stylesheet" type="text/css" href="lib/appframework/css/af.ui.css" />
     <link rel="stylesheet" type="text/css" href="lib/appframework/css/icons.css" />
-    <link rel="stylesheet" type="text/css" href="style/datepicker.css" />
-    <link rel="stylesheet" type="text/css" href="style/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/datepicker.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <!--<script type="text/javascript" charset="utf-8" src="lib/appframework/appframework.js"></script>-->
     <script type="text/javascript" charset="utf-8" src="lib/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="lib/appframework/jq.appframework.min.js"></script>
@@ -28,25 +29,68 @@
     <script type="text/javascript" charset="utf-8" src="lib/appframework/af.plugins.min.js"></script>-->
     <script type="text/javascript">
     	var config = {
-    		serviceUrl: "http://app.01it.com",
+    	    serviceUrl: "http://maya.codestudio.com",
     	};
+        // deviceready Event Handler
+        //
+        // The scope of 'this' is the event. In order to call the 'receivedEvent'
+        // function, we must explicitly call 'app.receivedEvent(...);'
+    	function onDeviceReady() {
+    	    console.log("deviceready");
+    	    document.addEventListener('offline', this.onOffline, false);
+    	    document.addEventListener('online', this.onOnline, false);
+    	    app.initialize();
+    	}
+    	function onOffline() {
+            $("#afui").popup("当前网络不可用");
+        }
+    	function onOnline() {
+            $("#afui").popup("网络已连接");
+    	}
 
-        $(function() {
-            // initialize.
-            app.initialize();
-        });
+    	jQuery(function ($) {
+    	    console.log("jquery dom ready");
+    	    //document.addEventListener('deviceready', this.onDeviceReady, false);
+    	    app.initialize();
+    	});
     </script>
 </head>
 
 <body>
     <div id="afui">
         <div id="header">
-            <a id="menubadge" onclick="af.ui.toggleSideMenu()" class="menuButton"></a>            
+            <a id="menubadge" onclick="af.ui.toggleSideMenu()" class="menuButton"></a>
         </div>
 
-        <nav id="sidebarbox">
-            <div>sidebar</div>
+        <header id="testheader">
+            <h1>玛雅旅行助手</h1>
+        </header>
+
+        <nav>
+        	<ul class="list">
+        		<li class="divider">工具列表</li>
+        		<li><a href="#pageCity" data-transition="slide">旅行地点</a></li>
+        		<li><a onclick="clearCache()">清除缓存</a></li>
+        	</ul>
         </nav>
+
+        <nav id="toollist">
+            <ul class="list">
+             	<li class="divider">工具列表</li>
+	            <li><a href="#DLDY" data-transition="slide">电流电压</a></li>
+                <li><a href="#CZBZ" data-transition="slide">插座标准</a></li>
+                <li><a href="#QQTSYFF" data-transition="slide">全球通</a></li>
+                <li><a href="#SSHL" data-transition="slide">实时汇率</a></li>
+                <li><a href="#HBDH" data-transition="slide">货币换算</a></li>
+                <li><a href="#RCRLSJ" data-transition="slide">日出日落时间</a></li>
+                <li><a href="#CPZT" data-transition="slide">产品专题</a></li>
+                <li><a href="#DSGZL" data-transition="slide">大使馆资料</a></li>
+                <li><a href="#DDJJDH" data-transition="slide">当地紧急电话</a></li>
+                <li><a href="#JCXX" data-transition="slide">机场信息</a></li>
+                <li><a href="#CRJKTX" data-transition="slide">出入卡填写</a></li>
+            </ul>
+        </nav>
+
         <section class="audio">
             <a href="javascript:void(0);" class="u-globalAudio audio_btn"  data-status="on">
                 <i class="icon-music"></i></a>
@@ -55,7 +99,7 @@
         </section>
 
         <div id="content">
-            <div id="main" data-title="玛雅数码国际" class="panel" selected="true" data-nav="citybox">
+            <div id="main" data-title="玛雅数码国际" class="panel" selected="true">
                 <div class="logo">
                     <i class="icon-logo"></i>
                 </div>
@@ -74,12 +118,13 @@
                 </ul>
             </div>
             
-            <div id="DLDY" class="panel" data-title="电流电压" data-nav="citybox" data-load="app.showArticle2"></div>
-            <div id="CZBZ" class="panel" data-title="插座标准" data-nav="citybox" data-load="app.showArticle2"></div>
-            <div id="QQTSYFF" class="panel" data-title="全球通使用方法" data-nav="citybox" data-load="app.showArticle2"></div>
-            <div id="SSHL" class="panel" data-title="实时汇率" data-nav="citybox" data-load="app.showArticle2"></div>
-            <div id="HBDH" class="panel" data-title="货币换算" data-nav="citybox" data-load="app.showArticle2"></div>
-            <div id="RCRLSJ" data-title="日出日落时间" class="panel" data-nav="citybox">
+            <div id="DLDY" class="panel" data-title="电流电压" data-nav="toollist" data-load="app.showArticle2"></div>
+            <div id="CZBZ" class="panel" data-title="插座标准" data-nav="toollist" data-load="app.showArticle2"></div>
+            <div id="QQTSYFF" class="panel" data-title="全球通使用方法" data-nav="toollist" data-load="app.showArticle2"></div>
+            <div id="SSHL" class="panel" data-title="实时汇率" data-nav="toollist" data-load="app.showArticle2"></div>
+            <div id="HBDH" class="panel" data-title="货币换算" data-nav="toollist" data-load="app.showArticle2"></div>
+            <div id="RCRLSJ" data-title="日出日落时间" class="panel" data-nav="toollist">
+            	<div class="headinfo"><p class="infotitle"><i class="icon-position"></i>您当前查询的城市</p><p class="infocont"><a href="javascript:$.ui.showModal('#pageCity','slide');">广州市</a> <span>北纬23.567,东经113.456</span></p></div>
                 <div class="sunrise">
                     <div class="sunrise-result"></div>
                     <div class="sunrise-body">
@@ -87,13 +132,13 @@
                     </div>
                 </div>
             </div>
-            <div id="CPZT" class="panel" data-title="产品专题" data-nav="citybox" data-load="app.showArticle2"></div>
-            <div id="DSGZL" class="panel" data-title="大使馆资料" data-nav="citybox" data-load="app.showArticle2"></div>
-            <div id="DDJJDH" class="panel" data-title="当地紧急电话" data-nav="citybox" data-load="app.showArticle2"></div>
-            <div id="JCXX" class="panel" data-title="机场信息" data-nav="citybox" data-load="app.showArticle2"></div>
-            <div id="CRJKTX" class="panel" data-title="出入卡填写" data-nav="citybox" data-load="app.showArticle2"></div>
+            <div id="CPZT" class="panel" data-title="产品专题" data-nav="toollist" data-load="app.showArticle2"></div>
+            <div id="DSGZL" class="panel" data-title="大使馆资料" data-nav="toollist" data-load="app.showArticle2"></div>
+            <div id="DDJJDH" class="panel" data-title="当地紧急电话" data-nav="toollist" data-load="app.showArticle2"></div>
+            <div id="JCXX" class="panel" data-title="机场信息" data-nav="toollist" data-load="app.showArticle2"></div>
+            <div id="CRJKTX" class="panel" data-title="出入卡填写" data-nav="toollist" data-load="app.showArticle2"></div>
 
-            <div id="pageCity" data-title="切换城市" class="panel" data-nav="sidebarbox">
+            <div id="pageCity" data-title="切换城市" data-modal="true" class="panel" data-nav="toollist">
                 <div id="citybox22">
                     <div class="citybox-hd">旅游城市
                         <br /><span>未设置</span>

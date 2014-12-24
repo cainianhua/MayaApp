@@ -167,7 +167,7 @@
                 that.currentAjaxRequest = $.ajax(ajaxSettings).done(function(ajaxResponse) {
                     that.currentAjaxRequest = null;
 
-                    that.processResponse(ajaxResponse, searchWord);
+                    that.processResponse(ajaxResponse, searchWord, cacheKey);
                 }).fail(function (jqXHR, textStatus, errorThrown) {
                     console.log(errorThrown);
                 });

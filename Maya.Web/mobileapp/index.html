@@ -30,8 +30,8 @@
     <script type="text/javascript">
     	$.ui.backButtonText = "返回";
     	var config = {
-    	    serviceUrl: "http://maya.codestudio.com",
-    	    //serviceUrl: "http://182.92.213.38",
+    	    //serviceUrl: "http://maya.codestudio.com",
+    	    serviceUrl: "http://182.92.213.38",
     	};
     	// network disconnection.
     	var onOffline = function () {
@@ -103,8 +103,9 @@
 
         <div id="content">
             <div id="main" data-title="玛雅数码国际" class="panel" selected="true">
-                <div class="logo">
+                <div class="logo" style="background: #00ABE3;">
                     <i class="icon-logo"></i>
+                    <div class="logocity">当前城市：广州市</div>
                 </div>
                 <ul class="navbtn clearfix">
                     <li><a href="#DLDY" data-transition="slide"><i class="icon-navbtn icon-navbtn01"></i><span>电流电压</span></a></li>
@@ -128,11 +129,11 @@
             <div id="HBDH" class="panel" data-title="货币换算" data-nav="toollist" data-load="app.showArticle2"></div>
             <div id="RCRLSJ" data-title="日出日落时间" class="panel" data-nav="toollist">
             	<div class="headinfo"><p class="infotitle"><i class="icon-position"></i>您当前查询的城市</p><p class="infocont"><a href="javascript:$.ui.showModal('#pageCity','slide');">广州市</a> <span>北纬23.567,东经113.456</span></p></div>
-                <div class="sunrise">
-                    <div class="sunrise-result"></div>
+                <div class="sunrise">                    
                     <div class="sunrise-body">
                         <input type="text" id="date-input" readonly="readonly" />
                     </div>
+                    <div class="sunrise-result"></div>
                 </div>
             </div>
             <div id="CPZT" class="panel" data-title="产品专题" data-nav="toollist" data-load="app.showArticle2"></div>

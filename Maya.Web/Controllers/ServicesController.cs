@@ -39,8 +39,6 @@ namespace Maya.Web.Controllers
 					return ArticlesInternal( type, did );
                 case SortType.CPZT:
 					return ProductsInternal( did );
-				case SortType.LYYY:
-					return MusicsInternal( did );
 				case SortType.SSHL:
 					return RateInternal( did );
 				case SortType.HBDH:
@@ -100,16 +98,17 @@ namespace Maya.Web.Controllers
 			return Json( items );
 		}
 
-		#region [ 私有方法 ]
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="districtId"></param>
+		/// <param name="did"></param>
 		/// <returns></returns>
-		private JsonResult MusicsInternal( int districtId ) {
-			List<MusicVO> musics = MusicBO.GetInstance().GetItemsByDistrictCriteria( districtId );
+		public JsonResult Musics( int did ) {
+			List<MusicVO> musics = MusicBO.GetInstance().GetItemsByDistrictCriteria( did );
 			return Jsonp( musics );
 		}
+
+		#region [ 私有方法 ]
 		/// <summary>
 		/// 
 		/// </summary>

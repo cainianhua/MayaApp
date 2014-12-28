@@ -94,25 +94,6 @@ var app = {
 	 */
 	initialize: function() {
 		var that = this;
-		//music		
-		var au = $('.audio_btn');
-        var audioHost = $("#audio_host");
-        var audioAnimate;
-        audioHost.attr('src', audioHost.data('src'));
-        audioHost.attr('loop', true);
-        audioHost.attr('autoplay', false);
-        au.addClass('z-play');
-
-        au.on('click', function() {
-            if ($(this).data('status') === 'off') {
-                $(this).data('status', 'on');
-                audioHost.get(0).play();
-            } else {
-                $(this).data('status', 'off');
-                audioHost.get(0).pause();
-            }
-            au.toggleClass('z-play');
-        });
 		// 显示地点信息
 	    that.showLocation();
 	    // 初始化地址选择控件
@@ -142,6 +123,75 @@ var app = {
 	    });
 	    // 计算日出日落时间
 	    calc_res();
+	    // 播放音乐
+	    that.playAudio();
+	},
+	playAudio: function() {
+		//music
+		//
+		var that = this;
+
+		if (!that.checkLocation()) return;
+		//
+
+		var initAudio = function(musics) {
+			if (musics.length <= 0) return;
+			var i = 0;
+			var endIndex = musics.length;
+			var audioHost = $("#audio_host");
+			var au = $('.audio_btn');
+
+			console.log("music index is:" + i);
+
+	        audioHost.attr('src', musics[0].LinkTo);
+	        //audioHost.attr('loop', true);
+	        audioHost.attr('autoplay', false);
+	        audioHost.on("ended", function() {
+	        	i++;
+	        	console.log("music index is:" + i);
+	        	if (i > endIndex - 1) {
+	        		// 从头开始
+	        		i  = 0;
+	        		audioHost.attr('src', musics[i].LinkTo);
+	        		au.toggleClass('z-play');
+	        		audioHost.get(0).pause();
+	        		return false;
+	        	}
+	        	audioHost.attr('src', musics[i].LinkTo);
+	        	au.addClass('z-play');
+	        	audioHost.get(0).play();
+	        });
+	        // 播放状态
+	        au.addClass('z-play');
+	        audioHost.get(0).play();
+
+	        au.on('click', function() {
+	            if ($(this).data('status') === 'off') {
+	                $(this).data('status', 'on');
+	                audioHost.get(0).play();
+	            } else {
+	                $(this).data('status', 'off');
+	                audioHost.get(0).pause();
+	            }
+	            au.toggleClass('z-play');
+	        });
+		};
+
+		// ajax music data.
+		var ajaxSettings = {
+			url: config.serviceUrl + "/services/musics",
+			dataType: "json",
+			data: { did: localStorage.Id }
+		}
+
+		$.ajax(ajaxSettings).fail(function(jqXHR, textStatus, errorThrown) {			
+			$("#afui").popup({ title: "提示", message: "网络不可用" });
+		}).always(function() {
+			//$.ui.hideMask();
+		}).done(function(musics) {
+			console.log("music's count: " + musics.length);
+			initAudio(musics);
+		});
 	},
 	/**
 	 * [checkLocation description]
@@ -149,7 +199,6 @@ var app = {
 	 */
 	checkLocation: function() {
 		if (!localStorage.Id) {
-            this.changeLocation();
             return false;
         }
         return true;
@@ -161,7 +210,10 @@ var app = {
 	showLocation: function() {
 		var that = this;
 
-		if (!that.checkLocation()) { return; };
+		if (!that.checkLocation()) { 
+			that.changeLocation();
+			return; 
+		};
 
 		var locName = localStorage.Name;
         var locLng = localStorage.Lng;
@@ -206,24 +258,6 @@ var app = {
         this.showLocation();
 	},
 	/**
-	 * [showArticle description]
-	 * @param  {[type]} anchor [description]
-	 * @return {[type]}        [description]
-	 */
-	showArticle: function(anchor) {
-		if (!this.checkLocation()) return;
-
-        var api = config.serviceUrl + "/services/articles?"
-        var params = {
-            type: $(anchor).data("type"),
-            did: localStorage.Id
-        }
-
-        api += $.param(params);
-
-        $.ui.loadAjax(api, false, false, "slide", anchor);
-	},
-	/**
 	 * [showArticle2 description]
 	 * @param  {[type]} panel [description]
 	 * @return {[type]}       [description]
@@ -235,7 +269,10 @@ var app = {
 		var el = $(panel);
 		var that = this;
 
-		if (!that.checkLocation()) return;
+		if (!that.checkLocation()) {
+			that.changeLocation();
+			return;
+		}
 
 		//$.ui.showMask("正在加载...");
 		el.html("<div>正在加载...</div>");

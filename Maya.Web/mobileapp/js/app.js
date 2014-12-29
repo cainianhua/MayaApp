@@ -56,11 +56,11 @@ function calc_res() {
         ret = "太阳不升";
     }
     else{
-        ret = "日出时间:<span><strong>" + obj["rise"] + "</strong> (北京时间)</span><br />";
+        ret = "日出时间：<span><strong>" + obj["rise"] + "</strong> (当地时间)</span><br />";
         if(obj["set"] == undefined){
             ret += "太阳不落";
         } else {
-            ret += "日落时间:<span class='nr'><strong>" + obj["set"] + "</strong> (北京时间)</span>";
+            ret += "日落时间：<span class='nr'><strong>" + obj["set"] + "</strong> (当地时间)</span>";
         }
     }
     
@@ -221,6 +221,7 @@ var app = {
 
         $(".headinfo p.infocont a").text(locName);
         $("#citybox22 .citybox-hd span").text(locName);
+        $("#main .logocity").text("当前城市：" + locName);
         $(".headinfo p.infocont span").text(that.translateLat(locLat) + "," + that.translateLng(locLng));
 	},
 	/**

@@ -20,7 +20,7 @@
     <script type="text/javascript" charset="utf-8" src="lib/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="lib/appframework/jq.appframework.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="lib/appframework/ui/appframework.ui.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/jquery.location.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/jquery.location2.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/datepicker.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/date.format.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/ac.js"></script>
@@ -30,8 +30,8 @@
     <script type="text/javascript">
     	$.ui.backButtonText = "返回";
     	var config = {
-    	    //serviceUrl: "http://maya.codestudio.com",
-    	    serviceUrl: "http://182.92.213.38",
+    	    serviceUrl: "http://maya.codestudio.com",
+    	    //serviceUrl: "http://182.92.213.38",
     	};
     	// network disconnection.
     	var onOffline = function () {
@@ -102,10 +102,10 @@
         </section>
 
         <div id="content">
-            <div id="main" data-title="玛雅数码国际" class="panel" selected="true">
+            <div id="main" data-title="&nbsp;" class="panel" selected="true">
                 <div class="logo" style="background: #00ABE3;">
                     <i class="icon-logo"></i>
-                    <div class="logocity">当前城市：广州市</div>
+                    <div class="logocity">当前城市：未设置</div>
                 </div>
                 <ul class="navbtn clearfix">
                     <li><a href="#DLDY" data-transition="slide"><i class="icon-navbtn icon-navbtn01"></i><span>电流电压</span></a></li>

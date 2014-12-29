@@ -75,10 +75,7 @@ namespace Maya.Web.Controllers
 		/// <returns></returns>
 		public ActionResult Locations( string dn ) {
 			dn = dn.Trim();
-			List<DistrictVO> districts = new List<DistrictVO>();
-			if (!string.IsNullOrEmpty( dn )) {
-				districts = DistrictBO.GetInstance().GetItems( dn );
-			}
+			List<DistrictVO> districts = DistrictBO.GetInstance().GetItems( dn );
 
 			return Jsonp( new { suggestions = districts } );
 		}

@@ -8,22 +8,34 @@ namespace Maya.Web
 {
 	public static class SideBarExtensions
 	{
-		public static MvcHtmlString SideBarLink(this HtmlHelper htmlHelper, string name, string iconClass, string controller, bool hasArrow = true ) {
+		public static MvcHtmlString SideBarLink( this HtmlHelper htmlHelper, string name, string iconClass, string controllerName, bool hasArrow = true ) {
+			return SideBarLink( htmlHelper, name, iconClass, controllerName, "", true );
+		}
+
+		public static MvcHtmlString SideBarLink(this HtmlHelper htmlHelper, string name, string iconClass, string controllerName, string actionName, bool hasArrow = true ) {
 			string currentController = htmlHelper.ViewContext.RouteData.GetRequiredString("controller");
 
 			if (string.IsNullOrEmpty( name )) name = "[没有名称]";
 			if (string.IsNullOrEmpty( iconClass )) iconClass = "icon-home";
-			if (string.IsNullOrEmpty( controller )) controller = currentController;
+			if (string.IsNullOrEmpty( controllerName )) controllerName = currentController;
 
-			var linkHtml = "<a href=\"javascript:;\">"
+			string url = "javascript:;";
+			if ( !string.IsNullOrEmpty( actionName ) ) {
+				// Get the url to the controller method
+				var urlHelper = new UrlHelper( htmlHelper.ViewContext.RequestContext );
+				url = urlHelper.Action( actionName, controllerName, null );
+			}
+
+			var linkHtml = "<a href=\"{4}\">"
 						 + "	<i class=\"{0}\"></i>"
 						 + "	<span class=\"title\">{1}</span>{2}{3}"
 						 + "</a>";
 			var arrowHtml = "<span class=\"arrow{0}\"></span>";
 
 			linkHtml = string.Format( linkHtml, iconClass, name,
-				currentController.Equals( controller, StringComparison.OrdinalIgnoreCase ) ? "<span class=\"selected\"></span>" : "",
-				hasArrow ? ( string.Format( arrowHtml, currentController.Equals( controller, StringComparison.OrdinalIgnoreCase ) ? " open" : "" ) ) : "" );
+				currentController.Equals( controllerName, StringComparison.OrdinalIgnoreCase ) ? "<span class=\"selected\"></span>" : "",
+				hasArrow ? ( string.Format( arrowHtml, currentController.Equals( controllerName, StringComparison.OrdinalIgnoreCase ) ? " open" : "" ) ) : "",
+				url );
 
 			return MvcHtmlString.Create( linkHtml );
 		}

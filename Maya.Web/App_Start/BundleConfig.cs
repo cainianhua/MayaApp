@@ -58,10 +58,10 @@ namespace Maya.Web
             bundles.Add( new ScriptBundle( "~/bundles/form-plugins" ).Include(
                     "~/Scripts/plugins/jquery-validation/js/jquery.validate.min.js",
                     "~/Scripts/plugins/jquery-validation/js/additional-methods.min.js",
-                    "~/Scripts/plugins/select2/select2.min.js",
-                    "~/Scripts/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js",
-                    "~/Scripts/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js",
-                    "~/Scripts/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js",
+					//"~/Scripts/plugins/select2/select2.min.js",
+					//"~/Scripts/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js",
+					//"~/Scripts/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js",
+					//"~/Scripts/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js",
                     //"~/Scripts/plugins/bootstrap-markdown/js/bootstrap-markdown.js",
                     //"~/Scripts/plugins/bootstrap-markdown/lib/markdown.js",
                     "~/Scripts/jquery.unobtrusive*",
@@ -71,7 +71,6 @@ namespace Maya.Web
             /* FORM PAGE LEVEL SCRIPTS  */
             bundles.Add( new ScriptBundle( "~/bundles/form-pages" ).Include(
                     /* PAGE LEVEL SCRIPTS PUBLIC */
-                    
                     "~/Scripts/admin/pages/form-validation.js" ) );
 
             /* jQuery validation js */

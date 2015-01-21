@@ -2821,6 +2821,7 @@
     <Compile Include="Extensions\PanelExtensions.cs" />
     <Compile Include="Extensions\MvcPanel.cs" />
     <Compile Include="Extensions\SideBarExtensions.cs" />
+    <Compile Include="Extensions\TagLinkExtensions.cs" />
     <Compile Include="FilterAttributes\AllowCrossSiteJsonAttribute.cs" />
     <Compile Include="FilterAttributes\LoginCheckerFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -2831,6 +2832,7 @@
     <Compile Include="Models\DistrictModels.cs" />
     <Compile Include="Models\MusicModels.cs" />
     <Compile Include="Models\ProductModels.cs" />
+    <Compile Include="Models\UserModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ueditor\net\App_Code\Config.cs" />
     <Compile Include="ueditor\net\App_Code\ConfigHandler.cs" />
@@ -3032,7 +3034,7 @@
     <Content Include="Views\Districts\_FormGroups.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Users\Create.cshtml" />
-    <Content Include="Views\Users\_FormGroups.cshtml" />
+    <Content Include="Views\Users\_CreateFormGroups.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Products\Create.cshtml" />
     <Content Include="Views\Products\_FormGroups.cshtml" />
@@ -3048,6 +3050,10 @@
     <Content Include="Views\Services\_Products.cshtml" />
     <Content Include="Views\Services\_Rate.cshtml" />
     <Content Include="Views\Services\_Exchange.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\_EditFormGroups.cshtml" />
+    <Content Include="Views\Users\_ChangePasswordFormGroups.cshtml" />
+    <Content Include="Views\Users\ChangePassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

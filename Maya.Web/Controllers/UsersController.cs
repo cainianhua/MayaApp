@@ -26,6 +26,7 @@ namespace Maya.Web.Controllers
         public ActionResult Create()
         {
 			UserRegisterModel item = new UserRegisterModel();
+			
             return View( item );
         }
 
@@ -39,6 +40,7 @@ namespace Maya.Web.Controllers
 				u.Email = item.Email;
 				u.PasswordSalt = new Random().Next( 10000, 99999 ).ToString();
 				u.Password = Utils.EncryptPassword( item.Password, u.PasswordSalt );
+				
 				u.ActionDate = DateTime.Now;
 				u.ActionBy = UserContext.Current.User.UserName;
 
@@ -58,47 +60,69 @@ namespace Maya.Web.Controllers
         }
 
         // GET: Users/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(long? id)
         {
-            return View();
+			UserRegisterModel item = new UserRegisterModel();
+			if (id.HasValue)
+			{
+				UserVO user = UserBO.GetInstance().GetItem(id.Value);
+				if (user != null)
+				{
+					item = user.To<UserRegisterModel>();
+				}
+			}
+
+			return View(item);
         }
 
         // POST: Users/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(UserEditModel item)
         {
-            try
-            {
-                // TODO: Add update logic here
+			if (ModelState.IsValid) {
+				UserVO u = item.To<UserVO>();
+				u.ActionDate = DateTime.Now;
+				u.ActionBy = UserContext.Current.User.UserName;
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+				try
+				{
+					u.UserId = UserBO.GetInstance().SaveOrUpdateItem(u);
+				}
+				catch (Exception ex)
+				{
+					ModelState.AddModelError("", ex.Message);
+				}
+
+				if (ModelState.IsValid)
+				{
+					return RedirectToAction("Index");
+				}
+			}
+
+			return View(item);
         }
 
         // GET: Users/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(long id)
         {
-            return View();
-        }
+			UserBO.GetInstance().DeleteItem(id);
 
-        // POST: Users/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+			return RedirectToAction("Index");
         }
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="id"></param>
+		/// <returns></returns>
+		public ActionResult ChangePassword(long id) {
+			UserVO u = UserBO.GetInstance().GetItem(id);
+			if (u == null) {
+				return RedirectToAction("Index");
+			}
+
+			ChangePasswordModel item = u.To<ChangePasswordModel>();
+
+			return View(item);
+		}
     }
 }

@@ -51,8 +51,7 @@
 					<th>纬度</th>
 					<th>经度</th>
 					<th>更新时间</th>
-					<th>修改</th>
-                    <th>删除</th>
+					<th>操作</th>
 				</tr>
 				</thead>
 				<tbody>
@@ -74,15 +73,14 @@
                             @item.UpdatedDate.ToString( "yyyy-MM-dd HH:mm:ss" )
                         </td>
                         <td>
-                            @Html.ActionLink( "修改", "Create", new { controller = "Districts", id = item.DistrictId } )
-                        </td>
-                        <td>
-                            @Html.DeleteLink( Url.Content( "~/Content/img/remove-icon-small.png" ), "Delete", new { id = item.DistrictId }, new { title = "删除记录", onclick = "return confirm('确定要删除此记录吗？');" } )
+                            @Html.TagLink("<i class=\"fa fa-edit\"></i> 修改", "Create", new { controller = "Districts", id = item.DistrictId }, new { @class = "btn btn-xs default" })
+							@Html.DeleteLink( "<i class=\"fa fa-times\"></i> 删除", "Delete", new { id = item.DistrictId }, new { @class = "btn btn-xs red", title = "删除记录", onclick = "return confirm('确定要删除此记录吗？');" } )
                         </td>
                     </tr>
                 }
                 @if (Model.Count == 0) {
-                    <tr class="odd gradeX"><td colspan="7" class="center">暂无国家城市数据</td></tr>}
+                    <tr class="odd gradeX"><td colspan="7" class="center">暂无国家城市数据</td></tr>
+				}
 				</tbody>
 				</table>
 			</div>
@@ -120,7 +118,7 @@
     <script src="~/Scripts/admin/pages/table-managed.js"></script>
     <script>
         jQuery(function ($) {
-            //TableManaged.init();
+            TableManaged.init();
         });
     </script>
 }

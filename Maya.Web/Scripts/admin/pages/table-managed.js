@@ -20,14 +20,14 @@ var TableManaged = function () {
                 "orderable": false
             }],
             "lengthMenu": [
-                [5, 15, 20, -1],
-                [5, 15, 20, "All"] // change per page values here
+                [5, 10, 20, -1],
+                [5, 10, 20, "All"] // change per page values here
             ],
             // set the initial value
             "pageLength": 5,            
             "pagingType": "bootstrap_full_number",
             "language": {
-                "lengthMenu": "  _MENU_ records",
+                "lengthMenu": "  _MENU_ 记录",
                 "paginate": {
                     "previous":"Prev",
                     "next": "Next",
@@ -42,6 +42,7 @@ var TableManaged = function () {
                 "searchable": false,
                 "targets": [0]
             }],
+            "searchCols": [ null, { "search": "测试" }, null, { "search": "^[0-9]", "escapeRegex": false }  ],
             "order": [
                 [1, "asc"]
             ] // set first column as a default sort by asc

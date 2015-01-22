@@ -1,22 +1,8 @@
 ﻿@model Opp.TemplateEngine.Field
 
-<div class="form-group">
-    <label class="control-label" for="@(Model.Name)_Company">Place Name</label>
-    <input type="text" class="form-control" id="@(Model.Name)_Company" name="MV1_@(Model.Name)_Company" value="@(Model.Values.ContainsKey("Company") ? Model.Values["Company"] : "")" />
-</div>
-<div class="form-group">
-    <label class="control-label" for="@(Model.Name)_Telephone">Phone Number</label>
-    <input type="text" class="form-control" id="@(Model.Name)_Telephone" name="MV1_@(Model.Name)_Telephone" value="@(Model.Values.ContainsKey( "Telephone" ) ? Model.Values["Telephone"] : "")" />
-</div>
-<div class="form-group">
-    <label class="control-label" for="@(Model.Name)_Address">Address</label>
-    <input type="text" class="form-control" id="@(Model.Name)_Address" name="MV1_@(Model.Name)_Address" value="@(Model.Values.ContainsKey( "Address" ) ? Model.Values["Address"] : "")" />
-</div>
+
 <div class="form-group" id="map-container">
 	
-</div>
-<div class="form-group">
-    <input type="text" class="form-control" id="@(Model.Name)_Coordinates" name="MV1_@(Model.Name)_Coordinates" value="@(Model.Values.ContainsKey( "Coordinates" ) ? Model.Values["Coordinates"] : "")" />
 </div>
 
 <script type="text/javascript" src="@Url.Content("~/Scripts/Admin/map2.js")"></script>

@@ -35,6 +35,10 @@
                 @Html.ValidationMessageFor( m => m.Description )
             </div>
         }
+		<div class="form-group">
+			<label class="control-label col-md-3" for="Name">选择坐标</label>
+			<div class="col-md-8" id="mapContainer"></div>
+		</div>
         @using (Html.BeginPanelFor( m => m.Lng, new { @class = "form-group" } )) {
             @Html.LabelFor( m => m.Lng, new { @class = "control-label col-md-3" } )
             <div class="col-md-4">

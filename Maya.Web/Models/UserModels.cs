@@ -44,7 +44,7 @@ namespace Maya.Web.Models
 		[Required(ErrorMessage = "{0}是必填信息。")]
 		[StringLength(30, ErrorMessage = "{0}不少于{2}个字符。", MinimumLength = 2)]
 		[RegularExpression(@"^[\u4e00-\u9fa5\w]*$", ErrorMessage = "{0}包含非法字符。")]
-		[UniqueUserName(ErrorMessage = "{0}已经存在，请重新选择。")]
+		//[UniqueUserName(ErrorMessage = "{0}已经存在，请重新选择。")]
 		public string UserName { get; set; }
 
 		[Display(Name = "电子邮箱")]
@@ -56,10 +56,21 @@ namespace Maya.Web.Models
 
 	public class ChangePasswordModel
 	{
-		[Required(ErrorMessage = "请输入{0}。")]
-		[DataType(DataType.Password)]
-		[Display(Name = "当前密码")]
-		public string OldPassword { get; set; }
+		[Key]
+		public long UserId { get; set; }
+
+		[Display(Name = "用户名")]
+		[Required(ErrorMessage = "{0}是必填信息。")]
+		[StringLength(30, ErrorMessage = "{0}不少于{2}个字符。", MinimumLength = 2)]
+		[RegularExpression(@"^[\u4e00-\u9fa5\w]*$", ErrorMessage = "{0}包含非法字符。")]
+		//[UniqueUserName(ErrorMessage = "{0}已经存在，请重新选择。")]
+		public string UserName { get; set; }
+
+		//// 后台系统修改密码，不需要输入原密码
+		//[Required(ErrorMessage = "请输入{0}。")]
+		//[DataType(DataType.Password)]
+		//[Display(Name = "当前密码")]
+		//public string OldPassword { get; set; }
 
 		[Required(ErrorMessage = "请输入{0}。")]
 		[StringLength(20, ErrorMessage = "{0}长度必须在{2}与{1}之间。", MinimumLength = 6)]

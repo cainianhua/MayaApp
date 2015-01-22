@@ -69,8 +69,9 @@
                                     @item.CreatedDate.ToString( "yyyy-MM-dd HH:mm:ss" )
                                 </td>
                                 <td>
-                                    @Html.TagLink( "<i class=\"fa fa-edit\"></i> 修改", "Create", new { id = item.UserId } )
-									@Html.TagLink( "<i class=\"fa fa-times\"></i> 删除", "Delete", new { id = item.UserId }, new { title = "删除用户", onclick = "return confirm('确定要删除此用户吗？');" } )
+                                    @Html.TagLink( "<i class=\"fa fa-edit\"></i> 修改", "Edit", new { id = item.UserId }, new { @class = "btn btn-xs default" } ) | 
+									@Html.TagLink( "<i class=\"fa fa-times\"></i> 删除", "Delete", new { id = item.UserId }, new { @class = "btn btn-xs red", title = "删除用户", onclick = "return confirm('确定要删除此用户吗？');" } ) | 
+                                    @Html.TagLink( "<i class=\"fa fa-lock\"></i> 修改密码", "ChangePassword", new { id = item.UserId }, new { @class = "btn btn-xs default" } )
                                 </td>
                             </tr>}
                     </tbody>

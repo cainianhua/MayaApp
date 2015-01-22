@@ -32,7 +32,8 @@ namespace Maya.Web.Controllers
 
         // POST: Users/Create
         [HttpPost]
-        public ActionResult Create(UserRegisterModel item)
+		[ValidateAntiForgeryToken]
+		public ActionResult Create(UserRegisterModel item)
         {
 			if (ModelState.IsValid) {
 				UserVO u = new UserVO();
@@ -62,13 +63,13 @@ namespace Maya.Web.Controllers
         // GET: Users/Edit/5
         public ActionResult Edit(long? id)
         {
-			UserRegisterModel item = new UserRegisterModel();
+			UserEditModel item = new UserEditModel();
 			if (id.HasValue)
 			{
 				UserVO user = UserBO.GetInstance().GetItem(id.Value);
 				if (user != null)
 				{
-					item = user.To<UserRegisterModel>();
+					item = user.To<UserEditModel>();
 				}
 			}
 
@@ -77,25 +78,29 @@ namespace Maya.Web.Controllers
 
         // POST: Users/Edit/5
         [HttpPost]
-        public ActionResult Edit(UserEditModel item)
+		[ValidateAntiForgeryToken]
+		public ActionResult Edit(UserEditModel item)
         {
 			if (ModelState.IsValid) {
-				UserVO u = item.To<UserVO>();
+				UserVO u = UserBO.GetInstance().GetItem( item.UserId );
+				if(u == null) {
+					return RedirectToAction( "Index" );
+				}
+
+				u.Email = item.Email;
+
 				u.ActionDate = DateTime.Now;
 				u.ActionBy = UserContext.Current.User.UserName;
 
-				try
-				{
-					u.UserId = UserBO.GetInstance().SaveOrUpdateItem(u);
+				try {
+					u.UserId = UserBO.GetInstance().SaveOrUpdateItem( u );
 				}
-				catch (Exception ex)
-				{
-					ModelState.AddModelError("", ex.Message);
+				catch ( Exception ex ) {
+					ModelState.AddModelError( "", ex.Message );
 				}
 
-				if (ModelState.IsValid)
-				{
-					return RedirectToAction("Index");
+				if ( ModelState.IsValid ) {
+					return RedirectToAction( "Index" );
 				}
 			}
 
@@ -109,11 +114,7 @@ namespace Maya.Web.Controllers
 
 			return RedirectToAction("Index");
         }
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="id"></param>
-		/// <returns></returns>
+		
 		public ActionResult ChangePassword(long id) {
 			UserVO u = UserBO.GetInstance().GetItem(id);
 			if (u == null) {
@@ -123,6 +124,34 @@ namespace Maya.Web.Controllers
 			ChangePasswordModel item = u.To<ChangePasswordModel>();
 
 			return View(item);
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public ActionResult ChangePassword(ChangePasswordModel item) {
+			if ( ModelState.IsValid ) {
+				UserVO u = UserBO.GetInstance().GetItem( item.UserId );
+				if ( u == null )
+					return RedirectToAction( "Index" );
+
+				u.Password = Utils.EncryptPassword( item.NewPassword, u.PasswordSalt );
+
+				u.ActionDate = DateTime.Now;
+				u.ActionBy = UserContext.Current.User.UserName;
+
+				try {
+					u.UserId = UserBO.GetInstance().SaveOrUpdateItem( u );
+				}
+				catch ( Exception ex ) {
+					ModelState.AddModelError( "", ex.Message );
+				}
+
+				if ( ModelState.IsValid ) {
+					return RedirectToAction( "Index" );
+				}
+			}
+
+			return View();
 		}
     }
 }

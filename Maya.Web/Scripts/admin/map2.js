@@ -26,14 +26,13 @@
         that.marker = null;     // 地图上的标识点
         that.infowindow = null; // 信息窗口，可以展示标识点的详细信息
         // 信息窗口的内容
-        that.infoContent = '<div id="mapinfo">'
-            //+ '    <div id="siteNotice"></div>'
-            + '    <h3 id="firstHeading" class="firstHeading">Address</h3>'
-            + '    <div id="bodyContent">'
-            + '        <p>{0}</p>'
-            + '    </div>'
-            + '    <div id="window_btn"><button class="confirm_btn">Confirm</button></div>'
-            + '</div>';
+        that.infoContent = '<div id="mapinfo scrollFix">'
+                         + '    <h5 class="firstHeading">地址</h5>'
+                         + '    <div id="bodyContent">'
+                         + '        <p>{0}</p>'
+                         + '    </div>'
+                         + '    <div id="window_btn"><button class="confirm_btn">Confirm</button></div>'
+                         + '</div>';
 
         that.initialize();
     }
@@ -45,7 +44,7 @@
                 options = that.options;
 
             container.html('<div class="input-group">'
-                         + '    <input type="text" id="searchTextBox" class="form-control" placeholder="Please enter a location for searching" />'
+                         + '    <input type="text" id="searchTextBox" class="form-control" placeholder="请输入地址关键字搜索" />'
                          + '    <span class="input-group-btn">'
                          + '        <button class="btn default" type="button" id="addressSearchButton"><i class="fa fa-search"></i></button>'
                          + '    </span>'
@@ -56,7 +55,7 @@
             $("#addressSearchButton", container).on("click", function() {
                 var address = $("#searchTextBox").val();
                 if ($.trim(address)) {
-                    findCoordinate(address);
+                    that.findCoordinate(address);
                 }
             });
 
@@ -101,29 +100,30 @@
             google.maps.event.addListener(that.infowindow, "domready", function() {
                 $("#window_btn button.confirm_btn").on("click", function(e) {
                     e.preventDefault();
+
                     // 触发回调方法
-                    onSelect && onSelect(null, { lat: latLng.lat(), lng: latLng.lng() });
+                    onSelect && onSelect({ lat: that.latLng.lat(), lng: that.latLng.lng() });
                     // 关闭信息窗口
                     that.infowindow.close();
                     return false;
                 });
             });
 
-            that.geocodePosition(that.latLng);
+            that.updateMarkerAddress();
         },
         /**
          * 根据坐标得到地址信息（latLng -> Address)
-         * @param  {[type]} pos [description]
          * @return {[type]}     [description]
          */
-        geocodePosition: function(pos) {
-            var that = this;
+        updateMarkerAddress: function() {
+            var that = this,
+                pos = that.latLng;
 
             that.geocoder.geocode({ latLng: pos }, function(responses) {
                 if (responses && responses.length > 0) {
                     that.updateInfoWindowContent(responses[0].formatted_address);
                 } else {
-                    that.updateInfoWindowContent('Geocode was not found');
+                    that.updateInfoWindowContent('未能找到坐标相关信息');
                 }
             });
         },
@@ -146,18 +146,19 @@
                 _marker = that.marker,
                 _map = that.map;
 
-            /*
+            
             // 添加拖动事件监听器  
             google.maps.event.addListener(_marker, 'dragstart', function() {
-
+                that.updateInfoWindowContent("正在搜索...");
             });
-
+            /*
             google.maps.event.addListener(_marker, 'drag', function() {
                 
             });*/
 
             google.maps.event.addListener(_marker, 'dragend', function() {
-                that.geocodePosition(_marker.getPosition());
+                that.latLng = _marker.getPosition();
+                that.updateMarkerAddress();
             });
             // 打开信息窗口
             google.maps.event.addListener(_marker, 'click', function() {
@@ -175,11 +176,11 @@
                 if (status == google.maps.GeocoderStatus.OK) {
                     var latLngSearched = that.latLng = results[0].geometry.location;
 
-                    map.setCenter(latLngSearched);
-                    marker.setPosition(latLngSearched);
-                    marker.setTitle(results[0].geometry.premise);
+                    that.map.setCenter(latLngSearched);
+                    that.marker.setPosition(latLngSearched);
+                    that.marker.setTitle(results[0].geometry.premise);
 
-                    that.geocodePosition(latLng);
+                    that.updateMarkerAddress();
                 } else {
                     //updateMarkerStatus('Cannot find the location.');
                     that.showMessage("找不到您搜索的地址，请修改搜索关键字之后重试。");
@@ -187,7 +188,7 @@
             });
         },
         /**
-         * 更新Marker
+         * 显示提示信息
          * @param  {[type]} str [description]
          * @return {[type]}     [description]
          */

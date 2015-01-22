@@ -68,3 +68,11 @@ Rounded Portlets
 .pic-64 {
     max-width: 64px;
 }
+
+/* CSS definitions for the wrapping div -- fixed google map bug */
+/* http://jsfiddle.net/veaz/7Zm8w/ */
+.scrollFix {
+    line-height: 1.35;
+    overflow: hidden;
+    white-space: nowrap;
+}

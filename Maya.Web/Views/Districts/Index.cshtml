@@ -50,6 +50,7 @@
 					<th>名称</th>
 					<th>纬度</th>
 					<th>经度</th>
+                    <th>时区</th>
 					<th>更新时间</th>
 					<th>操作</th>
 				</tr>
@@ -68,6 +69,9 @@
                         </td>
                         <td>
                             @item.Lat
+                        </td>
+                        <td>
+                            @item.TimeZone
                         </td>
                         <td class="center">
                             @item.UpdatedDate.ToString( "yyyy-MM-dd HH:mm:ss" )

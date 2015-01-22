@@ -591,6 +591,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\admin\map2.js" />
     <Content Include="Scripts\admin\maya-fileupload.js" />
     <Content Include="Scripts\datatable.js" />
     <None Include="Properties\PublishProfiles\DEV.pubxml" />

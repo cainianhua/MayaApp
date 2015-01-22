@@ -46,15 +46,14 @@
 	<script type="text/javascript" src="~/Scripts/admin/map2.js"></script>
 	<script type="text/javascript">
 		function renderMapControl() {
-
 			$("#mapContainer").coordinateselector({
 				lat: parseFloat(@Model.Lat) || 0,
 				lng: parseFloat(@Model.Lat) || 0,
-				onSelect: function (err, coordinate) {
-
+				onSelect: function (coordinate) {
+				    $("#Lng").val(coordinate.lng);
+				    $("#Lat").val(coordinate.lat);
 				}
 			});
-			
 		}
 		// 异步加载地图
 		(function () {
@@ -66,7 +65,7 @@
 			/* 加载地图API */
 			var script = document.createElement("script");
 			script.type = "text/javascript";
-			script.src = "http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=renderMapControl";
+			script.src = "http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&callback=renderMapControl";
 			document.head.appendChild(script);
 		})();
 	</script>

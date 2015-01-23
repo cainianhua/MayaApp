@@ -7,15 +7,19 @@ using Maya.Web.Models;
 using Maya.Services.VO;
 using Maya.Services.BO;
 using Maya.Services;
+using Webdiyer.WebControls.Mvc;
+using System.ComponentModel;
 
 namespace Maya.Web.Controllers
 {
     public class DistrictsController : ControllerBase
     {
         // GET: Districts
-        public ActionResult Index()
+        public ActionResult Index([DefaultValue(1)]int page)
         {
-			List<DistrictVO> items = DistrictBO.GetInstance().GetItems();
+			List<DistrictVO> districts = DistrictBO.GetInstance().GetItems();
+			PagedList<DistrictVO> items = new PagedList<DistrictVO>(districts.Skip((page - 1) * PageSize).Take(PageSize), page, PageSize, districts.Count);
+			
             return View(items);
         }
 

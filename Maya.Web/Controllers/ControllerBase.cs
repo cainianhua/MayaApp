@@ -24,5 +24,10 @@ namespace Maya.Web.Controllers
         //        return _UserVO;
         //    }
         //}
+		protected virtual int PageSize {
+			get {
+				return 10;
+			}
+		}
     }
 }

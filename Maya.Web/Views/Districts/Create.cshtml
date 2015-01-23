@@ -48,7 +48,7 @@
 		function renderMapControl() {
 			$("#mapContainer").coordinateselector({
 				lat: parseFloat(@Model.Lat) || 0,
-				lng: parseFloat(@Model.Lat) || 0,
+				lng: parseFloat(@Model.Lng) || 0,
 				onSelect: function (coordinate) {
 				    $("#Lng").val(coordinate.lng);
 				    $("#Lat").val(coordinate.lat);
@@ -66,6 +66,7 @@
 			var script = document.createElement("script");
 			script.type = "text/javascript";
 			script.src = "http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&callback=renderMapControl";
+			//script.src = '@Url.Content("~/Scripts/google.maps.js")';
 			document.head.appendChild(script);
 		})();
 	</script>

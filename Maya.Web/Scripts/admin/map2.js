@@ -20,8 +20,12 @@
 
         // A service for converting between an address and a LatLng
         that.geocoder = null;
+        //// 天伦大厦
         //that.latLng = new google.maps.LatLng(23.134583018105783, 113.31278795581966);
-        that.latLng = new google.maps.LatLng(40.7127837, -74.00594130000002);
+        //// 纽约
+        //that.latLng = new google.maps.LatLng(40.7127837, -74.00594130000002);
+        // 广州
+        that.latLng = new google.maps.LatLng(23.12911, 113.26438499999995);
         that.map = null;        // google map instance
         that.marker = null;     // 地图上的标识点
         that.infowindow = null; // 信息窗口，可以展示标识点的详细信息
@@ -31,7 +35,7 @@
                          + '    <div id="bodyContent">'
                          + '        <p>{0}</p>'
                          + '    </div>'
-                         + '    <div id="window_btn"><button class="confirm_btn">Confirm</button></div>'
+                         + '    <div id="window_btn"><button class="confirm_btn">确认选中</button></div>'
                          + '</div>';
 
         that.initialize();
@@ -77,7 +81,7 @@
         render: function() {
             var that = this,
                 onSelect = that.options.onSelect;
-
+            // 创建地图对象
             that.map = new google.maps.Map(that.mapCanvas.get(0), {
                 zoom: 16,
                 center: that.latLng,
@@ -85,7 +89,7 @@
                 /* 禁止鼠标滚轮放大缩小地图 */
                 scrollwheel: false
             });
-
+            // 创建标识点对象
             that.marker = new google.maps.Marker({
                 position: that.latLng,
                 title: '可以拖动到指定的地点',
@@ -95,12 +99,11 @@
             });
 
             that.addMarkerListeners();
-
+            // 信息窗口对象
             that.infowindow = new google.maps.InfoWindow({ content: "" });
             google.maps.event.addListener(that.infowindow, "domready", function() {
                 $("#window_btn button.confirm_btn").on("click", function(e) {
                     e.preventDefault();
-
                     // 触发回调方法
                     onSelect && onSelect({ lat: that.latLng.lat(), lng: that.latLng.lng() });
                     // 关闭信息窗口

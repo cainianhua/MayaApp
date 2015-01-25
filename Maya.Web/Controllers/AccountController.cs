@@ -55,6 +55,11 @@ namespace Maya.Web.Controllers
             return View(model);
         }
 
+        public ActionResult Logout() {
+            DeleteLoginCookie();
+            return RedirectToAction("Login");
+        }
+
         #region 私有方法
         /// <summary>
         /// Create cookie

@@ -7,15 +7,31 @@ using Maya.Services.VO;
 using Maya.Services.BO;
 using Maya.Web.Models;
 using Maya.Services;
+using System.ComponentModel;
+using Webdiyer.WebControls.Mvc;
 
 namespace Maya.Web.Controllers
 {
     public class MusicsController : ControllerBase
     {
         // GET: Musics
-        public ActionResult Index()
+        public ActionResult Index([DefaultValue(1)] int page, int? did)
         {
-			List<MusicVO> items = MusicBO.GetInstance().GetItems();
+			List<MusicVO> musics = MusicBO.GetInstance().GetItems(did);
+            var items = new PagedList<MusicVO>(musics.Skip((page - 1) * PageSize).Take(PageSize), page, PageSize, musics.Count);
+
+            List<SelectListItem> selectItems = new List<SelectListItem>();
+            DistrictBO.GetInstance().GetItems().ForEach(item =>
+            {
+                selectItems.Add(new SelectListItem()
+                {
+                    Text = item.Name,
+                    Value = Url.Action("Index", new { page = page, did = item.DistrictId }),
+                    Selected = did.HasValue && did.Value == item.DistrictId
+                });
+            });
+
+            ViewBag.Districts = selectItems;
 
 			return View( items );
         }

@@ -10,7 +10,7 @@ namespace Maya.Web.Models
     {
         [Key]
         public int DistrictId { get; set; }
-        [Display(Name = "父节点")]
+        [Display(Name = "所属地点")]
         public int ParentId { get; set; }
         [Display(Name = "名称")]
         [Required(ErrorMessage = "{0}是必填信息。")]
@@ -18,10 +18,10 @@ namespace Maya.Web.Models
         [Display(Name = "描述")]
         public string Description { get; set; }
         [Display(Name = "所在经度")]
-        //[Required(ErrorMessage = "{0}是必填信息。")]
+        [Required(ErrorMessage = "{0}是必填信息。")]
         public string Lng { get; set; }
         [Display(Name = "所在纬度")]
-        //[Required(ErrorMessage = "{0}是必填信息。")]
+        [Required(ErrorMessage = "{0}是必填信息。")]
         public string Lat { get; set; }
 		[Display(Name = "所在时区")]
 		[Required(ErrorMessage = "{0}是必填信息。")]

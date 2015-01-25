@@ -7,17 +7,20 @@
 <div class="tab-content">
     <div id="tab_1" class="tab-pane active">
         <div id="accordion1" class="panel-group">
-            <div class="panel panel-default">
+            <div class="panel panel-danger">
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#accordion1_1">
-                            1. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry ?
+                            1. 关于系统的安全需要注意的若干事项？
                         </a>
                     </h4>
                 </div>
                 <div id="accordion1_1" class="panel-collapse collapse in">
                     <div class="panel-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        a). 系统的密码采用了MD5双重加密保持，所以就算管理员也看不到明文的密码，因此，不存在密码泄漏的问题。<br />
+                        b). 为了系统的安全，建议密码采用强密码形式，包含大小写字母，数字以及特殊符号，形如：“Abcd1234!”，否则因为密码被破解导致的系统问题，需自行承担。<br />
+                        c). 用户名不要采用常用的admin, test等，容易被别人猜到而破解。<br />
+                        d). 系统使用结束之后，及时退出登录。
                     </div>
                 </div>
             </div>
@@ -25,31 +28,33 @@
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#accordion1_2">
-                            2. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry ?
+                            2. 关于旅行地点数据的设置问题？
                         </a>
                     </h4>
                 </div>
                 <div id="accordion1_2" class="panel-collapse collapse">
                     <div class="panel-body">
-                        Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        常用的地点数据可能包含国家省市区等多级信息，但是在本系统中，建议采用国家+旅行地点的方式，因为省份信息可能是多余的，增加了系统的冗余度。如果一定要使用的话，系统支持上是没有任何问题的。
                     </div>
                 </div>
             </div>
-            <div class="panel panel-success">
+            <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#accordion1_3">
-                            3. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor ?
+                            3. 关于公用数据的设置问题？
                         </a>
                     </h4>
                 </div>
                 <div id="accordion1_3" class="panel-collapse collapse">
                     <div class="panel-body">
-                        Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        所谓公用的数据，是指多个旅行目的地的信息相同。比如：旅行地点有香格里拉，广州等，它们是都是属于中国的城市，所以电流电压等数据是共用的。<br />
+                        对于这样的情况，我们可以把电流电压的信息设置在“中国”这个地点上，这样对于从属于中国的旅行地点，都是可以获取到的，而不用每个城市都设置重复的电流电压数据。
+                        其实就是把公用的数据设置在父级的地点上，子级的地点可以继承父级的数据，但是如果子级添加了数据，将会使用子级子级的数据，而非父级的数据。
                     </div>
                 </div>
             </div>
-            <div class="panel panel-warning">
+            @*<div class="panel panel-warning">
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#accordion1_4">
@@ -104,7 +109,7 @@
                         3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et
                     </div>
                 </div>
-            </div>
+            </div>*@
         </div>
     </div>
 </div>

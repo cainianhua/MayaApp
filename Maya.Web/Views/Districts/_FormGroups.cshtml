@@ -37,7 +37,9 @@
         }
 		<div class="form-group">
 			<label class="control-label col-md-3" for="Name">选择坐标</label>
-			<div class="col-md-8" id="mapContainer"></div>
+			<div class="col-md-8" id="mapContainer">
+                <span class="help-block">此处应该显示谷歌地图，如果你看到此信息，说明谷歌地图无法加载，请使用代理访问。</span>
+            </div>
 		</div>
         @using (Html.BeginPanelFor( m => m.Lng, new { @class = "form-group" } )) {
             @Html.LabelFor( m => m.Lng, new { @class = "control-label col-md-3" } )
@@ -56,7 +58,21 @@
         @using (Html.BeginPanelFor( m => m.TimeZone, new { @class = "form-group" } )) {
             @Html.LabelFor( m => m.TimeZone, new { @class = "control-label col-md-3" } )
             <div class="col-md-4">
-                @Html.TextBoxFor( m => m.TimeZone, new { @class = "form-control" } )
+                <div id="spinner4">
+                    <div class="input-group" style="width:150px;">
+                        <div class="spinner-buttons input-group-btn">
+                            <button type="button" class="btn spinner-up blue">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
+                        @Html.TextBoxFor(m => m.TimeZone, new { @class = "spinner-input form-control" })
+                        <div class="spinner-buttons input-group-btn">
+                            <button type="button" class="btn spinner-down red">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
                 @Html.ValidationMessageFor( m => m.TimeZone )
             </div>
         }

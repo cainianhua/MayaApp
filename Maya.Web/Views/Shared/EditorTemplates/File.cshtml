@@ -17,12 +17,12 @@
             选择图片
             <input id="@clientId" type="file" data-drop-zone="#@(clientId)_DropZone" data-url="/api/fileupload" data-single-file-uploads="false" data-max-size="" data-allowed-extensions="gif|jpg|jpeg|png|svg">
         </a>
-        <button type="button" class="btn btn-success dropdown-toggle @if (string.IsNullOrEmpty( Model )) { <text>hidden</text> } " data-toggle="dropdown">
+        @*<button type="button" class="btn btn-success dropdown-toggle @if (string.IsNullOrEmpty( Model )) { <text>hidden</text> } " data-toggle="dropdown">
             <i class="fa fa-angle-down"></i>
-        </button>
-        <ul class="dropdown-menu" role="menu">
-            <li><a href="javascript:;" class="clear"><i class="fa fa-trash-o"></i> Remove</a></li>
-        </ul>
+        </button>*@
+        @*<ul class="dropdown-menu" role="menu">
+            <li><a href="javascript:;" class="clear"><i class="fa fa-trash-o"></i> 删除</a></li>
+        </ul>*@
     </div>
     <span class="help-block details">
         @if (!string.IsNullOrEmpty( Model )) {
@@ -30,4 +30,4 @@
         }
     </span>
 </div>
-<span class="help-block">Recommended dimensions of at least 256x256 pixels.</span>
+<span class="help-block">产品图片推荐大小为720x256 px.</span>

@@ -7,15 +7,32 @@ using Maya.Services.VO;
 using Maya.Services.BO;
 using Maya.Web.Models;
 using Maya.Services;
+using Webdiyer.WebControls.Mvc;
+using System.ComponentModel;
 
 namespace Maya.Web.Controllers
 {
-    public class ArticlesController : Controller
+    public class ArticlesController : ControllerBase
     {
         // GET: Articles
-        public ActionResult Index()
+        public ActionResult Index([DefaultValue(1)] int page, int? did)
         {
-			List<ArticleVO> items = ArticleBO.GetInstance().GetItems();
+			List<ArticleVO> articles = ArticleBO.GetInstance().GetItems(did);
+            var items = new PagedList<ArticleVO>(articles.Skip((page - 1) * PageSize).Take(PageSize), page, PageSize, articles.Count);
+
+            List<SelectListItem> selectItems = new List<SelectListItem>();
+            DistrictBO.GetInstance().GetItems().ForEach(item =>
+            {
+                selectItems.Add(new SelectListItem()
+                {
+                    Text = item.Name,
+                    Value = Url.Action("Index", new { page = page, did = item.DistrictId }),
+                    Selected = did.HasValue && did.Value == item.DistrictId
+                });
+            });
+
+            ViewBag.Districts = selectItems;
+
             return View(items);
         }
 

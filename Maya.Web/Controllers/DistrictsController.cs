@@ -15,11 +15,13 @@ namespace Maya.Web.Controllers
     public class DistrictsController : ControllerBase
     {
         // GET: Districts
-        public ActionResult Index([DefaultValue(1)]int page)
+        public ActionResult Index([DefaultValue(1)]int page, string s)
         {
-			List<DistrictVO> districts = DistrictBO.GetInstance().GetItems();
+			List<DistrictVO> districts = DistrictBO.GetInstance().GetItems(s);
 			PagedList<DistrictVO> items = new PagedList<DistrictVO>(districts.Skip((page - 1) * PageSize).Take(PageSize), page, PageSize, districts.Count);
-			
+
+            ViewBag.UrlFormatter = Url.Action("Index", new { page = page, s = "-_s_-" });
+
             return View(items);
         }
 
@@ -44,6 +46,8 @@ namespace Maya.Web.Controllers
 				}
 			}
 
+            item.TimeZone = 9;
+
 			ViewBag.Districts = new SelectList( DistrictBO.GetInstance().GetAllItems(), "DistrictId", "Name" );
 
             return View( item );
@@ -60,6 +64,7 @@ namespace Maya.Web.Controllers
                 d.Description = item.Description;
                 d.Lng = item.Lng;
                 d.Lat = item.Lat;
+                d.TimeZone = item.TimeZone;
                 d.ActionDate = DateTime.Now;
                 d.ActionBy = UserContext.Current.User.UserName;
 

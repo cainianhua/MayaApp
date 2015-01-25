@@ -22,9 +22,15 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="btn-group">
-                                <a href="@Url.Action("Create")" class="btn green">新增记录<i class="fa fa-plus"></i></a>
+                                <a href="@Url.Action("Create")" class="btn green">新增记录 <i class="fa fa-plus"></i></a>
 							</div>
 						</div>
+                        <div class="col-md-6">
+                            <div class="btn-group pull-right">
+                                <input type="text" id="txtSearchText" class="form-control input-medium input-inline" />
+                                <a href="javascript:;" class="btn default pull-right" id="btnSearch">搜索</a>
+                            </div>
+                        </div>
 					</div>
 				</div>
 				<div id="sample_1_wrapper" class="dataTables_wrapper no-footer">
@@ -48,10 +54,10 @@
 								<td>@item.Name</td>
 								<td>@item.Lng</td>
 								<td>@item.Lat</td>
-								<td>@item.TimeZone</td>
+								<td>@(((Maya.Services.TimeZoneEnum)item.TimeZone).GetDescription())</td>
 								<td class="center">@item.UpdatedDate.ToString( "yyyy-MM-dd HH:mm:ss" )</td>
 								<td>
-									@Html.TagLink("<i class=\"fa fa-edit\"></i> 修改", "Create", new { controller = "Districts", id = item.DistrictId }, new { @class = "btn btn-xs default" })
+									@Html.TagLink("<i class=\"fa fa-edit\"></i> 修改", "Create", new { id = item.DistrictId }, new { @class = "btn btn-xs default" })
 									@Html.DeleteLink( "<i class=\"fa fa-times\"></i> 删除", "Delete", new { id = item.DistrictId }, new { @class = "btn btn-xs red", title = "删除记录", onclick = "return confirm('确定要删除此记录吗？');" } )
 								</td>
 							</tr>
@@ -123,4 +129,19 @@
     <script type="text/javascript" src="~/Scripts/plugins/select2/select2.min.js"></script>
     <script type="text/javascript" src="~/Scripts/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="~/Scripts/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
+
+    <script type="text/javascript">
+        jQuery(function () {
+            $("#btnSearch").on("click", function (e) {
+                e.preventDefault();
+
+                var urlFormatter = "@Html.Raw(ViewBag.UrlFormatter)";
+                var s = $("#txtSearchText").val();
+                if ($.trim(s)) {
+                    window.location = urlFormatter.replace(/\-_s_\-/g, s);
+                }
+                return false;
+            });
+        });
+    </script>
 }

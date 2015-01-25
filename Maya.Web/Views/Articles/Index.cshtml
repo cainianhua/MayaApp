@@ -1,10 +1,11 @@
-﻿@model List<ArticleVO>
+﻿@model PagedList<ArticleVO>
 @using Maya.Services.VO
 @using Maya.Services.BO
+@using Webdiyer.WebControls.Mvc
 @{
     ViewBag.Title = "文章列表";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.HeaderTitle = "文章列表 <small>dashboard & statistics</small>";
+    ViewBag.HeaderTitle = "文章列表 <small>查看以及管理文章信息</small>";
 }
 
 <!-- BEGIN PAGE CONTENT-->
@@ -22,75 +23,92 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="btn-group">
-                                <a href="@Url.Action("Create")" class="btn green">新增记录<i class="fa fa-plus"></i></a>
+                                <a href="@Url.Action("Create")" class="btn green">新增记录 <i class="fa fa-plus"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="btn-group pull-right">
+                                <input type="text" class="form-control input-medium input-inline" />
+                                <a href="javascript:;" class="btn default pull-right">搜索</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <table class="table table-striped table-bordered table-hover" id="sample_1">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>标题</th>
-                            <th>类别</th>
-                            <th>所属地点</th>
-                            <th>创建时间</th>
-                            <th>修改</th>
-                            <th>删除</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (ArticleVO item in Model) {
-                            <tr class="odd gradeX">
-                                <td>
-                                    @item.ArticleId
-                                </td>
-                                <td>
-                                    @item.Title
-                                </td>
-                                <td>
-                                    @CategoryBO.GetInstance().GetItem( item.CategoryId ).Name
-                                </td>
-                                <td>
-                                    @DistrictBO.GetInstance().GetItem( item.DistrictId ).Name
-                                </td>
-                                <td class="center">
-                                    @item.CreatedDate.ToString( "yyyy-MM-dd HH:mm:ss" )
-                                </td>
-                                <td>
-                                    @Html.ActionLink( "修改", "Create", new { id = item.ArticleId } )
-                                </td>
-                                <td>
-                                    @Html.DeleteLink( Url.Content( "~/Content/img/remove-icon-small.png" ), "Delete", new { id = item.ArticleId }, new { title = "删除文章", onclick = "return confirm('确定要删除此文章吗？');" } )
-                                </td>
-                            </tr>}
+                <div id="sample_1_wrapper" class="dataTables_wrapper no-footer">
+                    <div class="table-scrollable">
+                        <table class="table table-striped table-bordered table-hover" id="sample_1">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>标题</th>
+                                    <th>类别</th>
+                                    <th>所属地点</th>
+                                    <th>创建时间</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (ArticleVO item in Model) {
+                                <tr class="odd gradeX">
+                                    <td>
+                                        @item.ArticleId
+                                    </td>
+                                    <td>
+                                        @item.Title
+                                    </td>
+                                    <td>
+                                        @CategoryBO.GetInstance().GetItem( item.CategoryId ).Name
+                                    </td>
+                                    <td>
+                                        @DistrictBO.GetInstance().GetItem( item.DistrictId ).Name
+                                    </td>
+                                    <td class="center">
+                                        @item.CreatedDate.ToString( "yyyy-MM-dd HH:mm:ss" )
+                                    </td>
+                                    <td>
+                                        @Html.TagLink("<i class=\"fa fa-edit\"></i> 修改", "Create", new { id = item.ArticleId }, new { @class = "btn btn-xs default" })
+                                        @Html.DeleteLink("<i class=\"fa fa-times\"></i> 删除", "Delete", new { id = item.ArticleId }, new { @class = "btn btn-xs red", title = "删除记录", onclick = "return confirm('确定要删除此记录吗？');" })
+                                    </td>
+                                </tr>
+                                }
 
-                        @if (Model.Count == 0) {
-                            <tr class="odd gradeX"><td colspan="7" class="center">暂无音乐数据</td></tr>}
-                    </tbody>
-                </table>
+                                @if (Model.Count == 0) {
+                                <tr class="odd gradeX"><td colspan="6" class="center">暂无文章数据</td></tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="dataTables_paginate paging_bootstrap_full_number" id="sample_1_paginate">
+                                @Html.Pager(Model,
+                                            new PagerOptions
+                                            {
+                                                ContainerTagName = "ul",
+                                                CssClass = "pagination",
+                                                PageIndexParameterName = "page",
+                                                ShowGoButton = false,
+                                                PagerItemsSeperator = "",
+                                                CurrentPagerItemWrapperFormatString = "<li class=\"active\"><a href=\"javascript:;\">{0}</a></li>",
+                                                NumericPagerItemWrapperFormatString = "<li>{0}</li>",
+                                                PagerItemWrapperFormatString = "<li>{0}</li>",
+                                                PrevPageText = "<i class=\"fa fa-angle-left\"></i>",
+                                                FirstPageText = "<i class=\"fa fa-angle-double-left\"></i>",
+                                                NextPageText = "<i class=\"fa fa-angle-right\"></i>",
+                                                LastPageText = "<i class=\"fa fa-angle-double-right\"></i>",
+                                                AlwaysShowFirstLastPageNumber = true,
+                                                NumericPagerItemCount = 5
+                                            })
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- END EXAMPLE TABLE PORTLET-->
     </div>
 </div>
 <!-- END PAGE CONTENT-->
-@section BreadCrumb {
-    <ul class="page-breadcrumb">
-        <li>
-            <i class="fa fa-home"></i>
-            <a href="index.html">Home</a>
-            <i class="fa fa-angle-right"></i>
-        </li>
-        <li>
-            <a href="#">Data Tables</a>
-            <i class="fa fa-angle-right"></i>
-        </li>
-        <li>
-            <a href="#">Responsive Datatables</a>
-        </li>
-    </ul>
-}
 @section HeaderStyles {
     <!-- BEGIN PAGE LEVEL STYLES -->
     <link rel="stylesheet" type="text/css" href="~/Scripts/plugins/select2/select2.css" />

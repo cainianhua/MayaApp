@@ -1,7 +1,7 @@
 ﻿@model CreateOrUpdateDistrictModel
 @{
     ViewBag.Title = "编辑国家城市";
-    ViewBag.HeaderTitle = "编辑国家城市 <small>dashboard & statistics</small>";
+    ViewBag.HeaderTitle = "编辑国家城市 <small>修改或者新增地点信息</small>";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -27,23 +27,11 @@
     <link rel="stylesheet" type="text/css" href="~/Scripts/plugins/select2/select2.css" />
     <!-- END PAGE LEVEL STYLES -->
 }
-@section BreadCrumb {
-    <ul class="page-breadcrumb">
-        <li>
-            <i class="fa fa-home"></i>
-            <a href="index.html">Home</a>
-            <i class="fa fa-angle-right"></i>
-        </li>
-        <li>
-            <a href="#">Dashboard</a>
-            <i class="fa fa-angle-right"></i>
-        </li>
-        <li><a href="#">Dashboard</a></li>
-    </ul>
-}
 @section FooterScripts {
     @Scripts.Render( "~/bundles/form-plugins" )
 	<script type="text/javascript" src="~/Scripts/admin/map2.js"></script>
+    <script type="text/javascript" src="~/Scripts/plugins/select2/select2.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/plugins/fuelux/js/spinner.min.js"></script>
 	<script type="text/javascript">
 		function renderMapControl() {
 			$("#mapContainer").coordinateselector({
@@ -65,9 +53,11 @@
 			/* 加载地图API */
 			var script = document.createElement("script");
 			script.type = "text/javascript";
-			script.src = "http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&callback=renderMapControl";
-			//script.src = '@Url.Content("~/Scripts/google.maps.js")';
+			//script.src = "http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&callback=renderMapControl";
+			script.src = '@Url.Content("~/Scripts/google.maps.js")';
 			document.head.appendChild(script);
 		})();
+
+        $('#spinner4').spinner({ step: 1, min: -12, max: 12 });
 	</script>
 }

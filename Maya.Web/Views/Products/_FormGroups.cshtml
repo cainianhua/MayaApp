@@ -52,6 +52,14 @@
                 @Html.ValidationMessageFor( m => m.SortOrder )
             </div>
         }
+        @using (Html.BeginPanelFor(m => m.DistrictId, new { @class = "form-group" }))
+        {
+            @Html.LabelFor(m => m.DistrictId, new { @class = "control-label col-md-3" })
+            <div class="col-md-4">
+                @Html.DropDownListFor(m => m.DistrictId, ViewBag.Districts as SelectList, "请选择", new Dictionary<string, object>().AddWithChain("class", "form-control select2me"))
+                @Html.ValidationMessageFor(m => m.DistrictId)
+            </div>
+        }
     </div>
     <div class="form-actions">
         <div class="row">

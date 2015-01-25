@@ -1,7 +1,7 @@
 ﻿@model CreateOrEditArticleModel
 @{
-    ViewBag.Title = "编辑产品";
-    ViewBag.HeaderTitle = "编辑产品 <small>dashboard & statistics</small>";
+    ViewBag.Title = "编辑文章";
+    ViewBag.HeaderTitle = "编辑文章 <small>修改或者新增文章信息</small>";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,7 +11,7 @@
         <div class="portlet box green">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-edit"></i>编辑产品
+                    <i class="fa fa-edit"></i>编辑文章
                 </div>
             </div>
             <div class="portlet-body form">
@@ -25,36 +25,16 @@
 @section HeaderStyles {
     <!-- BEGIN PAGE LEVEL STYLES -->
     <link rel="stylesheet" type="text/css" href="~/Scripts/plugins/select2/select2.css" />
-    <link rel="stylesheet" type="text/css" href="~/Scripts/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css" />
-    <link rel="stylesheet" type="text/css" href="~/Scripts/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css">
-    <link rel="stylesheet" type="text/css" href="~/Scripts/plugins/bootstrap-datepicker/css/datepicker.css" />
     <!-- END PAGE LEVEL STYLES -->
-}
-@section BreadCrumb {
-    <ul class="page-breadcrumb">
-        <li>
-            <i class="fa fa-home"></i>
-            <a href="index.html">Home</a>
-            <i class="fa fa-angle-right"></i>
-        </li>
-        <li>
-            <a href="#">Dashboard</a>
-            <i class="fa fa-angle-right"></i>
-        </li>
-        <li><a href="#">Dashboard</a></li>
-    </ul>
 }
 @section FooterScripts {
     @Scripts.Render( "~/bundles/form-plugins" )
-    <script type="text/javascript" src="~/Scripts/plugins/ckeditor/ckeditor.js"></script>
-    @Scripts.Render( "~/bundles/form-pages" )
+    <script type="text/javascript" src="~/Scripts/plugins/select2/select2.min.js"></script>
     <script type="text/javascript" src="~/ueditor/ueditor.config.js"></script>
     <script type="text/javascript" src="~/ueditor/ueditor.all.min.js"></script>
     <script type="text/javascript" src="~/ueditor/lang/zh-cn/zh-cn.js"></script>
     <script type="text/javascript">
         jQuery(function() {
-            FormValidation.init();
-
             UE.getEditor("ArticleContent", { initialFrameHeight: 600, zIndex: 9996 });
         });
     </script>

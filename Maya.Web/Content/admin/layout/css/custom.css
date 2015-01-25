@@ -42,11 +42,12 @@ Rounded Portlets
     position: relative;
 }
 .avatar-64 {
-    width: 64px;
+    width: 128px;
     height: 64px;
     font-size: 64px;
     text-align: center;
 }
+
 .fileupload .help-block {
     margin-bottom: 5px;
 }
@@ -67,6 +68,10 @@ Rounded Portlets
 
 .pic-64 {
     max-width: 64px;
+}
+
+.center {
+    text-align: center;
 }
 
 /* CSS definitions for the wrapping div -- fixed google map bug */

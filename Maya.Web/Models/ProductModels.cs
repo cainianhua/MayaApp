@@ -26,6 +26,8 @@ namespace Maya.Web.Models
 		[Required(ErrorMessage = "{0}为必填字段。")]
 		[RegularExpression(@"\d+", ErrorMessage = "{0}格式不正确。")]
 		public int SortOrder { get; set; }
+        [Display(Name = "所属地点")]
+        public int DistrictId { get; set; }
 
 		public CreateOrEditProductModel() {
 			this.SortOrder = 9999;

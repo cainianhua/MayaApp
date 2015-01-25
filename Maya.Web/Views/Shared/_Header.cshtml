@@ -31,9 +31,7 @@
                 <!-- END USER LOGIN DROPDOWN -->
                 <!-- BEGIN QUICK SIDEBAR TOGGLER -->
                 <li class="dropdown dropdown-quick-sidebar-toggler">
-                    <a href="javascript:;" class="dropdown-toggle">
-                        <i class="icon-logout"></i>
-                    </a>
+                    @Html.TagLink("<i class=\"icon-logout\"></i>", "Logout", new { controller = "Account" }, new { @class = "dropdown-toggle" })
                 </li>
                 <!-- END QUICK SIDEBAR TOGGLER -->
             </ul>

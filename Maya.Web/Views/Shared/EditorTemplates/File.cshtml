@@ -15,7 +15,7 @@
     <div class="btn-group">
         <a href="javascript:;" class="btn btn-success btn-file" tabindex="-1">
             选择图片
-            <input id="@clientId" type="file" data-drop-zone="#@(clientId)_DropZone" data-url="/api/fileupload" data-single-file-uploads="false" data-max-size="" data-allowed-extensions="gif|jpg|jpeg|png|svg">
+            <input id="@clientId" type="file" data-drop-zone="#@(clientId)_DropZone" data-url="@Url.Action("FileUpload", "Api")" data-single-file-uploads="false" data-max-size="" data-allowed-extensions="gif|jpg|jpeg|png|svg">
         </a>
         @*<button type="button" class="btn btn-success dropdown-toggle @if (string.IsNullOrEmpty( Model )) { <text>hidden</text> } " data-toggle="dropdown">
             <i class="fa fa-angle-down"></i>

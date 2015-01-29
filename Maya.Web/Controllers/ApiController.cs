@@ -28,27 +28,25 @@ namespace Maya.Web.Controllers
 			string fileNameForServer = String.Format( "{0}{1}", Guid.NewGuid().ToString().Replace( "-", "" ), Path.GetExtension( file.FileName ) );
 			//string FileNameForErrorMessage = MakeFileNameForErrorMessage( file.FileName );
 
-			string filePathForClient = String.Format( UploadFileViewUrl, currDateString, "Images", fileNameForServer );
-			string saveToPath = String.Format( UploadFilePath, currDateString, "Images" );
-			if (string.IsNullOrEmpty( saveToPath )) {
-				return Json( new { code = -4, message = "Some configurations are wrong." } );
-			}
+			//string filePathForClient = String.Format( UploadFileViewUrl, currDateString, "Images", fileNameForServer );
+            string savePath = String.Format(UploadFilePath, currDateString, "Images", fileNameForServer);
 
-			string fileDirPhysical = Server.MapPath( saveToPath );
-            string filePathForServer = Path.Combine( fileDirPhysical, fileNameForServer );
+			string localPath = Server.MapPath( savePath );
+  
 			// create directory if need.
-			if (!Directory.Exists( fileDirPhysical )) {
-				Directory.CreateDirectory( fileDirPhysical );
-			}
+            if (!Directory.Exists(Path.GetDirectoryName(localPath)))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(localPath));
+            }
 			// save file to server.
 			try {
-				file.SaveAs( filePathForServer );
+                file.SaveAs(localPath);
 			}
 			catch (Exception ex) {
 				return Json( new { code = -5, message = "Save file occurs a problem, and error is: " + ex.Message } );
 			}
 
-			return Json( new { code = 1, message = "success", url = filePathForClient, fileName = fileNameForServer } );
+            return Json(new { code = 1, message = "success", url = String.Format(UploadFileViewUrl, Url.Content(savePath)), fileName = fileNameForServer });
 		}
 
 		#region 属性

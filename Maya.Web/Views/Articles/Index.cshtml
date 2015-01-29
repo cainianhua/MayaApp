@@ -28,8 +28,8 @@
                         </div>
                         <div class="col-md-6">
                             <div class="btn-group pull-right">
-                                <input type="text" class="form-control input-medium input-inline" />
-                                <a href="javascript:;" class="btn default pull-right">搜索</a>
+                                地点过滤：
+                                @Html.DropDownList("drpDistrictId", ViewBag.Districts as List<SelectListItem>, "请选择", new Dictionary<string, object>().AddWithChain("class", "form-control input-medium input-inline select2me").AddWithChain("onchange", "javascript:window.location = $(\"#drpDistrictId\").val();"))
                             </div>
                         </div>
                     </div>

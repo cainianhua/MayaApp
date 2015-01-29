@@ -126,7 +126,7 @@
                 if (responses && responses.length > 0) {
                     that.updateInfoWindowContent(responses[0].formatted_address);
                 } else {
-                    that.updateInfoWindowContent('未能找到坐标相关信息');
+                    that.updateInfoWindowContent('未能找到地理坐标对应的地址信息');
                 }
             });
         },

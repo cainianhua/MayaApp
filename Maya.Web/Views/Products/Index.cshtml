@@ -1,5 +1,6 @@
 ﻿@model PagedList<ProductVO>
 @using Maya.Services.VO
+@using Maya.Services.BO;
 @using Webdiyer.WebControls.Mvc
 @{
     ViewBag.Title = "产品列表";
@@ -47,6 +48,7 @@
                                     <th>#</th>
                                     <th>名称</th>
                                     <th>图片</th>
+                                    <th>所属地点</th>
                                     <th>创建时间</th>
                                     <th>操作</th>
                                 </tr>
@@ -64,6 +66,9 @@
                                         <td>
                                             <img src="@item.Pic" class="pic-64" />
                                         </td>
+                                        <td>
+                                            @DistrictBO.GetInstance().GetItem( item.DistrictId ).Name
+                                        </td>
                                         <td class="center">
                                             @item.CreatedDate.ToString("yyyy-MM-dd HH:mm:ss")
                                         </td>
@@ -76,7 +81,7 @@
 
                                 @if (Model.Count == 0)
                                 {
-                                    <tr class="odd gradeX"><td colspan="5" class="center">暂无产品数据</td></tr>
+                                    <tr class="odd gradeX"><td colspan="6" class="center">暂无产品数据</td></tr>
                                 }
                             </tbody>
                         </table>
@@ -122,11 +127,4 @@
     <script type="text/javascript" src="~/Scripts/plugins/select2/select2.min.js"></script>
     <script type="text/javascript" src="~/Scripts/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="~/Scripts/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
-    <script src="~/Scripts/admin/pages/table-managed.js"></script>
-    <script>
-        jQuery(function ($) {
-            //TableManaged.init();
-        });
-    </script>
 }
-

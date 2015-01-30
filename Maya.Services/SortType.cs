@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 namespace Maya.Services
 {
 	/// <summary>
-	/// 和数据表里面的数据保持一致
+	/// 用于客户端服务接口（ServicesController）
+	/// 对于需要使用ID到数据库查询对应数据的分类，需要和数据表里面的数据（就是ID）保持一致
 	/// </summary>
 	public enum SortType
 	{
@@ -47,6 +48,7 @@ namespace Maya.Services
 		/// </summary>
 		[Description("出入境卡填写")]
 		CRJKTX,
+		// ++++++++++++++++以下的字段不和数据库记录对应+++++++++++++++
 		/// <summary>
 		/// 经纬度
 		/// </summary>

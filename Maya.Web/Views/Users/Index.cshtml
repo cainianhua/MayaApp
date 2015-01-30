@@ -71,7 +71,7 @@
                                 <td>
                                     @Html.TagLink( "<i class=\"fa fa-edit\"></i> 修改", "Edit", new { id = item.UserId }, new { @class = "btn btn-xs default" } )
                                     @Html.TagLink( "<i class=\"fa fa-lock\"></i> 更新密码", "ChangePassword", new { id = item.UserId }, new { @class = "btn btn-xs default" } )
-									@Html.TagLink( "<i class=\"fa fa-times\"></i> 删除", "Delete", new { id = item.UserId }, new { @class = "btn btn-xs red", title = "删除用户", onclick = "return confirm('确定要删除此用户吗？');" } )
+                                    @Html.TagLink( "<i class=\"fa fa-times\"></i> 删除", "Delete", new { id = item.UserId }, new { @class = "btn btn-xs red", title = "删除用户", onclick = "return confirm('确定要删除此用户吗？');" } )
                                 </td>
                             </tr>}
                     </tbody>
@@ -92,11 +92,5 @@
     <script type="text/javascript" src="~/Scripts/plugins/select2/select2.min.js"></script>
     <script type="text/javascript" src="~/Scripts/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="~/Scripts/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
-    <script src="~/Scripts/admin/pages/table-managed.js"></script>
-    <script>
-        jQuery(function ($) {
-            //TableManaged.init();
-        });
-    </script>
 }
 

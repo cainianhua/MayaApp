@@ -9,9 +9,11 @@ using Maya.Services.BO;
 using Maya.Services;
 using Webdiyer.WebControls.Mvc;
 using System.ComponentModel;
+using Maya.Web.FilterAttributes;
 
 namespace Maya.Web.Controllers
 {
+	[LoginChecker]
     public class DistrictsController : ControllerBase
     {
         // GET: Districts

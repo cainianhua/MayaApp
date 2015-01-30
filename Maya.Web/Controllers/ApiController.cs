@@ -5,9 +5,11 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Maya.Web.FilterAttributes;
 
 namespace Maya.Web.Controllers
 {
+	[LoginChecker]
     public class ApiController : Controller
     {
         // GET: Api

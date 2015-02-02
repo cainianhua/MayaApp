@@ -109,26 +109,14 @@ namespace Maya.Web.Controllers
             }
         }
 
-        // GET: Musics/Delete/5
+        // POST: Musics/Delete/5
+        [HttpDelete]
         public ActionResult Delete(int id)
         {
-            return View();
-        }
+            // TODO: Add delete logic here
+            MusicBO.GetInstance().DeleteItem(id);
 
-        // POST: Musics/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index");
         }
     }
 }

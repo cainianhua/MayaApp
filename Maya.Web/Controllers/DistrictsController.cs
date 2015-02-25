@@ -36,7 +36,7 @@ namespace Maya.Web.Controllers
         // GET: Districts/Create
         public ActionResult Create(int? id)
         {
-            CreateOrUpdateDistrictModel item = new CreateOrUpdateDistrictModel();
+			CreateOrUpdateDistrictModel item = new CreateOrUpdateDistrictModel();
 			if (id.HasValue) {
 				DistrictVO district = DistrictBO.GetInstance().GetItem( id.Value );
 				List<DistrictVO> parents = DistrictBO.GetInstance().GetParentItems( id.Value );
@@ -47,8 +47,6 @@ namespace Maya.Web.Controllers
 					}
 				}
 			}
-
-            item.TimeZone = 9;
 
 			ViewBag.Districts = new SelectList( DistrictBO.GetInstance().GetAllItems(), "DistrictId", "Name" );
 

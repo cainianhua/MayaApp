@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -47,6 +48,26 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StreamExtensions.cs" />
     <Compile Include="Utils.cs" />
+    <Compile Include="Security\ValidationCodeProvider.cs" />
+    <Compile Include="Security\ValidateCode\AnimatedGifEncoder.cs" />
+    <Compile Include="Security\ValidateCode\GifDecoder.cs" />
+    <Compile Include="Security\ValidateCode\LZWEncoder.cs" />
+    <Compile Include="Security\ValidateCode\NeuQuant.cs" />
+    <Compile Include="Security\ValidateCode\ValidateCodeBase.cs" />
+    <Compile Include="Security\ValidateCode\ValidateCode_Style1.cs" />
+    <Compile Include="Security\ValidateCode\ValidateCode_Style10.cs" />
+    <Compile Include="Security\ValidateCode\ValidateCode_Style11.cs" />
+    <Compile Include="Security\ValidateCode\ValidateCode_Style12.cs" />
+    <Compile Include="Security\ValidateCode\ValidateCode_Style13.cs" />
+    <Compile Include="Security\ValidateCode\ValidateCode_Style14.cs" />
+    <Compile Include="Security\ValidateCode\ValidateCode_Style2.cs" />
+    <Compile Include="Security\ValidateCode\ValidateCode_Style3.cs" />
+    <Compile Include="Security\ValidateCode\ValidateCode_Style4.cs" />
+    <Compile Include="Security\ValidateCode\ValidateCode_Style5.cs" />
+    <Compile Include="Security\ValidateCode\ValidateCode_Style6.cs" />
+    <Compile Include="Security\ValidateCode\ValidateCode_Style7.cs" />
+    <Compile Include="Security\ValidateCode\ValidateCode_Style8.cs" />
+    <Compile Include="Security\ValidateCode\ValidateCode_Style9.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

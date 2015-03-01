@@ -2819,6 +2819,7 @@
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\ValidationCodeController.cs" />
     <Compile Include="Extensions\FormGroupExtensions.cs" />
     <Compile Include="Extensions\JsonpController.cs" />
     <Compile Include="Extensions\JsonpResult.cs" />
@@ -3070,6 +3071,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\plugins\jquery-file-upload\server\node\public\files\thumbnail\" />
     <Folder Include="Scripts\plugins\jquery-file-upload\server\php\files\thumbnail\" />
+    <Folder Include="Views\ValidateCode\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Maya.Services\Maya.Services.csproj">

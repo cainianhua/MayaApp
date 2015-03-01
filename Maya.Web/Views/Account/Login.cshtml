@@ -73,6 +73,14 @@
                 </div>
                 @Html.ValidationMessageFor(m => m.Password)
             }
+            using (Html.BeginPanelFor( m => m.ValidationCode, new { @class = "form-group" } )) {
+                @Html.LabelFor( m => m.ValidationCode, new { @class = "control-label visible-ie8 visible-ie9" } )
+                <div class="input-icon">
+                    @Html.TextBoxFor( m => m.ValidationCode, new { @class = "form-control placeholder-no-fix", placeholder = "验证码", maxlength = 4, style = "width: 50%;display: inline;" } )
+                    <img src="@Url.Action("Index", "ValidationCode")" id="VerifyImage" title="看不清？点击换一个" onclick="javascript:document.getElementById('VerifyImage').src='@Url.Action("Index", "ValidationCode")?r=' + Math.random();return false;" />
+                </div>
+                @Html.ValidationMessageFor( m => m.ValidationCode )
+            }
             <div class="form-actions">
                 <label class="checkbox">
                     @Html.CheckBoxFor(m => m.RememberMe)

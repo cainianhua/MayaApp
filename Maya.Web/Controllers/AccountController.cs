@@ -9,6 +9,7 @@ using Maya.Services.BO;
 using System.Security.Cryptography;
 using System.Text;
 using Maya.Services;
+using Maya.Security;
 
 namespace Maya.Web.Controllers
 {
@@ -34,23 +35,25 @@ namespace Maya.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                UserVO item = UserBO.GetInstance().GetItemByUserName(model.LoginName);
-                
-                if (item == null || item.Password != Utils.EncryptPassword(model.Password, item.PasswordSalt))
-                {
-                    ModelState.AddModelError("Password", "用户名或者密码不正确");
-                }
-                else
-                {
-                    CreateLoginCookie(item, model.RememberMe);
+				IValidateCodeProvider provider = new ValidationCodeProvider();
+				if ( !provider.CheckValidationCode( model.ValidationCode ) ) {
+					ModelState.AddModelError( "ValidationCode", "验证码不正确" );
+				}
+				else {
+					UserVO item = UserBO.GetInstance().GetItemByUserName( model.LoginName );
+					if ( item == null || item.Password != Utils.EncryptPassword( model.Password, item.PasswordSalt ) ) {
+						ModelState.AddModelError( "Password", "用户名或者密码不正确" );
+					}
+					else {
+						CreateLoginCookie( item, model.RememberMe );
 
-                    if (!string.IsNullOrEmpty(returnUrl))
-                    {
-                        return Redirect(returnUrl);
-                    }
+						if ( !string.IsNullOrEmpty( returnUrl ) ) {
+							return Redirect( returnUrl );
+						}
 
-                    return RedirectToAction("Index", "Dashboard");
-                }
+						return RedirectToAction( "Index", "Dashboard" );
+					}
+				}
             }
             return View(model);
         }

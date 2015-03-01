@@ -20,8 +20,10 @@ namespace Maya.Web.Models
         [Required(ErrorMessage = "请输入{0}。")]
         public string Password { get; set; }
 
-        [Required]
-        public decimal Price { get; set; }
+		[Display(Name = "验证码")]
+		[Required(ErrorMessage = "请输入{0}。")]
+		[StringLength(4, MinimumLength = 4, ErrorMessage = "验证码长度不匹配")]
+		public string ValidationCode { get; set; }
 
         [Display(Name = "记住我？")]
         public bool RememberMe { get; set; }
